@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* Tomas Lydahl brand colors - dark, gold, warm */
+    --background: 20 10% 8%;
+    --foreground: 40 30% 92%;
+
+    --card: 20 8% 12%;
+    --card-foreground: 40 30% 92%;
+
+    --popover: 20 8% 12%;
+    --popover-foreground: 40 30% 92%;
+
+    --primary: 42 58% 55%;
+    --primary-foreground: 20 10% 8%;
+
+    --secondary: 20 8% 16%;
+    --secondary-foreground: 40 30% 92%;
+
+    --muted: 20 8% 16%;
+    --muted-foreground: 40 15% 58%;
+
+    --accent: 42 58% 55%;
+    --accent-foreground: 20 10% 8%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 40 30% 92%;
+
+    --border: 40 10% 20%;
+    --input: 40 10% 20%;
+    --ring: 42 58% 55%;
+
+    --radius: 0.4rem;
+
+    /* Custom tokens */
+    --gold: 42 58% 55%;
+    --gold-light: 42 65% 70%;
+    --gold-dark: 40 50% 40%;
+    --surface: 20 8% 12%;
+    --surface-elevated: 20 8% 16%;
+
+    --sidebar-background: 20 10% 8%;
+    --sidebar-foreground: 40 30% 92%;
+    --sidebar-primary: 42 58% 55%;
+    --sidebar-primary-foreground: 20 10% 8%;
+    --sidebar-accent: 20 8% 16%;
+    --sidebar-accent-foreground: 40 30% 92%;
+    --sidebar-border: 40 10% 20%;
+    --sidebar-ring: 42 58% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(ellipse at 50% 0%, hsl(42 40% 18% / 0.4) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 50%, hsl(42 30% 12% / 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, hsl(42 35% 14% / 0.2) 0%, transparent 45%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .gold-divider {
+    @apply w-16 h-0.5 mx-auto my-6;
+    background: hsl(var(--gold));
+  }
+
+  .gold-divider-left {
+    @apply w-16 h-0.5 my-4;
+    background: hsl(var(--gold));
+  }
+
+  .section-label {
+    @apply text-sm uppercase tracking-widest font-medium;
+    color: hsl(var(--gold));
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  .hero-gradient {
+    background: radial-gradient(ellipse at top center, hsl(42 40% 18% / 0.5) 0%, hsl(var(--background)) 70%);
+  }
+
+  .card-surface {
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .gold-text {
+    color: hsl(var(--gold));
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center rounded-2xl font-semibold;
+    background: hsl(var(--gold));
+    color: hsl(var(--primary-foreground));
+    font-family: 'Source Sans 3', sans-serif;
+    letter-spacing: 0.03em;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.18s ease;
+  }
+
+  .btn-gold:hover {
+    background: hsl(var(--gold-light));
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  .btn-gold:active {
+    transform: translateY(0px) scale(0.97);
+    transition: transform 0.08s ease;
+  }
+
+  .input-dark {
+    @apply w-full rounded px-4 py-3 text-base outline-none transition-colors duration-200;
+    background: hsl(var(--surface-elevated));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
+  }
+
+  .input-dark::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .input-dark:focus {
+    border-color: hsl(var(--gold));
+    box-shadow: 0 0 0 2px hsl(var(--gold) / 0.15);
+  }
+
+  /* Scroll reveal animations */
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-left, .reveal-right, .reveal-zoom {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1, .reveal-delay-2, .reveal-delay-3, .reveal-delay-4 { transition-delay: 0s; }
+
+  /* Pulsing green dot for live countdown */
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 hsl(134 70% 45% / 0.7), 0 0 14px hsl(134 70% 45% / 0.9); }
+    50% { opacity: 0.55; box-shadow: 0 0 0 6px hsl(134 70% 45% / 0), 0 0 4px hsl(134 70% 45% / 0.4); }
+  }
+  .live-dot {
+    width: 10px; height: 10px; border-radius: 9999px;
+    background: hsl(134 70% 45%);
+    animation: live-pulse 1.6s ease-in-out infinite;
+  }
+
+  /* Sticky bottom CTA bar */
+  .sticky-cta {
+    transform: translateY(110%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .sticky-cta.is-visible { transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-left, .reveal-right, .reveal-zoom {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+}
