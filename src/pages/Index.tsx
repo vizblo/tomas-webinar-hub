@@ -14,8 +14,8 @@ import testimonial10 from "@/assets/testimonial-10.webp";
 import { useNavigate } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
-// Webinar date: 15 June 2026 at 19:00 (Stockholm / CEST)
-const WEBINAR_DATE = new Date("2026-06-15T19:00:00+02:00");
+// Webinar date: 29 July 2026 at 19:00 (Stockholm / CEST)
+const WEBINAR_DATE = new Date("2026-07-29T19:00:00+02:00");
 
 function useCountdown(target: Date) {
   const calc = () => {
@@ -40,20 +40,20 @@ const benefits = [
 {
   num: "1",
   icon: Brain,
-  title: "Förstå varför du tvivlar på dig själv",
-  desc: "Du får verktygen för att förstå var självtvivlet kommer ifrån, och varför det inte är ditt fel."
+  title: "Varför du känner dig otillräcklig",
+  desc: "Förstå varför din hjärna konstant jämför dig med andra och skapar en falsk känsla av att du inte duger."
 },
 {
   num: "2",
   icon: Shield,
-  title: "Sluta tro att du är dina tankar",
-  desc: "Lär dig skillnaden mellan att HA en negativ tanke om dig själv och att TRO på den, och frigör dig från självtvivlet."
+  title: "Varför otillräcklighet är en lögn",
+  desc: "Lär dig skillnaden mellan att KÄNNA dig otillräcklig och att VARA otillräcklig – och varför känslan inte är en sanning om dig."
 },
 {
   num: "3",
   icon: Heart,
-  title: "Få ett obegränsat självförtroende",
-  desc: "Konkreta principer för att låta ditt självförtroende träda fram, utan att du behöver bevisa något för någon."
+  title: "Hur du slutar tro att du inte räcker till",
+  desc: "Konkreta principer för att sluta bevisa ditt värde och istället känna att du är bra nog – precis som du är."
 },
 {
   num: "4",
@@ -151,11 +151,11 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen" style={{ background: "hsl(var(--background))" }}>
       <Helmet>
-        <title>Obegränsat självförtroende för resten av livet - Tomas Lydahl</title>
-        <meta name="description" content="Anmäl dig till Tomas Lydahls kostnadsfria digitala föreläsning den 15 juni 2026 om hur du får ett obegränsat självförtroende." />
+        <title>Sluta känna dig otillräcklig - Tomas Lydahl</title>
+        <meta name="description" content="Anmäl dig till Tomas Lydahls kostnadsfria digitala föreläsning den 29 juli 2026 om hur du slutar känna dig otillräcklig och känner att du är bra nog." />
         <link rel="canonical" href="https://tomaslydahlwebinars.com/" />
-        <meta property="og:title" content="Obegränsat självförtroende för resten av livet - Tomas Lydahl" />
-        <meta property="og:description" content="Kostnadsfri digital föreläsning med Tomas Lydahl den 15 juni 2026 om obegränsat självförtroende." />
+        <meta property="og:title" content="Sluta känna dig otillräcklig - Tomas Lydahl" />
+        <meta property="og:description" content="Kostnadsfri digital föreläsning med Tomas Lydahl den 29 juli 2026 om att sluta känna dig otillräcklig." />
         <meta property="og:url" content="https://tomaslydahlwebinars.com/" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -229,10 +229,10 @@ const LandingPage = () => {
             <div ref={formRef} className="order-1 md:order-2 text-center md:text-left">
               <p className="section-label mb-4 font-sans">KOSTNADSFRI DIGITAL FÖRELÄSNING</p>
               <h1 className="text-[1.6rem] sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold leading-tight mb-5 font-sans" style={{ fontFamily: "sans-serif", color: "hsl(0 0% 100%)" }}>
-                Hur du får ett <span style={{ color: "hsl(var(--gold))" }}>obegränsat självförtroende</span> för resten av ditt liv
+                Så slutar du känna dig <span style={{ color: "hsl(var(--gold))" }}>otillräcklig</span> och äntligen får tillbaka känslan att du är <span style={{ color: "hsl(var(--gold))" }}>bra nog</span>
               </h1>
               <p className="text-base md:text-lg mb-6 font-sans" style={{ color: "hsl(var(--foreground))" }}>
-                För dig som vill bli av med ditt självtvivel och istället låta ditt självförtroende träda fram.
+                Kostnadsfri digital föreläsning för dig som vill sluta känna dig otillräcklig.
               </p>
 
               {/* Date/Time badges */}
@@ -246,7 +246,7 @@ const LandingPage = () => {
                     fontFamily: "sans-serif"
                   }}>
                   <Calendar className="w-4 h-4" style={{ color: "hsl(var(--gold))" }} />
-                  15 juni 2026
+                  29 juli 2026
                 </div>
                 <div
                   className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
@@ -386,10 +386,10 @@ const LandingPage = () => {
               </h3>
               <ul className="space-y-4">
                 {[
-                  "Du redan känner dig trygg i dig själv i alla situationer",
+                  "Du redan känner dig trygg och bra nog i alla situationer",
                   "Du inte är beredd att lägga 60 minuter på dig själv",
                   "Du är inte redo till att göra en förändring i ditt liv",
-                  "Du tror att självförtroende handlar om att fejka det"
+                  "Du tror att känslan av att vara bra nog handlar om att fejka det"
                 ].map((t, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "hsl(0 72% 55% / 0.12)", border: "1px solid hsl(0 72% 55% / 0.4)" }}>
@@ -577,8 +577,8 @@ const LandingPage = () => {
       {/* FINAL CTA */}
       <section className="py-20 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 font-sans whitespace-nowrap" style={{ color: "hsl(var(--foreground))" }}>
-            Redo att sluta tvivla och börja känna att du duger?
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 font-sans" style={{ color: "hsl(var(--foreground))" }}>
+            Redo att sluta känna dig otillräcklig och känna att du är bra nog?
           </h2>
           <p className="mb-8 text-lg" style={{ color: "hsl(var(--foreground))" }}>
             Säkra din kostnadsfria plats på föreläsningen idag.
@@ -723,7 +723,7 @@ const LandingPage = () => {
         }}>
         <div className="max-w-2xl mx-auto flex flex-col items-center gap-1">
           <p className="text-sm font-bold font-sans text-center" style={{ color: "hsl(var(--foreground))" }}>
-            Kostnadsfri digital föreläsning - 15:e juni 19:00
+            Kostnadsfri digital föreläsning - 29:e juli 19:00
           </p>
           <p className="text-xs font-sans text-center" style={{ color: "hsl(var(--muted-foreground))" }}>
             Med Tomas Lydahl
