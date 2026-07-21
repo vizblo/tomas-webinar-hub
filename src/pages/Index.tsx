@@ -13,6 +13,8 @@ import testimonial9 from "@/assets/testimonial-9.webp";
 import testimonial10 from "@/assets/testimonial-10.webp";
 import { useNavigate } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 // Webinar date: 29 July 2026 at 19:00 (Stockholm / CEST)
 const WEBINAR_DATE = new Date("2026-07-29T19:00:00+02:00");
