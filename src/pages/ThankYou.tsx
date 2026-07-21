@@ -190,7 +190,7 @@ const ThankYou = () => {
             </div>
 
             <a
-              href="https://chat.whatsapp.com/Fp5DOKnXjJtAqzxWPBToRu?mode=gi_t"
+              href="https://chat.whatsapp.com/DlwthgnaUjiHrZvUSmQ0Ww?mode=gi_t"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 text-sm inline-flex items-center gap-2 rounded-lg font-bold transition-all duration-200 hover:scale-105 hover:brightness-110 active:scale-95"
@@ -251,7 +251,7 @@ const ThankYou = () => {
                   fontFamily: "'Source Sans 3', sans-serif"
                 }}>
                 <CalendarIcon className="w-4 h-4" style={{ color: "hsl(var(--gold))" }} />
-                15 juni 2026
+                29 juli 2026
               </div>
               <div
                 className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
@@ -267,7 +267,7 @@ const ThankYou = () => {
             </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Digital+f%C3%B6rel%C3%A4sning+-+Tomas+Lydahl&dates=20260615T170000Z%2F20260615T180000Z&details=G%C3%A5+med+p%C3%A5+f%C3%B6rel%C3%A4sningen+h%C3%A4r%3A+https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F4o84xrfgiksws6&location=https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F4o84xrfgiksws6"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Digital+f%C3%B6rel%C3%A4sning+-+Tomas+Lydahl&dates=20260729T170000Z%2F20260729T180000Z&details=G%C3%A5+med+p%C3%A5+f%C3%B6rel%C3%A4sningen+h%C3%A4r%3A+https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F2094xpcgs7s6sk&location=https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F2094xpcgs7s6sk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold px-6 py-3 text-sm inline-flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105 hover:brightness-110 active:scale-95">
@@ -275,7 +275,7 @@ const ThankYou = () => {
                 Google Calendar
               </a>
               <a
-                href="https://outlook.live.com/calendar/0/action/compose?subject=Digital+f%C3%B6rel%C3%A4sning+-+Tomas+Lydahl&startdt=2026-06-15T19%3A00%3A00&enddt=2026-06-15T20%3A00%3A00&location=https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F4o84xrfgiksws6&body=G%C3%A5+med+p%C3%A5+f%C3%B6rel%C3%A4sningen+h%C3%A4r%3A+https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F4o84xrfgiksws6"
+                href="https://outlook.live.com/calendar/0/action/compose?subject=Digital+f%C3%B6rel%C3%A4sning+-+Tomas+Lydahl&startdt=2026-07-29T19%3A00%3A00&enddt=2026-07-29T20%3A00%3A00&location=https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F2094xpcgs7s6sk&body=G%C3%A5+med+p%C3%A5+f%C3%B6rel%C3%A4sningen+h%C3%A4r%3A+https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F2094xpcgs7s6sk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold px-6 py-3 text-sm inline-flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105 hover:brightness-110 active:scale-95">
@@ -381,9 +381,6 @@ const ThankYou = () => {
             </div>
             </div>
 
-            <p className="text-base mt-6" style={{ color: "hsl(var(--foreground))", fontFamily: "'Source Sans 3', sans-serif" }}>
-              När du har hittat mejlet, svara gärna med en "👍" så att jag vet att du fått det!
-            </p>
           </div>
 
           {/* YouTube - final CTA */}
