@@ -685,16 +685,18 @@ const LandingPage = () => {
                   <label htmlFor="modal-phone" className="block text-sm mb-1.5 font-medium" style={{ color: "hsl(var(--foreground))" }}>
                     Telefonnummer
                   </label>
-                  <input
-                id="modal-phone"
-                className="input-dark"
-                type="tel"
-                placeholder="070-123 45 67"
-                autoComplete="tel"
-                name="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                required />
+                  <PhoneInput
+                    id="modal-phone"
+                    className="input-dark phone-input-dark"
+                    international
+                    defaultCountry="SE"
+                    countryCallingCodeEditable={false}
+                    placeholder="70 123 45 67"
+                    autoComplete="tel"
+                    name="tel"
+                    value={formData.phone}
+                    onChange={(value) => setFormData({ ...formData, phone: value || "" })}
+                    required />
                 </div>
                 <button
               type="submit"
