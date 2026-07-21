@@ -467,7 +467,7 @@ const LandingPage = () => {
               <div className="space-y-4 mt-6" style={{ color: "hsl(var(--foreground))" }}>
                 <p className="font-sans">Tomas är en mental coach, författare och föreläsare med över 15 års erfarenhet av professionell coachning.</p>
                 <p className="font-sans">
-              Tomas har själv levt med lågt självförtroende. Han vet hur det känns att aldrig riktigt duga, att jämföra sig med andra och att vara sin egen hårdaste kritiker. När Tomas väl insåg principerna som han går igenom på föreläsningen, förändrades allting.
+              Tomas har själv levt med otillräcklighet. Han vet hur det känns att aldrig riktigt duga, att jämföra sig med andra och att vara sin egen hårdaste kritiker. När Tomas väl insåg principerna som han går igenom på föreläsningen, förändrades allting.
                 </p>
                 <p className="font-sans">
                   Tomas fokus ligger på djup förståelse snarare än ytliga "quick fixes". När du förstår hur ditt sinne fungerar, förändras allt automatiskt, utan att du behöver kämpa eller anstränga dig.
