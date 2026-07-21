@@ -223,7 +223,7 @@ serve(async (req) => {
 
     // Add tags based on registration type
     if (type === "webinar") {
-      await addTagToContact(SYSTEME_API_KEY, contactId, "Webinar - 15 juni 2026");
+      await addTagToContact(SYSTEME_API_KEY, contactId, "Webinar registrerad - 29 juli 2026");
     } else if (type === "qa") {
       await addTagToContact(SYSTEME_API_KEY, contactId, "Q&A - 2 april 2026");
     }
