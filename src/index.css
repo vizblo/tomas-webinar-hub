@@ -144,6 +144,43 @@
     box-shadow: 0 0 0 2px hsl(var(--gold) / 0.15);
   }
 
+  /* react-phone-number-input dark theme overrides */
+  .phone-input-dark {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .phone-input-dark .PhoneInputInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: hsl(var(--foreground));
+    font-size: 1rem;
+    padding: 0;
+  }
+  .phone-input-dark .PhoneInputInput::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+  .phone-input-dark .PhoneInputCountry {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding-right: 0.5rem;
+    border-right: 1px solid hsl(var(--border));
+  }
+  .phone-input-dark .PhoneInputCountrySelect {
+    color: hsl(var(--foreground));
+  }
+  .phone-input-dark .PhoneInputCountrySelectArrow {
+    color: hsl(var(--muted-foreground));
+    opacity: 0.8;
+  }
+  .phone-input-dark:focus-within {
+    border-color: hsl(var(--gold));
+    box-shadow: 0 0 0 2px hsl(var(--gold) / 0.15);
+  }
+
   /* Scroll reveal animations */
   .reveal {
     opacity: 1;
