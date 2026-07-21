@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 const SYSTEME_API_BASE = "https://api.systeme.io/api";
-// Redeploy trigger: ensure latest tag name is live
+const WEBINAR_TAG = "Webinar registrerad - 29 juli 2026";
 
 function normalizeSwedishPhone(raw: string): string {
   // Remove everything except digits and leading +
@@ -105,26 +105,43 @@ async function getOrCreateContact(apiKey: string, email: string, firstName: stri
   return contactId;
 }
 
-async function addTagToContact(apiKey: string, contactId: string, tagName: string): Promise<void> {
-  // First, find or create the tag
-  const tagsRes = await fetch(`${SYSTEME_API_BASE}/tags?name=${encodeURIComponent(tagName)}`, {
-    headers: {
-      "X-API-Key": apiKey,
-      "Accept": "application/json",
-    },
-  });
+async function findTagId(apiKey: string, tagName: string): Promise<number | null> {
+  let startingAfter: number | null = null;
+  const normalizedTarget = tagName.trim().toLocaleLowerCase("sv");
 
-  let tagId: number | null = null;
+  // Systeme.io ignores the `name` query parameter and returns a paginated collection.
+  // Walk every page so an existing tag is found even when it is not among the newest tags.
+  for (let page = 0; page < 100; page += 1) {
+    const params = new URLSearchParams({ limit: "100", order: "asc" });
+    if (startingAfter !== null) params.set("startingAfter", String(startingAfter));
 
-  if (tagsRes.ok) {
-    const tagsData = await tagsRes.json();
-    if (tagsData.items && tagsData.items.length > 0) {
-      const exactMatch = tagsData.items.find((t: { id: number; name: string }) => t.name === tagName);
-      if (exactMatch) {
-        tagId = exactMatch.id;
-      }
+    const tagsRes = await fetch(`${SYSTEME_API_BASE}/tags?${params.toString()}`, {
+      headers: { "X-API-Key": apiKey, "Accept": "application/json" },
+    });
+
+    if (!tagsRes.ok) {
+      const errText = await tagsRes.text();
+      throw new Error(`Could not list Systeme tags (${tagsRes.status}): ${errText}`);
     }
+
+    const tagsData = await tagsRes.json();
+    const items = Array.isArray(tagsData.items) ? tagsData.items : [];
+    const exactMatch = items.find((tag: { id: number; name: string }) =>
+      typeof tag.name === "string" && tag.name.trim().toLocaleLowerCase("sv") === normalizedTarget
+    );
+    if (exactMatch) return Number(exactMatch.id);
+    if (items.length < 100) return null;
+
+    const lastId = Number(items.at(-1)?.id);
+    if (!Number.isFinite(lastId) || lastId === startingAfter) return null;
+    startingAfter = lastId;
   }
+
+  throw new Error("Could not finish searching Systeme tags");
+}
+
+async function addTagToContact(apiKey: string, contactId: string, tagName: string): Promise<void> {
+  let tagId = await findTagId(apiKey, tagName);
 
   if (!tagId) {
     // Create tag if not found
@@ -143,8 +160,9 @@ async function addTagToContact(apiKey: string, contactId: string, tagName: strin
       tagId = newTag.id;
     } else {
       const errText = await createTagRes.text();
-      console.error("Failed to create tag:", tagName, createTagRes.status, errText);
-      return;
+      // A concurrent request may have created the tag after our lookup.
+      if (createTagRes.status === 422) tagId = await findTagId(apiKey, tagName);
+      if (!tagId) throw new Error(`Could not create Systeme tag (${createTagRes.status}): ${errText}`);
     }
   }
 
@@ -161,7 +179,7 @@ async function addTagToContact(apiKey: string, contactId: string, tagName: strin
 
   if (!addTagRes.ok) {
     const errText = await addTagRes.text();
-    console.error(`Failed to add tag "${tagName}" to contact ${contactId}:`, addTagRes.status, errText);
+    throw new Error(`Could not add Systeme tag (${addTagRes.status}): ${errText}`);
   } else {
     console.log(`Tag "${tagName}" added to contact ${contactId}`);
   }
@@ -224,7 +242,7 @@ serve(async (req) => {
 
     // Add tags based on registration type
     if (type === "webinar") {
-      await addTagToContact(SYSTEME_API_KEY, contactId, "Webinar registrerad - 29 juli 2026");
+      await addTagToContact(SYSTEME_API_KEY, contactId, WEBINAR_TAG);
     } else if (type === "qa") {
       await addTagToContact(SYSTEME_API_KEY, contactId, "Q&A - 2 april 2026");
     }
