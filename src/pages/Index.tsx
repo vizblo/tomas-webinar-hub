@@ -47,13 +47,13 @@ const benefits = [
   num: "2",
   icon: Shield,
   title: "Varför otillräcklighet är en lögn",
-  desc: "Lär dig skillnaden mellan att KÄNNA dig otillräcklig och att VARA otillräcklig – och varför känslan inte är en sanning om dig."
+  desc: "Lär dig skillnaden mellan att KÄNNA dig otillräcklig och att VARA otillräcklig, och varför känslan inte är en sann."
 },
 {
   num: "3",
   icon: Heart,
   title: "Hur du slutar tro att du inte räcker till",
-  desc: "Konkreta principer för att sluta bevisa ditt värde och istället känna att du är bra nog – precis som du är."
+  desc: "Konkreta principer för att sluta bevisa ditt värde och istället känna att du är bra nog, precis som du är."
 },
 {
   num: "4",
@@ -288,7 +288,7 @@ const LandingPage = () => {
                   <p
                     className="text-sm font-bold leading-tight"
                     style={{ color: "hsl(var(--foreground))", fontFamily: "'Source Sans 3', sans-serif" }}>
-                    Gratis e-bok – Låt din självkänsla träda fram
+                    Gratis e-bok: Låt din självkänsla träda fram
                   </p>
                 </div>
               </div>
