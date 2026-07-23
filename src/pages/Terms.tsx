@@ -80,7 +80,7 @@ const Terms = () => {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold gold-text">9. SMS / text-message program-villkor</h2>
             <p>
-              <strong>Programbeskrivning:</strong> Tomas Lydahl AB driver ett SMS-program som skickar påminnelser till användare som frivilligt lämnar sitt telefonnummer i vårt anmälningsformulär. Användningen är strikt begränsad till påminnelser inför den föreläsning du anmält dig till – vi skickar inga marknadsförings- eller tredjepartsmeddelanden via SMS.
+              <strong>Programbeskrivning:</strong> Tomas Lydahl AB driver ett SMS-program som skickar påminnelser till användare som frivilligt lämnar sitt telefonnummer i vårt anmälningsformulär. Användningen är strikt begränsad till påminnelser inför den föreläsning du anmält dig till, vi skickar inga marknadsförings- eller tredjepartsmeddelanden via SMS.
             </p>
             <p>
               <strong>Meddelandefrekvens:</strong> Upp till 3 påminnelser per föreläsningsanmälan. Efter att föreläsningen har sänts skickas inga fler SMS.
@@ -89,10 +89,10 @@ const Terms = () => {
               <strong>Avregistrering:</strong> Du kan avsluta SMS-tjänsten när som helst genom att svara <strong>STOP</strong> på något av våra meddelanden. Efter att du skickat <strong>STOP</strong> skickar vi ett bekräftelsemeddelande och därefter inga fler meddelanden. Vill du gå med igen anmäler du dig på nytt.
             </p>
             <p>
-              <strong>Hjälp:</strong> Svara <strong>HELP</strong> på något meddelande för support, eller mejla{" "}
+              <strong>Hjälp:</strong>&nbsp;Mejla{" "}
               <a href="mailto:tomas@tomaslydahl.se" className="underline underline-offset-4 gold-text">
                 tomas@tomaslydahl.se
-              </a>.
+              </a>&nbsp;för att få hjälp.
             </p>
             <p>
               <strong>Meddelande- och datakostnader:</strong> Meddelande- och datakostnader kan tillkomma för meddelanden som skickas till dig från oss och från dig till oss. Meddelandefrekvensen kan variera. Kontakta din mobiloperatör för information om ditt abonnemang.
