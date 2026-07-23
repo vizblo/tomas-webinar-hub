@@ -6,7 +6,7 @@ const Privacy = () => {
     <div className="min-h-screen">
       <Helmet>
         <title>Integritetspolicy | Tomas Lydahl</title>
-        <meta name="description" content="Integritetspolicy för tomaslydahlwebinars.com – hur Tomas Lydahl samlar in, använder och skyddar dina personuppgifter." />
+        <meta name="description" content="Integritetspolicy för tomaslydahl.se – hur Tomas Lydahl samlar in, använder och skyddar dina personuppgifter." />
       </Helmet>
       <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
         <Link to="/" className="text-sm transition-colors hover:opacity-80" style={{ color: "hsl(var(--muted-foreground))" }}>
@@ -29,13 +29,13 @@ const Privacy = () => {
                 tomas@tomaslydahl.se
               </a>.
             </p>
-            <p>Webbplats: tomaslydahlwebinars.com</p>
+            <p>Webbplats: tomaslydahl.se</p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-semibold gold-text">2. Information vi samlar in</h2>
             <p>
-              När du anmäler dig till den kostnadsfria föreläsningen samlar vi in de uppgifter du lämnar i formuläret: förnamn, efternamn, e-postadress och telefonnummer. Vi samlar även in grundläggande teknisk data som IP-adress, webbläsarinformation och marknadsföringsparametrar (t.ex. UTM-taggar och Meta-klick-ID) för att mäta hur våra annonser presterar.
+              När du anmäler dig till den kostnadsfria föreläsningen samlar vi in de uppgifter du lämnar i formuläret: förnamn, e-postadress och telefonnummer. Vi samlar även in grundläggande teknisk data som IP-adress, webbläsarinformation och marknadsföringsparametrar (t.ex. UTM-taggar och Meta-klick-ID) för att mäta hur våra annonser presterar.
             </p>
           </section>
 
@@ -43,8 +43,8 @@ const Privacy = () => {
             <h2 className="text-xl font-semibold gold-text">3. Hur vi använder dina uppgifter</h2>
             <ul className="list-disc space-y-2 pl-6">
               <li>För att ge dig tillgång till föreläsningen du anmält dig till.</li>
-              <li>För att skicka påminnelser inför föreläsningen (e-post).</li>
-              <li>För att skicka transaktionella mejl (bekräftelser, kalenderlänkar, ev. replay).</li>
+              <li>För att skicka påminnelser inför föreläsningen du anmält dig till.</li>
+              <li>För att skicka transaktionella mejl (bekräftelser, kalenderlänkar, ev. repris).</li>
               <li>För att då och då skicka relaterat innehåll och erbjudanden via e-post. Du kan avregistrera dig när du vill.</li>
               <li>För att mäta och förbättra vår webbplats och våra annonser.</li>
             </ul>
