@@ -13,7 +13,7 @@ const Privacy = () => {
           ← Tillbaka till startsidan
         </Link>
 
-        <h1 className="mt-6 text-3xl font-bold sm:text-4xl" style={{ color: "hsl(var(--foreground))" }}>
+        <h1 className="mt-6 text-3xl font-bold sm:text-4xl font-sans" style={{ color: "hsl(var(--foreground))" }}>
           Integritetspolicy
         </h1>
         <p className="mt-2 text-sm" style={{ color: "hsl(var(--muted-foreground))" }}>
@@ -22,7 +22,7 @@ const Privacy = () => {
 
         <div className="mt-10 space-y-8 text-[15px] leading-relaxed" style={{ color: "hsl(var(--foreground) / 0.85)" }}>
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">1. Vem vi är</h2>
+            <h2 className="text-xl font-semibold gold-text font-sans">1. Vem vi är</h2>
             <p>
               Denna webbplats drivs av <strong>Tomas Lydahl AB</strong> ("vi", "oss", "vår"). Du når oss på{" "}
               <a href="mailto:tomas@tomaslydahl.se" className="underline underline-offset-4 gold-text">
@@ -33,14 +33,14 @@ const Privacy = () => {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">2. Information vi samlar in</h2>
+            <h2 className="text-xl font-semibold gold-text font-sans">2. Information vi samlar in</h2>
             <p>
               När du anmäler dig till den kostnadsfria föreläsningen samlar vi in de uppgifter du lämnar i formuläret: förnamn, e-postadress och telefonnummer. Vi samlar även in grundläggande teknisk data som IP-adress, webbläsarinformation och marknadsföringsparametrar (t.ex. UTM-taggar och Meta-klick-ID) för att mäta hur våra annonser presterar.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">3. Hur vi använder dina uppgifter</h2>
+            <h2 className="text-xl font-semibold gold-text font-sans">3. Hur vi använder dina uppgifter</h2>
             <ul className="list-disc space-y-2 pl-6">
               <li>För att ge dig tillgång till föreläsningen du anmält dig till.</li>
               <li>För att skicka påminnelser inför föreläsningen du anmält dig till.</li>
@@ -51,7 +51,7 @@ const Privacy = () => {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">4. SMS / Text-message program</h2>
+            <h2 className="text-xl font-semibold gold-text font-sans">4. SMS / Text-message program</h2>
             <p>
               Genom att lämna ditt telefonnummer i vårt anmälningsformulär samtycker du till att ta emot SMS från Tomas Lydahl AB kopplade till den föreläsning du anmält dig till.
             </p>
@@ -71,7 +71,7 @@ const Privacy = () => {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">5. Tredjepartsleverantörer</h2>
+            <h2 className="text-xl font-semibold gold-text font-sans">5. Tredjepartsleverantörer</h2>
             <p>Vi använder betrodda tredjepartsleverantörer för att kunna leverera tjänsten:</p>
             <ul className="list-disc space-y-2 pl-6">
               <li><strong>Systeme.io</strong> – för att hantera anmälningar, e-postutskick och taggning av kontakter.</li>
@@ -90,14 +90,14 @@ const Privacy = () => {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">6. Datasäkerhet</h2>
+            <h2 className="text-xl font-semibold gold-text font-sans">6. Datasäkerhet</h2>
             <p>
               Vi tillämpar branschstandard för administrativa, tekniska och fysiska säkerhetsåtgärder för att skydda dina personuppgifter mot obehörig åtkomst, förändring, spridning eller förstörelse. Det innefattar bland annat kryptering i överföring (HTTPS/TLS), begränsad åtkomst och regelbunden granskning av våra leverantörer. Ingen överföring över internet är helt säker, men vi arbetar löpande med att skydda dina uppgifter.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">7. Lagringstid &amp; dina rättigheter</h2>
+            <h2 className="text-xl font-semibold gold-text font-sans">7. Lagringstid &amp; dina rättigheter</h2>
             <p>
               Vi sparar dina uppgifter så länge det behövs för att leverera vår tjänst och uppfylla våra lagstadgade skyldigheter. Du har enligt GDPR rätt att begära tillgång till, rättelse eller radering av dina personuppgifter, samt att invända mot eller begränsa viss behandling. Kontakta oss på{" "}
               <a href="mailto:tomas@tomaslydahl.se" className="underline underline-offset-4 gold-text">
@@ -108,7 +108,7 @@ const Privacy = () => {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">8. Uppdateringar av denna policy</h2>
+            <h2 className="text-xl font-semibold gold-text font-sans">8. Uppdateringar av denna policy</h2>
             <p>
               Vi kan komma att uppdatera denna integritetspolicy. Den senaste versionen finns alltid publicerad på denna sida med ett uppdaterat datum.
             </p>
