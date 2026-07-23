@@ -685,6 +685,9 @@ const LandingPage = () => {
               </div> :
 
           <form onSubmit={handleSubmit} className="space-y-4">
+                {UTM_KEYS.map((key) => (
+                  <input key={key} type="hidden" name={key} value={tracking[key] || "direct"} readOnly />
+                ))}
                 <div>
                   <label htmlFor="modal-name" className="block text-sm mb-1.5 font-medium" style={{ color: "hsl(var(--foreground))" }}>
                     Ditt namn
