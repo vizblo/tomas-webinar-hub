@@ -7,6 +7,42 @@ const corsHeaders = {
 
 const SYSTEME_API_BASE = "https://api.systeme.io/api";
 const WEBINAR_TAG = "Webinar registrerad - 29 juli 2026";
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbadid"] as const;
+type UtmKey = typeof UTM_KEYS[number];
+type UtmFields = Partial<Record<UtmKey, string>>;
+
+function extractUtmFields(body: Record<string, unknown>): UtmFields {
+  const out: UtmFields = {};
+  for (const key of UTM_KEYS) {
+    const raw = body[key];
+    const value = typeof raw === "string" && raw.trim().length > 0 ? raw.trim().slice(0, 500) : "direct";
+    out[key] = value;
+  }
+  return out;
+}
+
+function utmToFields(utm: UtmFields): Array<{ slug: string; value: string }> {
+  return UTM_KEYS.map((k) => ({ slug: k, value: utm[k] ?? "direct" }));
+}
+
+async function patchContactFields(apiKey: string, contactId: string, fields: Array<{ slug: string; value: string }>): Promise<boolean> {
+  if (fields.length === 0) return true;
+  const res = await fetch(`${SYSTEME_API_BASE}/contacts/${contactId}`, {
+    method: "PATCH",
+    headers: {
+      "X-API-Key": apiKey,
+      "Content-Type": "application/merge-patch+json",
+      "Accept": "application/json",
+    },
+    body: JSON.stringify({ fields }),
+  });
+  if (!res.ok) {
+    const errText = await res.text();
+    console.error("Failed to patch fields:", res.status, errText);
+    return false;
+  }
+  return true;
+}
 
 function normalizeSwedishPhone(raw: string): string {
   // Remove everything except digits and leading +
@@ -45,8 +81,9 @@ async function patchContactPhoneAndCountry(apiKey: string, contactId: string, no
   }
 }
 
-async function getOrCreateContact(apiKey: string, email: string, firstName: string, phone?: string): Promise<string | null> {
+async function getOrCreateContact(apiKey: string, email: string, firstName: string, phone?: string, utm?: UtmFields): Promise<string | null> {
   const normalizedPhone = phone ? normalizeSwedishPhone(phone) : "";
+  const utmFields = utm ? utmToFields(utm) : [];
 
   // Try to fetch existing contact by email
   const searchRes = await fetch(`${SYSTEME_API_BASE}/contacts?email=${encodeURIComponent(email)}`, {
@@ -61,6 +98,9 @@ async function getOrCreateContact(apiKey: string, email: string, firstName: stri
     if (data.items && data.items.length > 0) {
       const existingContactId = String(data.items[0].id);
       await patchContactPhoneAndCountry(apiKey, existingContactId, normalizedPhone);
+      if (utmFields.length > 0) {
+        await patchContactFields(apiKey, existingContactId, utmFields);
+      }
       return existingContactId;
     }
   }
@@ -72,6 +112,7 @@ async function getOrCreateContact(apiKey: string, email: string, firstName: stri
     { slug: "country", value: "SE" },
   ];
   if (normalizedPhone) fields.push({ slug: "phone_number", value: normalizedPhone });
+  for (const f of utmFields) fields.push(f);
   body.fields = fields;
 
   console.log("Creating Systeme contact", { hasPhone: Boolean(normalizedPhone) });
@@ -89,6 +130,36 @@ async function getOrCreateContact(apiKey: string, email: string, firstName: stri
   const createBodyText = await createRes.text();
   if (!createRes.ok) {
     console.error("Failed to create contact:", createRes.status, createBodyText);
+    // Retry without UTM custom fields — never lose a lead because of tracking fields.
+    if (utmFields.length > 0) {
+      console.warn("Retrying contact creation without UTM custom fields");
+      const fallbackFields: Array<{ slug: string; value: string }> = [
+        { slug: "first_name", value: firstName },
+        { slug: "country", value: "SE" },
+      ];
+      if (normalizedPhone) fallbackFields.push({ slug: "phone_number", value: normalizedPhone });
+      const retryRes = await fetch(`${SYSTEME_API_BASE}/contacts`, {
+        method: "POST",
+        headers: {
+          "X-API-Key": apiKey,
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({ email, locale: "sv", fields: fallbackFields }),
+      });
+      const retryText = await retryRes.text();
+      if (!retryRes.ok) {
+        console.error("Retry without UTM also failed:", retryRes.status, retryText);
+        return null;
+      }
+      let retryParsed: { id?: string } = {};
+      try { retryParsed = JSON.parse(retryText); } catch { /* ignore */ }
+      const retryId = retryParsed.id ? String(retryParsed.id) : null;
+      if (retryId && normalizedPhone) {
+        await patchContactPhoneAndCountry(apiKey, retryId, normalizedPhone);
+      }
+      return retryId;
+    }
     return null;
   }
   console.log("Systeme contact created");
@@ -212,6 +283,7 @@ serve(async (req) => {
     const firstName = typeof body.firstName === "string" ? body.firstName.trim() : "";
     const phone = typeof body.phone === "string" ? body.phone.trim() : "";
     const type = typeof body.type === "string" ? body.type : "";
+    const utm = extractUtmFields(body as Record<string, unknown>);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const allowedTypes = ["webinar", "qa"];
@@ -230,7 +302,7 @@ serve(async (req) => {
     }
 
     // Get or create contact in Systeme.io
-    const contactId = await getOrCreateContact(SYSTEME_API_KEY, email, firstName, phone || undefined);
+    const contactId = await getOrCreateContact(SYSTEME_API_KEY, email, firstName, phone || undefined, utm);
 
     if (!contactId) {
       console.error("Could not get or create contact in Systeme.io");
