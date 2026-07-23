@@ -43,35 +43,70 @@ const Terms = () => {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">4. Inga garantier om resultat</h2>
+            <h2 className="text-xl font-semibold gold-text">4. Betalning &amp; återbetalning</h2>
+            <p>
+              Köp genomförs via våra betalleverantörer (t.ex. Stripe och Swish). Digitala produkter levereras omedelbart och är <strong>icke återbetalningsbara</strong>, om inte annat uttryckligen anges på köpsidan eller följer av tvingande lag. Eventuella delbetalnings- eller avbetalningsplaner regleras av de villkor som visas i kassan.
+            </p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-xl font-semibold gold-text">5. Inga garantier om resultat</h2>
             <p>
               De referenser och exempel som visas på webbplatsen är verkliga men inte typiska. Individuella resultat beror på egen insats, erfarenhet, livssituation och andra faktorer utanför vår kontroll. Vi lämnar <strong>inga garantier</strong> om specifika resultat, förbättringar eller utfall av att delta i våra föreläsningar eller program.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">5. Ansvarsbegränsning</h2>
+            <h2 className="text-xl font-semibold gold-text">6. Ansvarsbegränsning</h2>
             <p>
               I den utsträckning som lagen tillåter ansvarar Tomas Lydahl AB inte för indirekta skador eller följdskador som uppstår i samband med användning av webbplatsen eller våra tjänster. Vårt totala ansvar är begränsat till det belopp du eventuellt har betalat oss under de senaste tolv månaderna.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">6. Tillämplig lag</h2>
+            <h2 className="text-xl font-semibold gold-text">7. Tillämplig lag</h2>
             <p>
               Dessa villkor regleras av svensk rätt. Eventuella tvister ska i första hand lösas i samförstånd och i annat fall avgöras av svensk allmän domstol.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">7. Åldersgräns</h2>
+            <h2 className="text-xl font-semibold gold-text">8. Åldersgräns</h2>
             <p>
-              Du måste vara minst <strong>18 år</strong> för att anmäla dig till föreläsningen. Genom att använda webbplatsen intygar du att du är 18 år eller äldre.
+              Du måste vara minst <strong>18 år</strong> för att anmäla dig till föreläsningen, ta emot SMS från oss eller köpa något av våra program. Genom att använda webbplatsen intygar du att du är 18 år eller äldre.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">8. Integritet</h2>
+            <h2 className="text-xl font-semibold gold-text">9. SMS / text-message program-villkor</h2>
+            <p>
+              <strong>Programbeskrivning:</strong> Tomas Lydahl AB driver ett SMS-program som skickar påminnelser till användare som frivilligt lämnar sitt telefonnummer i vårt anmälningsformulär. Användningen är strikt begränsad till påminnelser inför den föreläsning du anmält dig till – vi skickar inga marknadsförings- eller tredjepartsmeddelanden via SMS.
+            </p>
+            <p>
+              <strong>Meddelandefrekvens:</strong> Upp till 3 påminnelser per föreläsningsanmälan. Efter att föreläsningen har sänts skickas inga fler SMS.
+            </p>
+            <p>
+              <strong>Avregistrering:</strong> Du kan avsluta SMS-tjänsten när som helst genom att svara <strong>STOP</strong> på något av våra meddelanden. Efter att du skickat <strong>STOP</strong> skickar vi ett bekräftelsemeddelande och därefter inga fler meddelanden. Vill du gå med igen anmäler du dig på nytt.
+            </p>
+            <p>
+              <strong>Hjälp:</strong> Svara <strong>HELP</strong> på något meddelande för support, eller mejla{" "}
+              <a href="mailto:tomas@tomaslydahl.se" className="underline underline-offset-4 gold-text">
+                tomas@tomaslydahl.se
+              </a>.
+            </p>
+            <p>
+              <strong>Meddelande- och datakostnader:</strong> Meddelande- och datakostnader kan tillkomma för meddelanden som skickas till dig från oss och från dig till oss. Meddelandefrekvensen kan variera. Kontakta din mobiloperatör för information om ditt abonnemang.
+            </p>
+            <p>
+              <strong>Ansvarsfriskrivning för operatörer:</strong> Mobiloperatörer (inklusive men inte begränsat till Telia, Tele2, Telenor, Tre och andra svenska och internationella operatörer) är <strong>inte ansvariga</strong> för försenade, ej levererade eller felaktigt levererade meddelanden.
+            </p>
+            <p>
+              <strong>Operatörer som stöds:</strong> SMS-programmet fungerar hos de flesta större operatörer. Leverans är beroende av operatör och enhet.
+            </p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-xl font-semibold gold-text">10. Integritet</h2>
             <p>
               Din användning av webbplatsen omfattas även av vår{" "}
               <Link to="/privacy" className="underline underline-offset-4 gold-text">
@@ -82,7 +117,7 @@ const Terms = () => {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text">9. Kontakt</h2>
+            <h2 className="text-xl font-semibold gold-text">11. Kontakt</h2>
             <p>
               Frågor om villkoren? Mejla{" "}
               <a href="mailto:tomas@tomaslydahl.se" className="underline underline-offset-4 gold-text">
