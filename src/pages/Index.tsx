@@ -609,6 +609,19 @@ const LandingPage = () => {
         <p className="mb-4">
           © {new Date().getFullYear()} Tomas Lydahl AB. Alla rättigheter förbehållna.
         </p>
+        <p className="mb-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1" style={{ color: "hsl(var(--muted-foreground))" }}>
+          <a href="mailto:tomas@tomaslydahl.se" className="transition-colors hover:opacity-80 gold-text">
+            tomas@tomaslydahl.se
+          </a>
+          <span style={{ opacity: 0.4 }}>·</span>
+          <a href="/privacy" className="transition-colors hover:opacity-80">
+            Integritetspolicy
+          </a>
+          <span style={{ opacity: 0.4 }}>·</span>
+          <a href="/terms" className="transition-colors hover:opacity-80">
+            Användarvillkor
+          </a>
+        </p>
         <p className="max-w-2xl mx-auto leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
           Denna webbplats är inte en del av Facebook eller Meta Platforms, Inc. Webbplatsen är inte heller godkänd eller sponsrad av Facebook eller Meta på något sätt. Facebook och Meta är varumärken som tillhör Meta Platforms, Inc. Tomas Lydahl AB garanterar inga specifika inkomster eller resultat. Individuella resultat varierar beroende på insats, erfarenhet och genomförande.
         </p>
