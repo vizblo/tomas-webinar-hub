@@ -114,6 +114,28 @@ const LandingPage = () => {
     email: searchParams.get("email") || "",
     phone: searchParams.get("phone") || ""
   });
+  // UTM / ad tracking parameters — captured on landing, persisted in sessionStorage
+  const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbadid"] as const;
+  const [tracking, setTracking] = useState<Record<string, string>>(() => {
+    const initial: Record<string, string> = {};
+    for (const key of UTM_KEYS) initial[key] = "direct";
+    return initial;
+  });
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const next: Record<string, string> = {};
+    for (const key of UTM_KEYS) {
+      const fromUrl = params.get(key);
+      if (fromUrl) {
+        next[key] = fromUrl;
+        try { sessionStorage.setItem(key, fromUrl); } catch { /* ignore */ }
+      } else {
+        const stored = (() => { try { return sessionStorage.getItem(key); } catch { return null; } })();
+        next[key] = stored || "direct";
+      }
+    }
+    setTracking(next);
+  }, []);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -138,7 +160,8 @@ const LandingPage = () => {
           email: formData.email,
           firstName: formData.name,
           phone: formData.phone,
-          type: "webinar"
+          type: "webinar",
+          ...tracking
         })
       });
     } catch (err) {
