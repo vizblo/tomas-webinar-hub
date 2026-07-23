@@ -42,11 +42,11 @@ const Privacy = () => {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold gold-text font-sans">3. Hur vi använder dina uppgifter</h2>
             <ul className="list-disc space-y-2 pl-6">
-              <li>För att ge dig tillgång till föreläsningen du anmält dig till.</li>
-              <li>För att skicka påminnelser inför föreläsningen du anmält dig till.</li>
-              <li>För att skicka transaktionella mejl (bekräftelser, kalenderlänkar, ev. repris).</li>
-              <li>För att då och då skicka relaterat innehåll och erbjudanden via e-post. Du kan avregistrera dig när du vill.</li>
-              <li>För att mäta och förbättra vår webbplats och våra annonser.</li>
+              <li>För att ge dig tillgång till föreläsningen du anmält dig till (rättslig grund: fullgörande av avtal).</li>
+              <li>För att skicka påminnelser inför föreläsningen (rättslig grund: fullgörande av avtal).</li>
+              <li>För att skicka transaktionella mejl som bekräftelser och kalenderlänkar (rättslig grund: fullgörande av avtal).</li>
+              <li>För att skicka relaterat innehåll och erbjudanden via e-post, om du separat samtyckt till detta (rättslig grund: samtycke). Du kan återkalla samtycket när som helst.</li>
+              <li>För att mäta och förbättra vår webbplats och våra annonser (rättslig grund: berättigat intresse).</li>
             </ul>
           </section>
 
@@ -87,6 +87,9 @@ const Privacy = () => {
               Ingen mobilinformation (telefonnummer eller SMS-samtycke) delas med tredje part eller samarbetspartners för marknadsföringssyften. Övriga datakategorier exkluderar SMS-samtyckesdata; sådan information delas inte med någon tredje part.
             </p>
             <p>Vi säljer inte dina personuppgifter till någon.</p>
+            <p>
+              Vissa av dessa leverantörer (t.ex. Meta, Stripe, Zapier, Calendly) kan behandla uppgifter i länder utanför EU/EES, främst USA. I dessa fall säkerställer vi att överföringen sker med lagligt stöd, t.ex. genom EU-kommissionens standardavtalsklausuler (SCC) eller motsvarande skyddsåtgärder.
+            </p>
           </section>
 
           <section className="space-y-3">
@@ -105,10 +108,23 @@ const Privacy = () => {
               </a>{" "}
               så hjälper vi dig.
             </p>
+            <p>
+              Du har även rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY) om du anser att vi behandlar dina personuppgifter i strid med gällande dataskyddslagstiftning. Läs mer på{" "}
+              <a href="https://www.imy.se" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 gold-text">
+                imy.se
+              </a>.
+            </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold gold-text font-sans">8. Uppdateringar av denna policy</h2>
+            <h2 className="text-xl font-semibold gold-text font-sans">8. Cookies</h2>
+            <p>
+              Vi använder cookies och liknande tekniker, bland annat Meta Pixel, för att mäta och förbättra våra annonser och vår webbplats. Icke-nödvändiga cookies sätts endast efter ditt samtycke via vår cookie-banner. Du kan när som helst ändra dina cookie-inställningar.
+            </p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-xl font-semibold gold-text font-sans">9. Uppdateringar av denna policy</h2>
             <p>
               Vi kan komma att uppdatera denna integritetspolicy. Den senaste versionen finns alltid publicerad på denna sida med ett uppdaterat datum.
             </p>

@@ -26,6 +26,12 @@ const Terms = () => {
             <p>
               Genom att besöka denna webbplats eller anmäla dig till den kostnadsfria föreläsningen godkänner du dessa användarvillkor. Om du inte godkänner villkoren ska du inte använda webbplatsen eller tjänsten. Villkoren gäller mellan dig och <strong>Tomas Lydahl AB</strong>.
             </p>
+            <p>
+              <strong>Tomas Lydahl AB</strong>, org.nr 559141-3207, Gökropsgatan 16, 281 49 Hässleholm, Sverige. Kontakt:{" "}
+              <a href="mailto:tomas@tomaslydahl.se" className="underline underline-offset-4 gold-text">
+                tomas@tomaslydahl.se
+              </a>.
+            </p>
           </section>
 
           <section className="space-y-3">
@@ -45,7 +51,10 @@ const Terms = () => {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold gold-text font-sans">4. Betalning &amp; återbetalning</h2>
             <p>
-              Köp genomförs via våra betalleverantörer (t.ex. Stripe och Swish). Digitala produkter levereras omedelbart och är <strong>icke återbetalningsbara</strong>, om inte annat uttryckligen anges på köpsidan eller följer av tvingande lag. Eventuella delbetalnings- eller avbetalningsplaner regleras av de villkor som visas i kassan.
+              Köp genomförs via våra betalleverantörer (t.ex. Stripe och Swish). Som konsument har du enligt lag 14 dagars ångerrätt vid distansköp. För digitalt innehåll som levereras direkt vid köpet går ångerrätten förlorad så snart leveransen påbörjats, förutsatt att du uttryckligen samtyckt till detta och bekräftat att du är medveten om att ångerrätten då upphör. Detta samtycke inhämtas separat i kassan vid köptillfället. Om sådant samtycke inte lämnats gäller ångerrätt enligt lag.
+            </p>
+            <p>
+              <strong>Priser och moms:</strong> Samtliga priser anges i svenska kronor (SEK) inklusive moms, om inte annat anges på köpsidan.
             </p>
           </section>
 
