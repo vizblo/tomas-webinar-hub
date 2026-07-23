@@ -6,7 +6,7 @@ const Terms = () => {
     <div className="min-h-screen">
       <Helmet>
         <title>Användarvillkor | Tomas Lydahl</title>
-        <meta name="description" content="Användarvillkor för tomaslydahlwebinars.com – villkor för att använda webbplatsen och anmäla dig till Tomas Lydahls föreläsningar." />
+        <meta name="description" content="Användarvillkor för tomaslydahl.se – villkor för att använda webbplatsen och anmäla dig till Tomas Lydahls föreläsningar." />
       </Helmet>
       <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
         <Link to="/" className="text-sm transition-colors hover:opacity-80" style={{ color: "hsl(var(--muted-foreground))" }}>
@@ -38,7 +38,7 @@ const Terms = () => {
           <section className="space-y-3">
             <h2 className="text-xl font-semibold gold-text">3. Immateriella rättigheter</h2>
             <p>
-              Allt material – inklusive föreläsningar, inspelningar, mallar, e-böcker och bonusinnehåll – tillhör Tomas Lydahl AB och är endast licensierat till dig för personligt bruk. Du får inte sälja vidare, dela eller på annat sätt sprida innehållet till personer som inte anmält sig själva. Vi förbehåller oss rätten att återkalla åtkomst vid överträdelse.
+              Allt material, inklusive föreläsningar, inspelningar, mallar, e-böcker och bonusinnehåll – tillhör Tomas Lydahl AB och är endast licensierat till dig för personligt bruk. Du får inte sälja vidare, dela eller på annat sätt sprida innehållet till personer som inte anmält sig själva. Vi förbehåller oss rätten att återkalla åtkomst vid överträdelse.
             </p>
           </section>
 
