@@ -9,7 +9,6 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Repris from "./pages/Repris";
 import Bokad from "./pages/Bokad";
-import reprisThumbnail from "@/assets/repris/webinar-thumbnail-personab.png";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,15 +22,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/tack" element={<ThankYou />} />
-          <Route
-            path="/repris"
-            element={
-              <Repris
-                videoEmbedUrl="https://fast.wistia.net/embed/iframe/fh2tcimsu0"
-                videoThumbnailUrl={reprisThumbnail}
-              />
-            }
-          />
+          <Route path="/repris" element={<Repris />} />
           <Route path="/bokad" element={<Bokad />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
