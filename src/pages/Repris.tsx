@@ -10,6 +10,9 @@ import testimonial8 from "@/assets/repris/testimonial-old-8.jpg";
 import testimonial9 from "@/assets/repris/testimonial-old-9.jpg";
 import testimonial10 from "@/assets/repris/testimonial-old-10.jpg";
 import webinarThumbnail from "@/assets/repris/webinar-thumbnail.jpg";
+import reprisThumbnail from "@/assets/repris/webinar-thumbnail-personab.png";
+
+const DEFAULT_VIDEO_EMBED_URL = "https://fast.wistia.net/embed/iframe/fh2tcimsu0";
 
 // ─── Countdown to fixed deadline ─────────────────────────────────────────────
 const DEADLINE = new Date("2026-08-14T23:59:00");
@@ -582,7 +585,10 @@ function BottomCTA({ onVideoClick }: { onVideoClick: () => void }) {
 }
 
 // ─── Main Page ─────────────────────────────────────────────────────────────────
-const Index = ({ videoEmbedUrl, videoThumbnailUrl }: { videoEmbedUrl?: string; videoThumbnailUrl?: string } = {}) => {
+const Index = ({
+  videoEmbedUrl = DEFAULT_VIDEO_EMBED_URL,
+  videoThumbnailUrl = reprisThumbnail,
+}: { videoEmbedUrl?: string; videoThumbnailUrl?: string } = {}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
 
