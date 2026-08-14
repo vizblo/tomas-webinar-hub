@@ -16,7 +16,7 @@ export function CallDetails() {
           eyebrow="Innan vi pratar"
           title={
             <>
-              Vårt samtal handlar om dig – inte om att <span className="text-gradient-gold">pressa fram ett beslut</span>
+              Vårt samtal handlar om dig, inte om att <span className="text-gradient-gold">pressa fram ett beslut</span>
             </>
           }
           subtitle="Så här går samtalet till, så att du vet exakt vad du går in i."
