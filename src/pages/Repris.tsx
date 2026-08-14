@@ -1,9 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Brain, Shield, Heart, X, MessageCircle, Loader2, Check, Play } from "lucide-react";
-
-import { Reveal } from "@/components/shared/Reveal";
-import { SiteFooter } from "@/components/shared/SiteFooter";
+import { useState, useEffect, useRef } from "react";
+import { useSearchParams, Link } from "react-router-dom";
+import { Brain, Shield, Heart, X, MessageCircle } from "lucide-react";
 
 import testimonial1 from "@/assets/repris/testimonial-old-1.png";
 import testimonial2 from "@/assets/repris/testimonial-old-2.png";
@@ -12,27 +9,68 @@ import testimonial7 from "@/assets/repris/testimonial-old-7.jpg";
 import testimonial8 from "@/assets/repris/testimonial-old-8.jpg";
 import testimonial9 from "@/assets/repris/testimonial-old-9.jpg";
 import testimonial10 from "@/assets/repris/testimonial-old-10.jpg";
+import webinarThumbnail from "@/assets/repris/webinar-thumbnail.jpg";
 
-// ─── Countdown to fixed deadline (svensk tid) ────────────────────────────────
-const DEADLINE = new Date("2026-08-14T23:59:00+02:00");
+// ─── Countdown to fixed deadline ─────────────────────────────────────────────
+const DEADLINE = new Date("2026-08-14T23:59:00");
 
-const CALENDLY_URL =
-  "https://calendly.com/tomas-tomaslydahl/webinar?utm_source=webinar&utm_medium=replay&utm_content=webinar-replay&hide_gdpr_banner=1";
+// ─── Scroll reveal hook ──────────────────────────────────────────────────────
+function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return { ref, visible };
+}
 
-function scrollToBooking() {
-  document.getElementById("boka")?.scrollIntoView({ behavior: "smooth", block: "start" });
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const { ref, visible } = useReveal<HTMLDivElement>();
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        transition: `opacity 0.7s ease-out ${delay}s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
+        willChange: "opacity, transform",
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
 function useCountdown() {
   const calc = () => {
     const diff = DEADLINE.getTime() - Date.now();
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
+    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     return {
       days: Math.floor(diff / 86400000),
       hours: Math.floor((diff % 86400000) / 3600000),
       minutes: Math.floor((diff % 3600000) / 60000),
       seconds: Math.floor((diff % 60000) / 1000),
-      expired: false,
     };
   };
   const [time, setTime] = useState(calc);
@@ -44,67 +82,63 @@ function useCountdown() {
 }
 
 // ─── CountdownBlock ───────────────────────────────────────────────────────────
-function CountdownBlock({
-  days,
-  hours,
-  minutes,
-  seconds,
-  expired,
-}: {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  expired: boolean;
-}) {
+function CountdownBlock() {
+  const { days, hours, minutes, seconds } = useCountdown();
+  const expired = days === 0 && hours === 0 && minutes === 0 && seconds === 0;
+
   const slots = [
-    { label: "Dagar", value: days },
-    { label: "Timmar", value: hours },
-    { label: "Min", value: minutes },
-    { label: "Sek", value: seconds },
+    { label: "DAGAR", value: days },
+    { label: "TIMMAR", value: hours },
+    { label: "MIN", value: minutes },
+    { label: "SEK", value: seconds },
   ];
 
   return (
-    <div className="border-b border-border bg-surface">
-      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-4 py-3 text-center sm:px-6">
+    <div style={{ background: "hsl(var(--surface))", borderBottom: "1px solid hsl(var(--border))" }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 text-center">
         {expired ? (
-          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-            <p className="text-sm font-semibold text-foreground">
-              Reprisen är inte längre tillgänglig.
-            </p>
-            <button
-              onClick={scrollToBooking}
-              className="text-sm font-semibold text-gold underline-offset-4 transition-colors hover:underline"
-            >
-              Boka ett samtal med Tomas
-            </button>
-          </div>
+          <p className="text-muted-foreground text-sm">Föreläsningen är inte längre tillgänglig.</p>
         ) : (
           <>
-            <div className="flex w-full flex-nowrap items-center justify-center gap-3 sm:w-auto sm:gap-6">
+            <div className="flex items-center justify-center gap-3 sm:gap-6 flex-nowrap w-full sm:w-auto">
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <span className="live-dot" aria-hidden="true" />
-                <p className="text-center text-xs font-bold uppercase leading-tight tracking-wide text-foreground sm:text-sm">
-                  Föreläsningen
-                  <br /> försvinner om
+                <p
+                  className="text-xs sm:text-sm font-bold uppercase tracking-wide text-center"
+                  style={{ color: "hsl(var(--foreground))", fontFamily: "sans-serif", lineHeight: 1.1 }}
+                >
+                  FÖRELÄSNINGEN<br /> FÖRSVINNER OM
                 </p>
               </div>
 
-              <div className="flex items-start justify-center gap-1.5 sm:gap-3">
+              <div className="flex items-center justify-center gap-1.5 sm:gap-3">
                 {slots.map(({ label, value }) => (
                   <div key={label} className="text-center">
-                    <div className="min-w-[38px] rounded-md border border-border bg-surface-elevated px-2 py-1.5 text-base font-bold leading-none tabular-nums text-foreground sm:px-2.5 sm:text-lg md:text-xl">
+                    <div
+                      className="text-base sm:text-lg md:text-xl font-bold leading-none tabular-nums px-2 sm:px-2.5 py-1.5 rounded-md"
+                      style={{
+                        color: "hsl(var(--foreground))",
+                        fontFamily: "sans-serif",
+                        background: "hsl(var(--surface-elevated))",
+                        border: "1px solid hsl(var(--border))",
+                        minWidth: "38px",
+                      }}
+                    >
                       {String(value).padStart(2, "0")}
                     </div>
-                    <span className="mt-1 block text-[10px] uppercase tracking-widest text-muted-foreground">
-                      {label}
-                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="whitespace-nowrap rounded-full border border-gold/40 px-3 py-1 text-xs font-semibold text-gold">
+            <div
+              className="text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap"
+              style={{
+                border: "1px solid hsl(var(--gold) / 0.4)",
+                color: "hsl(var(--gold))",
+                fontFamily: "sans-serif",
+              }}
+            >
               Begränsat antal platser
             </div>
           </>
@@ -114,160 +148,112 @@ function CountdownBlock({
   );
 }
 
-// ─── Lazy YouTube facade ─────────────────────────────────────────────────────
-function YouTubeFacade({ id, title }: { id: string; title: string }) {
-  const [playing, setPlaying] = useState(false);
-  return (
-    <div className="group relative aspect-video overflow-hidden rounded-xl border border-border transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-gold">
-      {playing ? (
-        <iframe
-          className="h-full w-full"
-          src={`https://www.youtube.com/embed/${id}?autoplay=1`}
-          title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      ) : (
-        <button
-          type="button"
-          onClick={() => setPlaying(true)}
-          className="absolute inset-0 h-full w-full"
-          aria-label={`Spela upp ${title}`}
-        >
-          <img
-            src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
-            alt={title}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          <span className="absolute inset-0 bg-background/40" />
-          <span className="absolute inset-0 flex items-center justify-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-primary-foreground shadow-gold transition-transform duration-300 group-hover:scale-110">
-              <Play className="ml-0.5 h-6 w-6" fill="currentColor" />
-            </span>
-          </span>
-        </button>
-      )}
-    </div>
-  );
-}
-
 // ─── HeroSection ──────────────────────────────────────────────────────────────
 function HeroSection({
   onVideoClick,
   unlocked,
-  expired,
   videoEmbedUrl,
   videoThumbnailUrl,
 }: {
   onVideoClick: () => void;
   unlocked: boolean;
-  expired: boolean;
   videoEmbedUrl?: string;
   videoThumbnailUrl?: string;
 }) {
-  const showVideo = unlocked && !expired;
   return (
-    <section className="relative px-4 pt-10 pb-16 md:pb-24">
-      <div className="mx-auto max-w-3xl text-center">
-        <h1 className="mb-6 animate-fade-in whitespace-pre-line text-2xl font-bold leading-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
+    <section className="relative pt-8 pb-16 md:pb-24 px-4">
+      <div className="max-w-3xl mx-auto text-center">
+        <h1 className="font-body text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground leading-tight mb-6 animate-fade-in whitespace-pre-line">
           <span>{"REPRIS: Låt din "}</span>
-          <span className="text-gold">självkänsla</span>
+          <span style={{ color: "hsl(var(--gold))" }}>{"självkänsla"}</span>
           <span>{" träda fram:\nKonsten att "}</span>
-          <span className="text-gold">älska dig själv</span>
+          <span style={{ color: "hsl(var(--gold))" }}>{"älska dig själv"}</span>
           <span>{" oavsett vad"}</span>
         </h1>
-        <div className="gold-divider" />
-        <p
-          className="mx-auto mb-10 max-w-2xl animate-fade-in text-lg leading-relaxed text-muted-foreground md:text-xl"
-          style={{ animationDelay: "0.15s", animationFillMode: "backwards" }}
-        >
-          {expired
-            ? "Reprisen har stängt – men du kan fortfarande boka ett kostnadsfritt samtal med Tomas."
-            : "Se hela den digitala föreläsningen innan reprisen stänger."}
+        <hr className="w-16 h-0.5 border-none mx-auto mb-6 animate-fade-in" style={{ background: "hsl(var(--gold))", animationDelay: "0.1s", animationFillMode: "backwards" }} />
+        <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}>
+          Se hela digitala föreläsningen från i onsdags
         </p>
 
-        {!expired && (
-          <div
-            className="relative mx-auto mb-10 aspect-video max-w-2xl animate-scale-in overflow-hidden rounded-xl border-2 border-gold/30 bg-surface"
-          >
-            {showVideo ? (
-              videoEmbedUrl ? (
-                <iframe
-                  src={videoEmbedUrl}
-                  title="Repris av föreläsningen"
-                  className="h-full w-full"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-surface">
-                  <p className="text-sm text-muted-foreground">Videon laddas…</p>
-                </div>
-              )
+        {/* Video */}
+        <div
+          className="relative rounded-xl overflow-hidden mb-10 mx-auto max-w-2xl animate-scale-in"
+          style={{ border: "2px solid hsl(var(--gold) / 0.3)", aspectRatio: "16/9", background: "hsl(var(--surface))" }}
+        >
+          {unlocked ? (
+            videoEmbedUrl ? (
+              <iframe
+                src={videoEmbedUrl}
+                title="Webinar repris"
+                className="w-full h-full"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
             ) : (
-              <button
-                onClick={onVideoClick}
-                className="group absolute inset-0 flex h-full w-full items-center justify-center"
-                aria-label="Lås upp reprisen"
-              >
-                <span
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-[1.03]"
-                  style={
-                    videoThumbnailUrl
-                      ? { backgroundImage: `url(${videoThumbnailUrl})` }
-                      : { background: "hsl(var(--surface))" }
-                  }
-                />
-                <span className="absolute inset-0 bg-background/50 transition-colors group-hover:bg-background/40" />
-                <span className="relative px-6 text-center">
-                  <span className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gold text-primary-foreground shadow-gold transition-transform duration-300 group-hover:scale-110">
-                    <Play className="ml-0.5 h-7 w-7" fill="currentColor" />
-                  </span>
-                  <span className="block text-lg font-semibold text-foreground">
-                    Klicka för att låsa upp reprisen
-                  </span>
-                  <span className="mt-1 block text-sm text-muted-foreground">
-                    Anmäl dig för att se hela föreläsningen
-                  </span>
-                </span>
-              </button>
-            )}
-          </div>
-        )}
-
-        {expired ? (
-          <button
-            onClick={scrollToBooking}
-            className="btn-gold px-8 py-4 text-base md:text-lg"
-          >
-            Boka ett samtal
-          </button>
-        ) : (
-          !unlocked && (
-            <button onClick={onVideoClick} className="btn-gold px-8 py-4 text-base md:text-lg">
-              Se hela reprisen
+              <div className="w-full h-full flex items-center justify-center" style={{ background: "hsl(var(--surface))" }}>
+                <p className="text-muted-foreground text-sm">Video placeholder</p>
+              </div>
+            )
+          ) : (
+            <button
+              onClick={onVideoClick}
+              className="absolute inset-0 w-full h-full flex items-center justify-center group"
+              aria-label="Lås upp reprisen"
+            >
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={
+                  videoThumbnailUrl
+                    ? { backgroundImage: `url(${videoThumbnailUrl})` }
+                    : { background: "hsl(var(--surface))" }
+                }
+              />
+              <div className="absolute inset-0" style={{ background: "hsl(0 0% 0% / 0.35)" }} />
+              <div className="relative text-center px-6">
+                <div
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform group-hover:scale-110"
+                  style={{ background: "hsl(var(--gold) / 0.9)", border: "1px solid hsl(var(--gold))" }}
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 ml-0.5" style={{ color: "hsl(var(--background))" }}>
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+                <p className="font-semibold text-lg" style={{ color: "hsl(0 0% 100%)" }}>Klicka för att låsa upp reprisen</p>
+                <p className="text-sm mt-1" style={{ color: "hsl(0 0% 100% / 0.85)" }}>Anmäl dig för att se hela föreläsningen</p>
+              </div>
             </button>
-          )
+          )}
+        </div>
+
+        {!unlocked && (
+          <button
+            onClick={onVideoClick}
+            className="btn-gold inline-flex items-center gap-3 px-8 py-4 rounded-lg text-base md:text-lg font-semibold"
+          >
+            Se hela reprisen
+          </button>
         )}
       </div>
 
-      {/* Calendly */}
-      <div id="boka" className="mx-auto mt-16 w-full max-w-5xl scroll-mt-8">
+      {/* Calendly embed - full width för 2-kolumnslayout */}
+      <div className="mt-12 w-full max-w-6xl mx-auto px-0 sm:px-2">
         <Reveal>
-          <h2 className="mb-6 text-center text-2xl font-bold text-foreground md:text-3xl">
+          <h2 className="font-body text-2xl md:text-3xl font-bold text-foreground text-center mb-6">
             Boka ett samtal med Tomas
           </h2>
         </Reveal>
-        <Reveal delay={100}>
-          <div className="overflow-hidden rounded-xl border border-border bg-white">
-            <iframe
-              src={CALENDLY_URL}
-              title="Boka samtal – Tomas Lydahl"
-              className="h-[820px] w-full sm:h-[950px] lg:h-[1050px]"
-              loading="lazy"
-            />
-          </div>
+        <Reveal delay={0.1}>
+        <div className="rounded-xl overflow-hidden bg-white" style={{ border: "1px solid hsl(var(--border))" }}>
+          <iframe
+            src="https://calendly.com/tomas-tomaslydahl/webinar?utm_source=webinar&utm_medium=replay&utm_content=webinar-replay&hide_gdpr_banner=1"
+            title="Boka samtal – Tomas Lydahl"
+            width="100%"
+            height="1100"
+            frameBorder="0"
+            scrolling="no"
+          />
+        </div>
         </Reveal>
       </div>
     </section>
@@ -300,26 +286,43 @@ const learnings = [
 
 function KeyLearningsSection() {
   return (
-    <section className="section-y border-t border-border bg-surface px-4">
-      <div className="mx-auto max-w-5xl">
+    <section
+      className="py-16 md:py-20 px-4"
+      style={{ background: "hsl(var(--surface))", borderTop: "1px solid hsl(var(--border))" }}
+    >
+      <div className="max-w-5xl mx-auto">
         <Reveal>
-          <p className="section-label mb-3 text-center">Vad du missade från föreläsningen</p>
-          <h2 className="mb-12 text-center text-3xl font-bold text-foreground md:text-4xl">
+          <p className="section-label text-center mb-3">Vad du missade från föreläsningen</p>
+          <h2 className="font-body text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
             Under denna föreläsning får du
           </h2>
         </Reveal>
-        <div className="grid gap-6 md:grid-cols-2">
-          {learnings.map(({ title, desc }, i) => (
-            <Reveal key={title} delay={i * 90} className="h-full">
-              <div className="flex h-full flex-col gap-4 rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/40">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-gold/25 bg-gold/10 text-lg font-bold text-gold">
-                    {i + 1}
-                  </div>
-                  <h3 className="text-base font-bold leading-snug text-foreground">{title}</h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          {learnings.map(({ icon: Icon, title, desc }, i) => (
+            <Reveal key={title} delay={i * 0.12}>
+            <div
+              key={title}
+              className="rounded-xl p-6 flex flex-col gap-4 h-full"
+              style={{
+                background: "hsl(var(--background))",
+                border: "1px solid hsl(var(--border))",
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-lg"
+                  style={{
+                    background: "hsl(var(--gold) / 0.12)",
+                    border: "1px solid hsl(var(--gold) / 0.25)",
+                    color: "hsl(var(--gold))",
+                  }}
+                >
+                  {i + 1}
                 </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
+                <h3 className="font-body font-bold text-base leading-snug" style={{ color: "hsl(0 0% 100%)" }}>{title}</h3>
               </div>
+              <p className="font-body leading-relaxed text-sm" style={{ color: "hsl(0 0% 100%)" }}>{desc}</p>
+            </div>
             </Reveal>
           ))}
         </div>
@@ -342,65 +345,13 @@ function RegistrationModal({
   const [name, setName] = useState(searchParams.get("name") ?? "");
   const [email, setEmail] = useState(searchParams.get("email") ?? "");
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const firstFieldRef = useRef<HTMLInputElement | null>(null);
-  const dialogRef = useRef<HTMLDivElement | null>(null);
 
-  // Escape + scroll lock + initial focus
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "Tab" && dialogRef.current) {
-        const focusables = dialogRef.current.querySelectorAll<HTMLElement>(
-          'button, input, [href], select, textarea, [tabindex]:not([tabindex="-1"])',
-        );
-        if (focusables.length === 0) return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-    document.addEventListener("keydown", onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const t = setTimeout(() => firstFieldRef.current?.focus(), 80);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-      clearTimeout(t);
-    };
-  }, [open, onClose]);
-
-  // Reset transient state between openings
-  useEffect(() => {
-    if (!open) {
-      setLoading(false);
-      setSuccess(false);
-      setError(null);
-    }
-  }, [open]);
+  if (!open) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (loading) return;
-    const trimmedName = name.trim();
-    const trimmedEmail = email.trim();
-    if (!trimmedName) {
-      setError("Fyll i ditt förnamn.");
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(trimmedEmail)) {
-      setError("Kontrollera att e-postadressen är korrekt.");
-      return;
-    }
+    if (!name.trim() || !email.trim()) return;
 
     setLoading(true);
     setError(null);
@@ -408,231 +359,241 @@ function RegistrationModal({
     try {
       const { supabase } = await import("@/integrations/supabase/client");
       const { data, error: fnError } = await supabase.functions.invoke("register-repris", {
-        body: { name: trimmedName, email: trimmedEmail },
+        body: { name: name.trim(), email: email.trim() },
       });
 
-      if (fnError) throw new Error("network");
-      if (!data?.success) throw new Error("rejected");
+      if (fnError || !data?.success) {
+        throw new Error(fnError?.message || data?.error || "Registration failed");
+      }
 
-      setLoading(false);
-      setSuccess(true);
-      setTimeout(() => {
-        onUnlock();
-        onClose();
-      }, 900);
+      onUnlock();
+      onClose();
     } catch (err) {
       console.error("Registration error:", err);
-      setError(
-        (err as Error)?.message === "network"
-          ? "Vi kunde inte nå servern. Kontrollera din uppkoppling och försök igen."
-          : "Registreringen gick inte igenom. Kontrollera dina uppgifter och försök igen.",
-      );
+      setError("Något gick fel. Försök igen.");
       setLoading(false);
     }
   };
 
-  if (!open) return null;
-
   return (
     <div
-      className="fixed inset-0 z-[100] flex animate-fade-in items-center justify-center bg-background/80 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      style={{ background: "hsl(0 0% 0% / 0.72)" }}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
       <div
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="repris-modal-title"
-        className="relative w-full max-w-md animate-scale-in rounded-2xl border border-border bg-surface p-8 shadow-gold"
+        className="w-full max-w-md rounded-2xl p-8 relative"
+        style={{ background: "hsl(var(--surface))", border: "1px solid hsl(var(--border))" }}
       >
         <button
           onClick={onClose}
           aria-label="Stäng"
-          className="absolute right-4 top-4 rounded-full p-1 text-muted-foreground transition-colors hover:text-foreground"
+          className="absolute top-4 right-4 p-1 rounded-full transition-colors"
+          style={{ color: "hsl(var(--muted-foreground))" }}
         >
-          <X className="h-5 w-5" />
+          <X className="w-5 h-5" />
         </button>
 
-        {success ? (
-          <div className="flex flex-col items-center gap-3 py-6 text-center">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gold text-primary-foreground">
-              <Check className="h-6 w-6" />
-            </span>
-            <h2 className="text-2xl font-bold text-foreground">Du är anmäld!</h2>
-            <p className="text-sm text-muted-foreground">Låser upp reprisen…</p>
-          </div>
-        ) : (
-          <>
-            <h2 id="repris-modal-title" className="mb-6 text-3xl font-bold text-foreground">
-              Se hela reprisen
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-              <div>
-                <label htmlFor="reg-firstname" className="mb-1.5 block text-sm font-medium text-foreground">
-                  Förnamn
-                </label>
-                <input
-                  id="reg-firstname"
-                  ref={firstFieldRef}
-                  className="input-dark"
-                  type="text"
-                  placeholder="Ditt förnamn"
-                  autoComplete="given-name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="reg-email" className="mb-1.5 block text-sm font-medium text-foreground">
-                  E-postadress
-                </label>
-                <input
-                  id="reg-email"
-                  className="input-dark"
-                  type="email"
-                  inputMode="email"
-                  placeholder="din@epost.se"
-                  autoComplete="email"
-                  enterKeyHint="go"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              {error && (
-                <p role="alert" className="text-sm text-destructive">
-                  {error}
-                </p>
-              )}
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn-gold w-full gap-2 py-4 text-base disabled:cursor-not-allowed disabled:opacity-70"
-              >
-                {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-                {loading ? "Registrerar…" : "Se hela reprisen"}
-              </button>
-            </form>
-          </>
-        )}
+        <>
+          <h2 className="font-body text-3xl font-bold mb-6 text-foreground">
+            Se hela reprisen
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="reg-firstname" className="block text-sm mb-1.5 font-medium text-foreground">
+                Förnamn
+              </label>
+              <input
+                id="reg-firstname"
+                className="input-dark"
+                type="text"
+                placeholder="Ditt förnamn"
+                autoComplete="given-name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="reg-email" className="block text-sm mb-1.5 font-medium text-foreground">
+                E-postadress
+              </label>
+              <input
+                id="reg-email"
+                className="input-dark"
+                type="email"
+                placeholder="din@epost.se"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            {error && (
+              <p className="text-sm" style={{ color: "hsl(var(--destructive))" }}>{error}</p>
+            )}
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-gold w-full py-4 text-base rounded-lg flex items-center justify-center gap-2"
+            >
+              {loading ? "Registrerar…" : "Se hela reprisen"}
+            </button>
+          </form>
+        </>
       </div>
     </div>
   );
 }
 
 // ─── Testimonials ─────────────────────────────────────────────────────────────
-const videoTestimonials = [
-  { name: "Fredrik", id: "bT_5xwpLDbs" },
-  { name: "Caroline", id: "_4r0nCWrCCw" },
-  { name: "Klas", id: "bZ0jF2Ag7Mc" },
-];
-
-const screenshotTestimonials = [
-  { src: testimonial1, alt: "Skriftlig recension från klient" },
-  { src: testimonial2, alt: "Skriftlig recension från klient" },
-  { src: testimonial3, alt: "Skriftlig recension från klient" },
-  { src: testimonial8, alt: "Skriftlig recension om Tomas Lydahls coaching" },
-  { src: testimonial7, alt: "Skriftlig recension om resultat efter coaching" },
-  { src: testimonial9, alt: "Skriftlig recension om självförtroende" },
-  { src: testimonial10, alt: "Skriftlig recension om upplevelsen av coaching" },
-];
-
 function TestimonialsSection() {
   return (
-    <section className="section-y border-t border-border px-4">
-      <div className="mx-auto max-w-5xl">
+    <section
+      className="py-20 px-4"
+      style={{ borderTop: "1px solid hsl(var(--border))" }}
+    >
+      <div className="max-w-4xl mx-auto">
         <Reveal>
-          <p className="section-label mb-3 text-center">Vad andra säger</p>
-          <h2 className="mb-12 text-center text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="font-body text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
             Tidigare klienter
           </h2>
         </Reveal>
 
-        <div className="mb-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-          {videoTestimonials.map(({ name, id }, i) => (
-            <Reveal key={name} delay={i * 90}>
-              <YouTubeFacade id={id} title={`Intervju med ${name}`} />
+        {/* Video testimonials */}
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
+          {[
+            { name: "Fredrik", url: "https://www.youtube.com/embed/bT_5xwpLDbs" },
+            { name: "Caroline", url: "https://www.youtube.com/embed/_4r0nCWrCCw" },
+            { name: "Klas", url: "https://www.youtube.com/embed/bZ0jF2Ag7Mc" },
+          ].map(({ name, url }, i) => (
+            <Reveal key={name} delay={i * 0.1}>
+            <div
+              className="rounded-xl overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+              style={{ border: "1px solid hsl(var(--border))", aspectRatio: "16/9" }}
+            >
+              <iframe
+                className="w-full h-full"
+                src={url}
+                title={`Testimonial – ${name}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={120}>
-          <div className="columns-2 gap-4 sm:columns-3">
-            {screenshotTestimonials.map(({ src, alt }, i) => (
-              <figure
-                key={i}
-                className="mb-4 break-inside-avoid overflow-hidden rounded-xl border border-border bg-surface-elevated/40 p-2 transition-colors hover:border-gold/40"
-              >
-                <img src={src} alt={alt} loading="lazy" className="block w-full rounded-lg" />
-              </figure>
+        {/* Screenshot testimonials */}
+        <div className="space-y-4">
+          <div className="grid grid-cols-3 gap-4">
+          {[
+              { src: testimonial1, name: "Skriftlig recension från klient 1" },
+              { src: testimonial2, name: "Skriftlig recension från klient 2" },
+              { src: testimonial3, name: "Skriftlig recension från klient 3" },
+            ].map(({ src, name }, i) => (
+              <div key={i} className="rounded-xl overflow-hidden">
+                <img src={src} alt={name} className="w-full h-auto block" />
+              </div>
             ))}
           </div>
-        </Reveal>
+          <div className="grid grid-cols-2 gap-4 items-start">
+            <div className="flex flex-col gap-4">
+              <div className="rounded-xl overflow-hidden">
+                <img src={testimonial8} alt="Skriftlig recension från tidigare klient om Tomas Lydahls coaching" className="w-full h-auto block" />
+              </div>
+              <div className="rounded-xl overflow-hidden">
+                <img src={testimonial7} alt="Skriftlig recension från tidigare klient om resultat efter coaching" className="w-full h-auto block" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="rounded-xl overflow-hidden">
+                <img src={testimonial9} alt="Skriftlig recension från tidigare klient om självförtroende" className="w-full h-auto block" />
+              </div>
+              <div className="rounded-xl overflow-hidden">
+                <img src={testimonial10} alt="Skriftlig recension från tidigare klient om upplevelsen av coaching" className="w-full h-auto block" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-// ─── Bottom CTA ───────────────────────────────────────────────────────────────
-function BottomCTA({ onVideoClick, expired }: { onVideoClick: () => void; expired: boolean }) {
+// ─── Footer ───────────────────────────────────────────────────────────────────
+function Footer() {
   return (
-    <section className="section-y border-t border-border px-4 text-center">
-      <Reveal>
-        <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
-          {expired ? "Redo att ta nästa steg?" : "Redo att se hela reprisen?"}
-        </h2>
-        <p className="mx-auto mb-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-          {expired
-            ? "Boka ett kostnadsfritt samtal med Tomas och få hjälp med nästa steg."
-            : "Klicka nedan för att låsa upp föreläsningen direkt."}
+    <footer className="py-8 px-4 border-t border-border">
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="text-muted-foreground text-sm">
+          © {new Date().getFullYear()} Tomas Lydahl. Alla rättigheter förbehållna.
         </p>
-        <button
-          onClick={expired ? scrollToBooking : onVideoClick}
-          className="btn-gold px-8 py-4 text-base md:text-lg"
-        >
-          {expired ? "Boka ett samtal" : "Se hela reprisen"}
-        </button>
-      </Reveal>
+        <div className="flex gap-6">
+          <a
+            href="https://tomaslydahl.se"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-muted-foreground hover:text-gold transition-colors"
+          >
+            tomaslydahl.se
+          </a>
+          <Link
+            to="/privacy"
+            className="text-sm text-muted-foreground hover:text-gold transition-colors"
+          >
+            Integritetspolicy
+          </Link>
+          <Link
+            to="/terms"
+            className="text-sm text-muted-foreground hover:text-gold transition-colors"
+          >
+            Användarvillkor
+          </Link>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ─── Bottom CTA ───────────────────────────────────────────────────────────────
+function BottomCTA({ onVideoClick }: { onVideoClick: () => void }) {
+  return (
+    <section
+      className="py-16 px-4 text-center"
+      style={{ borderTop: "1px solid hsl(var(--border))" }}
+    >
+      <h2 className="font-body text-3xl md:text-4xl font-bold text-foreground mb-3">
+        Redo att se hela reprisen?
+      </h2>
+      <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
+        Klicka nedan för att låsa upp föreläsningen direkt
+      </p>
+      <button
+        onClick={onVideoClick}
+        className="btn-gold inline-flex items-center gap-3 px-8 py-4 rounded-lg text-base md:text-lg font-semibold"
+      >
+        Se hela reprisen
+      </button>
     </section>
   );
 }
 
 // ─── Main Page ─────────────────────────────────────────────────────────────────
-const Repris = ({
-  videoEmbedUrl,
-  videoThumbnailUrl,
-}: { videoEmbedUrl?: string; videoThumbnailUrl?: string } = {}) => {
+const Index = ({ videoEmbedUrl, videoThumbnailUrl }: { videoEmbedUrl?: string; videoThumbnailUrl?: string } = {}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
-  const { days, hours, minutes, seconds, expired } = useCountdown();
 
   useEffect(() => {
-    document.title = "Repris: Låt din självkänsla träda fram — Tomas Lydahl";
-    const desc =
-      "Se reprisen av Tomas Lydahls digitala föreläsning om självkänsla – konsten att älska dig själv oavsett vad. Tillgänglig under en begränsad tid.";
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", desc);
+    (window as any).fbq?.('track', 'ViewContent', { content_name: 'Webinar Replay', content_type: 'video' });
   }, []);
 
-  useEffect(() => {
-    (window as any).fbq?.("track", "ViewContent", {
-      content_name: "Webinar Replay",
-      content_type: "video",
-    });
-  }, []);
-
-  const handleUnlock = useCallback(() => {
+  const handleUnlock = () => {
     setUnlocked(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  };
 
   return (
     <main
@@ -642,33 +603,15 @@ const Repris = ({
           "radial-gradient(ellipse 160% 55% at 50% 0%, hsl(42 38% 14% / 0.55) 0%, hsl(var(--background)) 55%), hsl(var(--background))",
       }}
     >
-      <CountdownBlock
-        days={days}
-        hours={hours}
-        minutes={minutes}
-        seconds={seconds}
-        expired={expired}
-      />
-      <HeroSection
-        onVideoClick={() => setModalOpen(true)}
-        unlocked={unlocked}
-        expired={expired}
-        videoEmbedUrl={videoEmbedUrl}
-        videoThumbnailUrl={videoThumbnailUrl}
-      />
+      <CountdownBlock />
+      <HeroSection onVideoClick={() => setModalOpen(true)} unlocked={unlocked} videoEmbedUrl={videoEmbedUrl} videoThumbnailUrl={videoThumbnailUrl} />
       <KeyLearningsSection />
       <TestimonialsSection />
-      {(!unlocked || expired) && (
-        <BottomCTA onVideoClick={() => setModalOpen(true)} expired={expired} />
-      )}
-      <SiteFooter />
-      <RegistrationModal
-        open={modalOpen && !expired}
-        onClose={() => setModalOpen(false)}
-        onUnlock={handleUnlock}
-      />
+      {!unlocked && <BottomCTA onVideoClick={() => setModalOpen(true)} />}
+      <Footer />
+      <RegistrationModal open={modalOpen} onClose={() => setModalOpen(false)} onUnlock={handleUnlock} />
     </main>
   );
 };
 
-export default Repris;
+export default Index;

@@ -47,7 +47,7 @@ const screenshots = [
 
 export function Testimonials() {
   return (
-    <section className="overflow-hidden section-y px-4">
+    <section className="overflow-hidden px-4 py-20">
       <Reveal>
         <SectionHeading
           eyebrow="Vad andra säger"
@@ -85,7 +85,9 @@ export function Testimonials() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="whitespace-pre-line font-serif text-lg leading-snug text-foreground">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                </p>
+                <h3 className="mt-2 whitespace-pre-line font-serif text-lg leading-snug text-foreground">
                   {iv.title}
                 </h3>
               </div>

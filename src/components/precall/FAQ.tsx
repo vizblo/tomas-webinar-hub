@@ -36,7 +36,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section className="section-y px-4">
+    <section className="px-4 py-20">
       <Reveal>
         <SectionHeading
           eyebrow="Vanliga frågor"

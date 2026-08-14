@@ -39,7 +39,7 @@ const items = [
 
 export function WhatYouGet() {
   return (
-    <section className="section-y px-4">
+    <section className="px-4 py-20">
       <Reveal>
         <SectionHeading
           eyebrow="Så fungerar coachningen"
