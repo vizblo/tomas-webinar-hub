@@ -222,6 +222,17 @@
       transform: none !important;
       transition: none !important;
     }
+    .motion-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .animate-fade-in,
+    .animate-scale-in,
+    .animate-fade-in-up {
+      animation: none !important;
+      opacity: 1 !important;
+    }
   }
 }
 
@@ -264,17 +275,6 @@
 }
 
 /* ── Pre-call sida (/bokad) ───────────────────────────────────── */
-.precall-page h1,
-.precall-page h2,
-.precall-page h3,
-.precall-page h4,
-.precall-page .font-serif {
-  font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-
 .precall-page .gold-divider {
   width: 80px;
   height: 2px;
