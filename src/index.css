@@ -199,7 +199,7 @@
   .reveal-delay-1, .reveal-delay-2, .reveal-delay-3, .reveal-delay-4 { transition-delay: 0s; }
   .reveal-precall {
     transition-property: opacity, transform, filter;
-    transition-duration: 2.1s;
+    transition-duration: 1.5s;
     transition-timing-function: cubic-bezier(0.16, 0.7, 0.3, 1);
   }
 
