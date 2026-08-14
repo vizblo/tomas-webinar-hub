@@ -217,9 +217,11 @@
   .sticky-cta.is-visible { transform: translateY(0); }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal, .reveal-left, .reveal-right, .reveal-zoom {
+    .reveal, .reveal-left, .reveal-right, .reveal-zoom,
+    .reveal-precall {
       opacity: 1 !important;
       transform: none !important;
+      filter: none !important;
       transition: none !important;
     }
   }
