@@ -188,6 +188,7 @@ const LandingPage = () => {
         <title>Sluta känna dig otillräcklig - Tomas Lydahl</title>
         <meta name="description" content="Anmäl dig till Tomas Lydahls kostnadsfria digitala föreläsning den 29 juli 2026 om hur du slutar känna dig otillräcklig och känner att du är bra nog." />
         <link rel="canonical" href="https://tomaslydahlwebinars.com/" />
+        <meta name="robots" content="noindex" />
         <meta property="og:title" content="Sluta känna dig otillräcklig - Tomas Lydahl" />
         <meta property="og:description" content="Kostnadsfri digital föreläsning med Tomas Lydahl den 29 juli 2026 om att sluta känna dig otillräcklig." />
         <meta property="og:url" content="https://tomaslydahlwebinars.com/" />
