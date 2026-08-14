@@ -14,7 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      page_views: {
+        Row: {
+          created_at: string
+          id: string
+          is_bot: boolean
+          path: string
+          referrer: string | null
+          session_id: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+          variant: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_bot?: boolean
+          path: string
+          referrer?: string | null
+          session_id: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          variant?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_bot?: boolean
+          path?: string
+          referrer?: string | null
+          session_id?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          variant?: string | null
+        }
+        Relationships: []
+      }
+      registrations: {
+        Row: {
+          country_code: string | null
+          created_at: string
+          email: string
+          first_name: string | null
+          id: string
+          landing_path: string | null
+          phone: string | null
+          session_id: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+          variant: string | null
+        }
+        Insert: {
+          country_code?: string | null
+          created_at?: string
+          email: string
+          first_name?: string | null
+          id?: string
+          landing_path?: string | null
+          phone?: string | null
+          session_id?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          variant?: string | null
+        }
+        Update: {
+          country_code?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string | null
+          id?: string
+          landing_path?: string | null
+          phone?: string | null
+          session_id?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          variant?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
