@@ -10,7 +10,7 @@ const topics = [
 
 export function CallDetails() {
   return (
-    <section className="px-4 py-20">
+    <section className="section-y px-4">
       <Reveal>
         <SectionHeading
           eyebrow="Innan vi pratar"

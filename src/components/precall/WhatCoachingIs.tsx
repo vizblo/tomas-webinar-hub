@@ -3,7 +3,7 @@ import { SectionHeading } from "./SectionHeading";
 
 export function WhatCoachingIs() {
   return (
-    <section className="px-4 py-20">
+    <section className="section-y px-4">
       <Reveal>
         <SectionHeading
           eyebrow="Vad coachningen är"
