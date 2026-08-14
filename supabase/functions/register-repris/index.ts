@@ -79,21 +79,21 @@ Deno.serve(async (req) => {
       );
     }
 
-    const SYSTEME_IO_API_KEY = Deno.env.get('SYSTEME_IO_API_KEY');
-    if (!SYSTEME_IO_API_KEY) {
-      console.error('SYSTEME_IO_API_KEY is not configured');
+    const SYSTEME_API_KEY = Deno.env.get('SYSTEME_API_KEY');
+    if (!SYSTEME_API_KEY) {
+      console.error('SYSTEME_API_KEY is not configured');
       return new Response(
         JSON.stringify({ success: false, error: 'Server configuration error' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    const replayTagId = await getReplayTagId(SYSTEME_IO_API_KEY);
+    const replayTagId = await getReplayTagId(SYSTEME_API_KEY);
 
     // Create contact with tag
     const response = await fetch('https://api.systeme.io/api/contacts', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-API-Key': SYSTEME_IO_API_KEY },
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': SYSTEME_API_KEY },
       body: JSON.stringify({
         email,
         given_name: name,
@@ -107,9 +107,9 @@ Deno.serve(async (req) => {
 
       // Contact already exists – look up their ID and assign the tag
       if (errorData.includes('already used')) {
-        const contactId = await findContactByEmail(email, SYSTEME_IO_API_KEY);
+        const contactId = await findContactByEmail(email, SYSTEME_API_KEY);
         if (contactId) {
-          await addTagToContact(contactId, SYSTEME_IO_API_KEY);
+          await addTagToContact(contactId, SYSTEME_API_KEY);
           console.log(`Tag assigned to existing contact ${contactId}`);
         }
         return new Response(
@@ -127,7 +127,7 @@ Deno.serve(async (req) => {
     const data = await response.json();
     // Also assign tag via dedicated endpoint to ensure it's applied
     if (data?.id) {
-      await addTagToContact(data.id, SYSTEME_IO_API_KEY);
+      await addTagToContact(data.id, SYSTEME_API_KEY);
     }
 
     return new Response(
