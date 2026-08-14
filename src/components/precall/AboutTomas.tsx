@@ -1,4 +1,4 @@
-import tomasPortrait from "@/assets/tomas-portrait.jpg";
+import tomasPortrait from "@/assets/precall/tomas-portrait.jpg";
 import { CountUp } from "./CountUp";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";

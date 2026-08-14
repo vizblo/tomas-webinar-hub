@@ -1,4 +1,4 @@
-import butterfly from "@/assets/butterfly-logo.png";
+import butterfly from "@/assets/precall/butterfly-logo.png";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 

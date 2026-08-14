@@ -1,15 +1,15 @@
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
-import liv from "@/assets/testimonials/liv.png";
-import sofia from "@/assets/testimonials/sofia.png";
-import anonym1 from "@/assets/testimonials/anonym1.jpg";
-import yvonne from "@/assets/testimonials/yvonne.png";
-import ingrid from "@/assets/testimonials/ingrid.jpg";
-import bettan from "@/assets/testimonials/bettan.jpg";
-import gunilla from "@/assets/testimonials/gunilla.jpg";
-import julhalsning from "@/assets/testimonials/julhalsning.jpg";
-import malin from "@/assets/testimonials/malin.jpg";
-import newMobileTestimonial from "@/assets/testimonials/IMG_6403.jpg.asset.json";
+import liv from "@/assets/precall/testimonials/liv.png";
+import sofia from "@/assets/precall/testimonials/sofia.png";
+import anonym1 from "@/assets/precall/testimonials/anonym1.jpg";
+import yvonne from "@/assets/precall/testimonials/yvonne.png";
+import ingrid from "@/assets/precall/testimonials/ingrid.jpg";
+import bettan from "@/assets/precall/testimonials/bettan.jpg";
+import gunilla from "@/assets/precall/testimonials/gunilla.jpg";
+import julhalsning from "@/assets/precall/testimonials/julhalsning.jpg";
+import malin from "@/assets/precall/testimonials/malin.jpg";
+import newMobileTestimonial from "@/assets/precall/testimonials/IMG_6403.jpg";
 
 const interviews = [
   {
@@ -33,7 +33,7 @@ const interviews = [
 ];
 
 const screenshots = [
-  { src: newMobileTestimonial.url, name: "Klient", mobileOnly: true },
+  { src: newMobileTestimonial, name: "Klient", mobileOnly: true },
   { src: liv, name: "Liv Alterskjaer" },
   { src: sofia, name: "Sofia Pihlsgård" },
   { src: yvonne, name: "Yvonne" },
