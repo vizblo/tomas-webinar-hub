@@ -17,7 +17,7 @@ export function FinalCTA() {
         <SectionHeading
           eyebrow="Nästa steg"
           title={<>Jag ser fram emot att <span className="text-gradient-gold">träffa dig</span></>}
-          subtitle="Se videon, fundera på frågorna ovan – sedan tar vi resten tillsammans under vårt samtal."
+          subtitle="Se videon, fundera på frågorna ovan, sedan tar vi resten tillsammans under vårt samtal."
         />
       </Reveal>
 
@@ -28,7 +28,7 @@ export function FinalCTA() {
           </p>
           <p className="mt-4 text-center text-lg text-foreground/90">
             Din bokningsbekräftelse och möteslänk har skickats till din e-post. Kontrollera att du
-            har fått den – där finns även länken om du behöver boka om.
+            har fått den, där finns även länken om du behöver boka om.
           </p>
 
           <ul className="mx-auto mt-8 max-w-xl space-y-3 border-t border-gold/20 pt-6">
