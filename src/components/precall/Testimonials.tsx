@@ -85,9 +85,7 @@ export function Testimonials() {
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                </p>
-                <h3 className="mt-2 whitespace-pre-line font-serif text-lg leading-snug text-foreground">
+                <h3 className="whitespace-pre-line font-serif text-lg leading-snug text-foreground">
                   {iv.title}
                 </h3>
               </div>

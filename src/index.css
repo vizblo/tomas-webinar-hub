@@ -263,10 +263,20 @@
 
 @layer utilities {
   .text-gradient-gold {
+    display: inline-block;
     background: var(--gradient-gold);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  /* Delad sektionsrytm för /bokad och /repris */
+  .section-y {
+    @apply py-16 md:py-24;
   }
 
   .shadow-gold {
