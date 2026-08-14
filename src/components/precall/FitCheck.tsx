@@ -18,7 +18,7 @@ const notForYou = [
 
 export function FitCheck() {
   return (
-    <section className="px-4 py-20">
+    <section className="section-y px-4">
       <Reveal>
         <SectionHeading
           eyebrow="Vem coachningen är för"
