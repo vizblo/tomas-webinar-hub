@@ -25,19 +25,19 @@ export function Reveal({ children, className, delay = 0, variant = "up" }: Revea
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -30px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   const base =
-    "reveal-precall transition-[opacity,transform,filter] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity,filter]";
+    "reveal-precall transition-[opacity,transform,filter] duration-[1600ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity,filter]";
   const hidden =
     variant === "up"
-      ? "opacity-0 translate-y-12 blur-[2px]"
+      ? "opacity-0 translate-y-6 blur-[2px]"
       : variant === "scale"
-        ? "opacity-0 scale-[0.94] blur-[2px]"
+        ? "opacity-0 scale-[0.96] blur-[2px]"
         : "opacity-0 blur-[2px]";
   const shown = "opacity-100 translate-y-0 scale-100 blur-0";
 
