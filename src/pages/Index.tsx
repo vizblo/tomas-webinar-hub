@@ -684,7 +684,7 @@ const LandingPage = () => {
                 <p className="text-sm mt-1" style={{ color: "hsl(var(--foreground))" }}>Vidarebefordrar dig till tacksidan…</p>
               </div> :
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" autoComplete="on" name="registration">
                 {UTM_KEYS.map((key) => (
                   <input key={key} type="hidden" name={key} value={tracking[key] || "direct"} readOnly />
                 ))}
@@ -699,6 +699,8 @@ const LandingPage = () => {
                 placeholder="Förnamn"
                 autoComplete="given-name"
                 name="given-name"
+                autoCapitalize="words"
+                enterKeyHint="next"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required />
@@ -715,6 +717,11 @@ const LandingPage = () => {
                 placeholder="din@epost.se"
                 autoComplete="email"
                 name="email"
+                inputMode="email"
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+                enterKeyHint="next"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required />
@@ -733,6 +740,9 @@ const LandingPage = () => {
                     placeholder="70 123 45 67"
                     autoComplete="tel"
                     name="tel"
+                    type="tel"
+                    inputMode="tel"
+                    enterKeyHint="done"
                     value={formData.phone}
                     onChange={(value) => setFormData({ ...formData, phone: value || "" })}
                     required />
