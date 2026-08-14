@@ -43,6 +43,12 @@
     --gold-dark: 40 50% 40%;
     --surface: 20 8% 12%;
     --surface-elevated: 20 8% 16%;
+    --gold-soft: 42 65% 70%;
+    --success: 145 55% 48%;
+    --danger: 6 70% 55%;
+
+    --gradient-gold: linear-gradient(135deg, hsl(42 65% 70%), hsl(42 58% 52%));
+    --shadow-gold: 0 10px 40px -10px hsl(42 58% 55% / 0.35);
 
     --sidebar-background: 20 10% 8%;
     --sidebar-foreground: 40 30% 92%;
@@ -217,4 +223,62 @@
       transition: none !important;
     }
   }
+}
+
+@layer components {
+  /* ── Reprissida helpers ─────────────────────────────────────── */
+  .section-card {
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    box-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+  }
+
+  .testimonial-card {
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--gold) / 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+  }
+
+  .stat-box {
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--gold) / 0.25);
+    border-radius: 10px;
+    text-align: center;
+    padding: 1.5rem 2rem;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+}
+
+/* ── Pre-call sida (/bokad) ───────────────────────────────────── */
+.precall-page h1,
+.precall-page h2,
+.precall-page h3,
+.precall-page h4,
+.precall-page .font-serif {
+  font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.precall-page .gold-divider {
+  width: 80px;
+  height: 2px;
+  background: var(--gradient-gold);
+  margin: 1.5rem auto;
+  border-radius: 999px;
 }
