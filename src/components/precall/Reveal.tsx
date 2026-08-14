@@ -31,14 +31,15 @@ export function Reveal({ children, className, delay = 0, variant = "up" }: Revea
     return () => observer.disconnect();
   }, []);
 
-  const base = "transition-all duration-[900ms] ease-out will-change-transform";
+  const base =
+    "transition-[opacity,transform,filter] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity,filter]";
   const hidden =
     variant === "up"
-      ? "opacity-0 translate-y-8"
+      ? "opacity-0 translate-y-12 blur-[2px]"
       : variant === "scale"
-        ? "opacity-0 scale-[0.97]"
-        : "opacity-0";
-  const shown = "opacity-100 translate-y-0 scale-100";
+        ? "opacity-0 scale-[0.94] blur-[2px]"
+        : "opacity-0 blur-[2px]";
+  const shown = "opacity-100 translate-y-0 scale-100 blur-0";
 
   return (
     <div
