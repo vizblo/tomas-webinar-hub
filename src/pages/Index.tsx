@@ -13,6 +13,7 @@ import testimonial9 from "@/assets/testimonial-9.webp";
 import testimonial10 from "@/assets/testimonial-10.webp";
 import { useNavigate } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { trackRegistration } from "@/lib/analytics";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
@@ -167,6 +168,14 @@ const LandingPage = () => {
     } catch (err) {
       console.error("Registration error:", err);
     }
+
+    trackRegistration({
+      email: formData.email,
+      first_name: formData.name,
+      phone: formData.phone,
+      landing_path: window.location.pathname,
+      utm: tracking
+    });
 
     setLoading(false);
     setSubmitted(true);

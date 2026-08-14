@@ -13,6 +13,7 @@ import testimonial9 from "@/assets/testimonial-9.webp";
 import testimonial10 from "@/assets/testimonial-10.webp";
 import { useNavigate } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { trackRegistration } from "@/lib/analytics";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
@@ -168,6 +169,14 @@ const LandingPage = () => {
       console.error("Registration error:", err);
     }
 
+    trackRegistration({
+      email: formData.email,
+      first_name: formData.name,
+      phone: formData.phone,
+      landing_path: window.location.pathname,
+      utm: tracking
+    });
+
     setLoading(false);
     setSubmitted(true);
     setTimeout(() => navigate("/tack"), 1000);
@@ -179,6 +188,7 @@ const LandingPage = () => {
         <title>Sluta känna dig otillräcklig - Tomas Lydahl</title>
         <meta name="description" content="Anmäl dig till Tomas Lydahls kostnadsfria digitala föreläsning den 29 juli 2026 om hur du slutar känna dig otillräcklig och känner att du är bra nog." />
         <link rel="canonical" href="https://tomaslydahlwebinars.com/" />
+        <meta name="robots" content="noindex" />
         <meta property="og:title" content="Sluta känna dig otillräcklig - Tomas Lydahl" />
         <meta property="og:description" content="Kostnadsfri digital föreläsning med Tomas Lydahl den 29 juli 2026 om att sluta känna dig otillräcklig." />
         <meta property="og:url" content="https://tomaslydahlwebinars.com/" />

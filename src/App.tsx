@@ -12,10 +12,26 @@ import Terms from "./pages/Terms";
 import Repris from "./pages/Repris";
 import Bokad from "./pages/Bokad";
 import NotFound from "./pages/NotFound";
-
 import { usePageViewTracking } from "@/hooks/usePageViewTracking";
 
 const queryClient = new QueryClient();
+
+const AppRoutes = () => {
+  usePageViewTracking();
+  return (
+    <Routes>
+      <Route path="/" element={<SplitRoot />} />
+      <Route path="/b" element={<IndexB />} />
+      <Route path="/admin/optin" element={<AdminOptIn />} />
+      <Route path="/tack" element={<ThankYou />} />
+      <Route path="/repris" element={<Repris />} />
+      <Route path="/bokad" element={<Bokad />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Terms />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -24,16 +40,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AppRoutes />
-          <Route path="/" element={<SplitRoot />} />
-          <Route path="/b" element={<IndexB />} />
-          <Route path="/admin/optin" element={<AdminOptIn />} />
-          <Route path="/tack" element={<ThankYou />} />
-          <Route path="/repris" element={<Repris />} />
-          <Route path="/bokad" element={<Bokad />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
