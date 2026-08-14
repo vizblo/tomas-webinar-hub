@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Index from './Index';
 import IndexB from './IndexB';
-import { getStoredVariant, resolveVariant } from '@/lib/analytics';
+import { resolveVariant } from '@/lib/analytics';
 
 // "/" splittar trafiken 50/50 mellan variant A (Index) och B (IndexB).
 // Varianten är sticky per besökare (localStorage).
@@ -30,5 +30,3 @@ export default function SplitRoot() {
 
   return variant === 'b' ? <IndexB /> : <Index />;
 }
-
-export { getStoredVariant };

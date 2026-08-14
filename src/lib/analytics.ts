@@ -51,10 +51,6 @@ export function assignVariant(path?: string): string {
   }
 }
 
-function rememberVariant(path: string): string {
-  return assignVariant(path);
-}
-
 // Server-side balanced assignment: pushes variant B until it has as many
 // visitors as A, then falls back to a 50/50 split. Sticky per visitor.
 export async function resolveVariant(path?: string): Promise<string> {
@@ -118,7 +114,7 @@ export async function trackPageView(path: string) {
       session_id: getSessionId(),
       referrer: document.referrer || null,
       is_bot: !!isBot,
-      variant: rememberVariant(path),
+      variant: getStoredVariant(path),
       ...parseUtm(),
     });
   } catch (e) {
