@@ -32,7 +32,7 @@ export function Reveal({ children, className, delay = 0, variant = "up" }: Revea
   }, []);
 
   const base =
-    "reveal-precall transition-[opacity,transform,filter] duration-[3000ms] ease-[cubic-bezier(0.16,0.7,0.3,1)] will-change-[transform,opacity,filter]";
+    "reveal-precall will-change-[transform,opacity,filter]";
   const hidden =
     variant === "up"
       ? "opacity-0 translate-y-8 blur-[3px]"
