@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { TopBanner } from "@/components/precall/TopBanner";
-import { Header } from "@/components/precall/Header";
 import { Hero } from "@/components/precall/Hero";
 import { VideoPlaceholder } from "@/components/precall/VideoPlaceholder";
 import { WhatCoachingIs } from "@/components/precall/WhatCoachingIs";
@@ -49,7 +48,7 @@ const Bokad = () => {
 
   return (
     <main id="top" className="precall-page min-h-screen bg-background">
-      <Header />
+      <TopBanner />
       <Hero />
       <VideoPlaceholder />
       <CallDetails />

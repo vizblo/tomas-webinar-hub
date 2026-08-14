@@ -51,14 +51,13 @@ export function Prepare() {
       <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-2">
         {steps.map((step, i) => (
           <Reveal key={step.n} delay={i * 80}>
-            <div className="relative h-full rounded-2xl border border-border bg-surface-elevated/40 p-7 pl-20 transition-colors hover:border-gold/40">
-              <span
-                aria-hidden
-                className="absolute left-6 top-6 font-serif text-4xl text-gold/70"
-              >
-                {step.n}
-              </span>
-              <h3 className="text-xl">{step.title}</h3>
+            <div className="h-full rounded-2xl border border-border bg-surface-elevated/40 p-6 transition-all hover:-translate-y-0.5 hover:border-gold/40 sm:p-7">
+              <div className="flex items-baseline gap-4">
+                <span aria-hidden className="font-serif text-3xl leading-none text-gold/70 sm:text-4xl">
+                  {step.n}
+                </span>
+                <h3 className="text-lg sm:text-xl">{step.title}</h3>
+              </div>
               <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">{step.body}</p>
             </div>
           </Reveal>
