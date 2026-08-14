@@ -49,7 +49,6 @@ const Bokad = () => {
 
   return (
     <main id="top" className="precall-page min-h-screen bg-background">
-      <TopBanner />
       <Header />
       <Hero />
       <VideoPlaceholder />
