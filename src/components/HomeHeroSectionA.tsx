@@ -1,6 +1,7 @@
 import { useCountdown, formatEventDateLong } from '@/hooks/useCountdown';
 import { useRegistrationModal } from '@/hooks/useRegistrationModal';
 import { Star } from 'lucide-react';
+import { WistiaPlayer } from '@/components/WistiaPlayer';
 
 const GOLD = '#D4AF37';
 const FONT = '"Plus Jakarta Sans", Inter, system-ui, -apple-system, sans-serif';
@@ -51,7 +52,7 @@ export const HomeHeroSectionA = () => {
             color: '#FFFFFF',
           }}
         >
-          LIVE From My Warehouse on {formatEventDateLong()}, I'm Revealing...
+          KOSTNADSFRI DIGITAL FÖRELÄSNING · {formatEventDateLong()}
         </p>
 
         {/* H1 */}
@@ -68,10 +69,10 @@ export const HomeHeroSectionA = () => {
             color: '#FFFFFF',
           }}
         >
-          How I scaled my Amazon Business to{' '}
-          <span style={{ color: GOLD, textShadow: '0 0 24px rgba(212,175,55,0.3)' }}>$4.1M</span>{' '}
-          <em>Without Supplier Headache</em> Through{' '}
-          <span style={{ color: GOLD, textShadow: '0 0 24px rgba(212,175,55,0.3)' }}>Brand Direct Wholesale</span>
+          De insikterna som hjälpt{' '}
+          <span style={{ color: GOLD, textShadow: '0 0 24px rgba(212,175,55,0.3)' }}>hundratals människor</span>{' '}
+          släppa sina{' '}
+          <span style={{ color: GOLD, textShadow: '0 0 24px rgba(212,175,55,0.3)' }}>katastroftankar</span>
         </h1>
 
         {/* Subhead */}
@@ -86,8 +87,21 @@ export const HomeHeroSectionA = () => {
             color: '#FFFFFF',
           }}
         >
-          Without building a brand from scratch. Without "flipping" products for pennies. Without quitting your 9-5
+          Utan år av terapi, jobbiga övningar eller fler tekniker du redan provat.
         </p>
+
+        {/* Hero video */}
+        <div
+          className="mx-auto mb-6 overflow-hidden"
+          style={{
+            maxWidth: '640px',
+            borderRadius: 16,
+            border: '2px solid rgba(212,175,55,0.35)',
+            boxShadow: '0 0 40px rgba(212,175,55,0.18)',
+          }}
+        >
+          <WistiaPlayer mediaId="d8kio84jnn" />
+        </div>
 
         {/* Green CTA */}
         <button
@@ -113,13 +127,13 @@ export const HomeHeroSectionA = () => {
               textTransform: 'uppercase',
             }}
           >
-            Yes! Claim My Free Ticket!
+            JA! SÄKRA MIN PLATS
           </span>
           <span
             className="block mt-1"
             style={{ fontSize: 'clamp(12px, 3vw, 15px)', fontWeight: 600, color: 'rgba(255,255,255,0.92)' }}
           >
-            Live Only — NO Replay
+            Kostnadsfri registrering
           </span>
         </button>
 
@@ -137,14 +151,14 @@ export const HomeHeroSectionA = () => {
                 textShadow: '0 0 18px rgba(212,175,55,0.35)',
               }}
             >
-              Workshop registration closes in:
+              Anmälan stänger om:
             </h3>
             <div className="grid grid-cols-4 gap-2 max-w-[520px] mx-auto text-center">
               {[
-                { value: days, label: 'DAYS' },
-                { value: hours, label: 'HOURS' },
-                { value: minutes, label: 'MINUTES' },
-                { value: seconds, label: 'SECONDS' },
+                { value: days, label: 'DAGAR' },
+                { value: hours, label: 'TIMMAR' },
+                { value: minutes, label: 'MINUTER' },
+                { value: seconds, label: 'SEKUNDER' },
               ].map((item) => (
                 <div key={item.label} className="flex flex-col items-center">
                   <span
@@ -221,7 +235,7 @@ export const HomeHeroSectionA = () => {
                   whiteSpace: 'nowrap',
                 }}
               >
-                <strong><em style={{ color: GOLD }}>$10M+</em></strong> in Attendee Results
+                <strong><em style={{ color: GOLD }}>1 000+</em></strong> hjälpta människor
               </span>
             </div>
           </>

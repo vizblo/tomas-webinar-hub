@@ -4,8 +4,8 @@ import { HomeHeroSectionA } from '@/components/HomeHeroSectionA';
 import { AgendaSection } from '@/components/AgendaSection';
 import { HostSection } from '@/components/HostSection';
 import { FreeGiftSection } from '@/components/FreeGiftSection';
-import { TestimonialsSection } from '@/components/TestimonialsSection';
-import { TransformationsSection } from '@/components/TransformationsSection';
+import { TomasVideoTestimonials } from '@/components/tomas/TomasVideoTestimonials';
+import { TomasScreenshots } from '@/components/tomas/TomasScreenshots';
 import { SectionSeparator } from '@/components/SectionSeparator';
 import { StickyCtaBanner } from '@/components/StickyCtaBanner';
 import PkLegalFooter from '@/components/PkLegalFooter';
@@ -13,8 +13,8 @@ import { RegistrationModal } from '@/components/RegistrationModal';
 
 import { setABVariant } from '@/hooks/useABTest';
 import { useUTM } from '@/hooks/useUTM';
-import philipHost from '@/assets/philip-host.png';
-import customRoadmapBook from '@/assets/custom-roadmap-book.png';
+import tomasPortrait from '@/assets/tomas-portrait-2.webp';
+import ebookCover from '@/assets/ebook-katastroftankar.png.asset.json';
 
 const IndexA = () => {
   useUTM();
@@ -44,33 +44,61 @@ const IndexA = () => {
 
       <div style={{ backgroundColor: '#000000' }}>
         <SectionSeparator />
-        <AgendaSection />
-        <SectionSeparator />
-        <FreeGiftSection
-          heading="Free Gift:"
-          headingSuffix="Custom A-Z Amazon Roadmap"
-          topText="Inside, you'll find the exact step-by-step system our students are using to go from zero to their first profitable wholesale products, but tailored to your budget, experience, and goals"
-          bottomText=""
-          giftImage={customRoadmapBook}
-          giftImageAlt="Custom A-Z Amazon Roadmap - Tailored to your budget, experience, and goals"
-        />
-        <SectionSeparator />
-        <HostSection
-          hostImage={philipHost}
-          hostImageAlt="Philip Keipp - Amazon Wholesale Coach & 7-Figure Seller"
-          hostName="Philip Keipp"
-          hostTitle="Amazon Wholesale Coach & 7-Figure Seller"
-          hostBio={"I built a $3.5M+ Amazon business in just 4 years - starting from scratch as a single dad working 14-hour days in drywall.\n\nAfter discovering the power of Amazon wholesale, I learned the truth: you don't need to invent a product, have a business degree, or get lucky with fads to build a real, life-changing business."}
-          stats={[
-            { label: 'Successful Students', value: '500+' },
-            { label: 'in Student Sales Generated', value: '$10M+' },
-            { label: 'in personal Amazon sales', value: '$3.5M+' }
+        <AgendaSection
+          headline="Vad du får med dig från föreläsningen"
+          pillars={[
+            {
+              number: '01',
+              title: 'Varför hjärnan skapar katastroftankar',
+              subtitle: 'Förstå varför ditt sinne målar upp värsta tänkbara scenarier, och varför det inte betyder att något är fel på dig.',
+            },
+            {
+              number: '02',
+              title: 'Varför 99% av dem aldrig slår in',
+              subtitle: 'Lär dig skillnaden mellan en tanke och en sanning, och varför nästan inget av det du oroar dig för faktiskt händer.',
+            },
+            {
+              number: '03',
+              title: 'Hur du slutar lyssna på dem',
+              subtitle: 'Konkreta principer för att låta katastroftankarna passera utan att de styr ditt liv, utan tekniker eller kamp.',
+            },
+            {
+              number: '04',
+              title: 'BONUS: Live Q&A i slutet',
+              subtitle: 'Direkt efter föreläsningen får du ställa dina frågor till Tomas live.',
+            },
           ]}
         />
         <SectionSeparator />
-        <TestimonialsSection heading="What People Are" headingSuffix="Saying" />
+        <FreeGiftSection
+          heading="Gratis bonus:"
+          headingSuffix="Varför vi tror på katastroftankar"
+          topText="Du får e-boken som visar varför hjärnan skapar katastroftankar, varför nästan inga av dem slår in, och vad som händer när du ser igenom dem."
+          bottomText=""
+          giftImage={ebookCover.url}
+          giftImageAlt="E-bok: Varför vi tror på katastroftankar och vad som händer när de avslöjas"
+          ctaLabel="SÄKRA MIN PLATS"
+          ctaSubLabel="Kostnadsfri registrering"
+        />
         <SectionSeparator />
-        <TransformationsSection heading="Real" headingSuffix="Transformations" />
+        <HostSection
+          heading="Vem är"
+          headingSuffix="Tomas?"
+          hostImage={tomasPortrait}
+          hostImageAlt="Tomas Lydahl - mental coach, författare och föreläsare"
+          hostName="Tomas Lydahl"
+          hostTitle="Mental coach, författare och föreläsare"
+          hostBio={"Tomas har själv levt med katastroftankar. Han vet hur det känns när huvudet ständigt målar upp det värsta som kan hända.\n\nHans fokus ligger på djup förståelse snarare än ytliga \"quick fixes\". När du förstår hur ditt sinne fungerar, förändras allt automatiskt, utan att du behöver kämpa."}
+          stats={[
+            { label: 'Års erfarenhet', value: '15+' },
+            { label: 'Hjälpta människor', value: '1 000+' },
+            { label: 'Föreläsningar', value: '500+' }
+          ]}
+        />
+        <SectionSeparator />
+        <TomasVideoTestimonials heading="Tidigare klienter" />
+        <SectionSeparator />
+        <TomasScreenshots heading="Vad människor säger" />
       </div>
 
       <PkLegalFooter />

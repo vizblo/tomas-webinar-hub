@@ -11,7 +11,7 @@ const StepBadge = ({ stepNumber }: StepBadgeProps) => {
       }}
     >
       <span className="text-xs sm:text-sm font-bold uppercase text-white">
-        STEP {stepNumber}
+        STEG {stepNumber}
       </span>
     </div>
   );

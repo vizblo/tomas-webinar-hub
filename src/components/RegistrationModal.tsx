@@ -32,15 +32,15 @@ const getVariantWithFallback = (): string => {
 };
 
 const registrationSchema = z.object({
-  firstName: z.string().trim().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
-  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
-  phone: z.string().min(1, "Phone number is required").refine((value) => {
+  firstName: z.string().trim().min(1, "Namn krävs").max(50, "Namnet är för långt"),
+  email: z.string().trim().email("Ogiltig e-postadress").max(255, "E-postadressen är för lång"),
+  phone: z.string().min(1, "Telefonnummer krävs").refine((value) => {
     try {
       return isValidPhoneNumber(value);
     } catch {
       return false;
     }
-  }, "Please enter a valid phone number"),
+  }, "Ange ett giltigt telefonnummer"),
 });
 
 type RegistrationFormData = z.infer<typeof registrationSchema>;
@@ -198,7 +198,7 @@ export const RegistrationModal = () => {
                 lineHeight: 1.3,
               }}
             >
-              Live On {formatEventDateLong()}
+              Live {formatEventDateLong()}
             </p>
             <DialogTitle
               className="font-bold text-center"
@@ -211,7 +211,7 @@ export const RegistrationModal = () => {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Your Ticket is Reserved for {mm}:{ss}
+              Din plats är reserverad i {mm}:{ss}
             </DialogTitle>
           </DialogHeader>
 
@@ -223,14 +223,14 @@ export const RegistrationModal = () => {
                 render={({ field, fieldState }) => (
                   <FormItem>
                     <label htmlFor="firstName" className="block text-white text-sm font-medium mb-2">
-                      Full Name
+                      Namn
                     </label>
                     <FormControl>
                       <Input
                         {...field}
                         id="firstName"
                         name="firstName"
-                        placeholder="John"
+                        placeholder="Anna"
                         autoComplete="given-name"
                         className={`h-11 sm:h-12 bg-[#0B0B0B] text-white placeholder:text-gray-500 ${
                           fieldState.error
@@ -250,7 +250,7 @@ export const RegistrationModal = () => {
                 render={({ field, fieldState }) => (
                   <FormItem>
                     <label htmlFor="email" className="block text-white text-sm font-medium mb-2">
-                      Email
+                      E-postadress
                     </label>
                     <FormControl>
                       <Input
@@ -258,7 +258,7 @@ export const RegistrationModal = () => {
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder="din@epost.se"
                         autoComplete="email"
                         className={`h-11 sm:h-12 bg-[#0B0B0B] text-white placeholder:text-gray-500 ${
                           fieldState.error
@@ -278,14 +278,14 @@ export const RegistrationModal = () => {
                 render={({ field, fieldState }) => (
                   <FormItem>
                     <label htmlFor="phone" className="block text-white text-sm font-medium mb-2">
-                      Phone Number
+                      Telefonnummer
                     </label>
                     <FormControl>
                       <PhoneInput
                         {...field}
                         id="phone"
                         name="phone"
-                        defaultCountry="US"
+                        defaultCountry="SE"
                         international
                         autoComplete="tel"
                         className={`phone-input h-12 ${fieldState.error ? 'phone-input-error' : ''}`}
@@ -307,23 +307,23 @@ export const RegistrationModal = () => {
                 }}
               >
                 {isSubmitting ? (
-                  'REGISTERING...'
+                  'REGISTRERAR...'
                 ) : (
                   <>
-                    <span className="text-sm sm:text-base font-bold leading-tight tracking-wide">CLAIM MY FREE TICKET</span>
-                    <span className="text-[10px] sm:text-sm font-normal leading-tight tracking-wide">(LIMITED SPACES REMAINING)</span>
+                    <span className="text-sm sm:text-base font-bold leading-tight tracking-wide">SÄKRA MIN PLATS</span>
+                    <span className="text-[10px] sm:text-sm font-normal leading-tight tracking-wide">(BEGRÄNSAT ANTAL PLATSER)</span>
                   </>
                 )}
               </button>
 
               <p className="text-xs text-gray-400 text-center mt-3">
-                Get My "Amazon Wholesale A-Z Roadmap" Sent To Your Inbox When You Register For Free
+                Du får e-boken "Varför vi tror på katastroftankar" när du anmäler dig kostnadsfritt
               </p>
 
               <div className="flex items-center justify-center gap-2 mt-2">
                 <Lock size={14} className="text-gray-400" />
                 <p className="text-xs text-gray-400">
-                  Your information is 100% secure.
+                  Dina uppgifter är 100% säkra.
                 </p>
               </div>
             </form>

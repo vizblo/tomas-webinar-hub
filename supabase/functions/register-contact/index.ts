@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 const SYSTEME_API_BASE = "https://api.systeme.io/api";
-const WEBINAR_TAG = "Webinar registrerad - 29 juli 2026";
+const WEBINAR_TAG = "Webinar registrerad - 25 augusti 2026";
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbadid"] as const;
 type UtmKey = typeof UTM_KEYS[number];
 type UtmFields = Partial<Record<UtmKey, string>>;

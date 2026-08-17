@@ -10,7 +10,7 @@ export const HomeTopBannerA = () => {
       <div className="max-w-[1200px] mx-auto flex items-center justify-center">
         <span className="text-white text-[10px] md:text-sm font-bold tracking-wide text-center uppercase flex items-center gap-2 justify-center">
           <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          Trusted By Over 1,000 US AMZ Sellers | Live On Zoom
+          Över 1 000 personer har deltagit | Livesänds digitalt
         </span>
       </div>
     </div>

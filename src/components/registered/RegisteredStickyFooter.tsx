@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { WHATSAPP_GROUP_URL } from '@/lib/eventDate';
 
 const RegisteredStickyFooter = () => {
   const [visible, setVisible] = useState(false);
@@ -25,7 +26,7 @@ const RegisteredStickyFooter = () => {
     >
       <div className="max-w-4xl mx-auto flex items-center justify-center px-4 py-3">
         <a
-          href="https://chat.whatsapp.com/GeKxc7D1kQdJhs0x05ta2r"
+          href={WHATSAPP_GROUP_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full sm:w-auto sm:px-10 px-4 py-2.5 rounded-lg font-bold text-sm sm:text-base text-white transition-transform hover:scale-105 flex items-center justify-center gap-2 sm:gap-3"
@@ -35,7 +36,7 @@ const RegisteredStickyFooter = () => {
           }}
         >
           <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
-          Join the WhatsApp Group
+          Gå med i WhatsApp-gruppen
         </a>
       </div>
     </div>

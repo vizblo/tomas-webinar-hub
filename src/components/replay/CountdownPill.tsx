@@ -1,32 +1,21 @@
 import { useState, useEffect } from 'react';
+import { getReplayDeadline } from '@/lib/eventDate';
 
 interface TimeDisplay {
+  days: number;
   hours: number;
   minutes: number;
   seconds: number;
 }
 
-const CYCLE_DURATION = 48 * 60 * 60 * 1000;
-const STORAGE_KEY = 'replay_countdown_expiry';
-
-const getExpiryTime = (): number => {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const expiry = parseInt(stored, 10);
-      if (!isNaN(expiry) && expiry > Date.now()) return expiry;
-    }
-  } catch {}
-  const expiry = Date.now() + CYCLE_DURATION;
-  try { localStorage.setItem(STORAGE_KEY, String(expiry)); } catch {}
-  return expiry;
-};
+const getExpiryTime = (): number => getReplayDeadline().getTime();
 
 const calculateUniversalTime = (): TimeDisplay => {
   const remaining = Math.max(0, getExpiryTime() - Date.now());
   const totalSeconds = Math.floor(remaining / 1000);
   return {
-    hours: Math.floor(totalSeconds / 3600),
+    days: Math.floor(totalSeconds / 86400),
+    hours: Math.floor((totalSeconds % 86400) / 3600),
     minutes: Math.floor((totalSeconds % 3600) / 60),
     seconds: totalSeconds % 60,
   };
@@ -58,11 +47,17 @@ export const CountdownPill = () => {
             style={{ animation: 'livePulse 2s ease-in-out infinite' }}
           />
           <span className="text-[11px] sm:text-[12px] uppercase tracking-[0.12em] text-white/50 font-medium">
-            Expires in
+            Försvinner om
           </span>
         </div>
 
         <div className="flex items-center gap-1 tabular-nums font-mono text-white/90 text-[18px] sm:text-[22px] lg:text-[26px] font-semibold tracking-tight">
+          {timeLeft.days > 0 && (
+            <>
+              <span>{pad(timeLeft.days)}</span>
+              <span className="text-white/30">:</span>
+            </>
+          )}
           <span>{pad(timeLeft.hours)}</span>
           <span className="text-white/30">:</span>
           <span>{pad(timeLeft.minutes)}</span>

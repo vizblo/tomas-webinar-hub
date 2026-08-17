@@ -9,9 +9,9 @@ const VideoContainer = () => {
       document.body.appendChild(playerScript);
     }
 
-    if (!document.querySelector('script[src="https://fast.wistia.com/embed/bz5b3t5cfa.js"]')) {
+    if (!document.querySelector('script[src="https://fast.wistia.com/embed/0xjp3wenam.js"]')) {
       const embedScript = document.createElement('script');
-      embedScript.src = 'https://fast.wistia.com/embed/bz5b3t5cfa.js';
+      embedScript.src = 'https://fast.wistia.com/embed/0xjp3wenam.js';
       embedScript.async = true;
       embedScript.type = 'module';
       document.body.appendChild(embedScript);
@@ -30,15 +30,15 @@ const VideoContainer = () => {
       >
         <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden">
           <style>{`
-            wistia-player[media-id='bz5b3t5cfa']:not(:defined) { 
-              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/bz5b3t5cfa/swatch'); 
+            wistia-player[media-id='0xjp3wenam']:not(:defined) { 
+              background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/0xjp3wenam/swatch'); 
               display: block; 
               filter: blur(5px); 
               padding-top: 56.25%; 
             }
           `}</style>
           <div dangerouslySetInnerHTML={{ 
-            __html: '<wistia-player media-id="bz5b3t5cfa" aspect="1.7777777777777777"></wistia-player>' 
+            __html: '<wistia-player media-id="0xjp3wenam" aspect="1.7777777777777777"></wistia-player>' 
           }} />
         </div>
       </div>

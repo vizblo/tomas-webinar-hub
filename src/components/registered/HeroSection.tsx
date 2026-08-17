@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRegistrationData } from '@/lib/registrationData';
+import { getEventDate, formatEventLong } from '@/lib/eventDate';
 
 const HeroSection = () => {
   const [firstName, setFirstName] = useState<string>('');
@@ -21,14 +22,14 @@ const HeroSection = () => {
         }}
       >
         <span className="block">
-          CONGRATS{firstName ? ` ${firstName}` : ''}, YOU'RE REGISTERED FOR
+          GRATTIS{firstName ? ` ${firstName}` : ''}, DU ÄR ANMÄLD TILL
         </span>
-        <span className="block sm:whitespace-nowrap">
-          SUNDAY, AUGUST 9TH @ 3:00 PM ET
+        <span className="block sm:whitespace-nowrap uppercase">
+          {formatEventLong(getEventDate())}
         </span>
       </h1>
       <p className="text-sm sm:text-base md:text-lg text-white/85 text-center font-medium leading-snug max-w-[640px] mx-auto">
-        Watch The Video Below To Confirm Your Registration & Scroll Down On This Page
+        Titta på videon nedan för att bekräfta din anmälan och scrolla sedan vidare på sidan
       </p>
     </div>
   );

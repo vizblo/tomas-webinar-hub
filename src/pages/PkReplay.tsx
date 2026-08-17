@@ -3,8 +3,8 @@ import { CountdownPill } from "@/components/replay/CountdownPill";
 import { HeadlineBlock } from "@/components/replay/HeadlineBlock";
 import { ReplayVideoEmbed } from "@/components/replay/ReplayVideoEmbed";
 import { ApplicationSection } from "@/components/replay/ApplicationSection";
-import { ClientInterviewsSection } from "@/components/vsllander/ClientInterviewsSection";
-import { TransformationsSection } from "@/components/TransformationsSection";
+import { TomasVideoTestimonials } from "@/components/tomas/TomasVideoTestimonials";
+import { TomasScreenshots } from "@/components/tomas/TomasScreenshots";
 import { SectionSeparator } from "@/components/SectionSeparator";
 import PkLegalFooter from "@/components/PkLegalFooter";
 
@@ -22,9 +22,9 @@ const Replay = () => {
 
       <div className="relative z-10">
         <SectionSeparator />
-        <ClientInterviewsSection />
+        <TomasVideoTestimonials heading="Tidigare klienter" />
         <SectionSeparator />
-        <TransformationsSection />
+        <TomasScreenshots heading="Vad människor säger" />
       </div>
 
       <PkLegalFooter />
