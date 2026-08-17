@@ -6,6 +6,7 @@ import { ApplicationSection } from "@/components/replay/ApplicationSection";
 import { ClientInterviewsSection } from "@/components/vsllander/ClientInterviewsSection";
 import { TransformationsSection } from "@/components/TransformationsSection";
 import { SectionSeparator } from "@/components/SectionSeparator";
+import PkLegalFooter from "@/components/PkLegalFooter";
 
 const Replay = () => {
   return (
@@ -25,6 +26,8 @@ const Replay = () => {
         <SectionSeparator />
         <TransformationsSection />
       </div>
+
+      <PkLegalFooter />
     </div>
   );
 };
