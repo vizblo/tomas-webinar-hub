@@ -8,6 +8,7 @@ import { TestimonialsSection } from '@/components/TestimonialsSection';
 import { TransformationsSection } from '@/components/TransformationsSection';
 import { SectionSeparator } from '@/components/SectionSeparator';
 import { StickyCtaBanner } from '@/components/StickyCtaBanner';
+import PkLegalFooter from '@/components/PkLegalFooter';
 import { RegistrationModal } from '@/components/RegistrationModal';
 
 import { setABVariant } from '@/hooks/useABTest';
@@ -71,6 +72,8 @@ const IndexA = () => {
         <SectionSeparator />
         <TransformationsSection heading="Real" headingSuffix="Transformations" />
       </div>
+
+      <PkLegalFooter />
 
       <StickyCtaBanner />
       <RegistrationModal />

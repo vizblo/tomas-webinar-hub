@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { trackPageView } from '@/lib/tracking';
 
-const TRACKED_PATHS = ['/a', '/b', '/replay', '/confirmed'];
+const TRACKED_PATHS = ['/', '/a', '/replay', '/confirmed', '/tack'];
 
-// Spårar endast de porterade split-test-sidorna. Övriga sidor spåras
-// av usePageViewTracking (src/lib/analytics.ts).
+// Spårar split-test-sidorna (/ och /a) samt deras följdsidor.
 export default function PageViewTracker() {
   const location = useLocation();
 
