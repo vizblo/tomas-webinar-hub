@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { resolveVariant, trackPageView } from '@/lib/analytics';
+import { trackPageView } from '@/lib/analytics';
 
 export function usePageViewTracking() {
   const location = useLocation();
   useEffect(() => {
     if (location.pathname.startsWith('/admin')) return;
-    let cancelled = false;
-    resolveVariant(location.pathname).then(() => {
-      if (!cancelled) trackPageView(location.pathname);
-    });
-    return () => { cancelled = true; };
+    // Philip-sidorna (/a, /b, ...) spårar själva via src/lib/tracking.ts
+    if (['/a', '/b', '/replay', '/confirmed'].includes(location.pathname)) return;
+    trackPageView(location.pathname);
   }, [location.pathname]);
 }
