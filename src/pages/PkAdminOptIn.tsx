@@ -118,7 +118,7 @@ export default function AdminOptIn() {
   }, [views]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="pk-theme min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto p-6 space-y-6">
         <header className="flex items-center justify-between flex-wrap gap-3">
           <h1 className="text-2xl font-semibold">Opt-in rate</h1>
