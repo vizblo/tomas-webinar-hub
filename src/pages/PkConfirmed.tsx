@@ -48,7 +48,7 @@ const Registered = () => {
 
 
   return (
-    <div className="min-h-screen bg-black pb-24">
+    <div className="pk-theme min-h-screen bg-black pb-24">
       <WarningBar />
       <ProgressBar />
       <HeroSection />

@@ -9,7 +9,7 @@ import { SectionSeparator } from "@/components/SectionSeparator";
 
 const Replay = () => {
   return (
-    <div className="replay-page relative min-h-screen w-full overflow-x-hidden">
+    <div className="pk-theme replay-page relative min-h-screen w-full overflow-x-hidden">
       <AtmosphericBackground />
       
       <div className="relative z-10 mx-auto max-w-[1200px] px-[18px] sm:px-[24px] md:px-[32px] lg:px-[64px]">
