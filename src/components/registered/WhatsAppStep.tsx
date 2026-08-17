@@ -1,6 +1,6 @@
 import { FaWhatsapp } from 'react-icons/fa';
 import StepBadge from './StepBadge';
-import customRoadmapBook from '@/assets/custom-roadmap-book.png.asset.json';
+import customRoadmapBook from '@/assets/custom-roadmap-book.png';
 
 const WhatsAppStep = () => {
   return (

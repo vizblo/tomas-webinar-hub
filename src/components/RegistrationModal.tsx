@@ -65,7 +65,7 @@ export const RegistrationModal = () => {
   // Prefetch the /registered chunk as soon as the modal opens so navigation is instant
   useEffect(() => {
     if (isOpen) {
-      import('./pages/PkConfirmed').catch(() => {});
+      import('@/pages/PkConfirmed').catch(() => {});
     }
   }, [isOpen]);
 
