@@ -27,7 +27,7 @@ const IndexA = () => {
       requestIdleCallback?: (cb: () => void) => number;
       cancelIdleCallback?: (id: number) => void;
     };
-    const load = () => { import('./Registered').catch(() => {}); };
+    const load = () => { import('./PkConfirmed').catch(() => {}); };
     if (w.requestIdleCallback) {
       const id = w.requestIdleCallback(load);
       return () => w.cancelIdleCallback?.(id);

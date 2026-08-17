@@ -14,7 +14,7 @@ import { getRegistrationData } from '@/lib/registrationData';
 
 const Registered = () => {
   useEffect(() => {
-    if (window.location.pathname !== '/registered') return;
+    if (window.location.pathname !== '/confirmed') return;
     if (sessionStorage.getItem('lead_tracked')) return;
     if (typeof window.fbq === 'function') {
       const abVariant = localStorage.getItem('ab_variant') || 'unknown';
@@ -28,7 +28,7 @@ const Registered = () => {
 
   // Whop pixel: complete_registration (independent of the Meta pixel).
   useEffect(() => {
-    if (window.location.pathname !== '/registered') return;
+    if (window.location.pathname !== '/confirmed') return;
     if (sessionStorage.getItem('whop_registration_tracked')) return;
     if (!window.whop) return;
 

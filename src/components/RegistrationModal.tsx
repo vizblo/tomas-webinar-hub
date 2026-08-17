@@ -65,7 +65,7 @@ export const RegistrationModal = () => {
   // Prefetch the /registered chunk as soon as the modal opens so navigation is instant
   useEffect(() => {
     if (isOpen) {
-      import('@/pages/Registered').catch(() => {});
+      import('./pages/PkConfirmed').catch(() => {});
     }
   }, [isOpen]);
 
@@ -172,7 +172,7 @@ export const RegistrationModal = () => {
     });
 
     // Navigate immediately, close modal on next frame to avoid flash
-    navigate('/registered');
+    navigate('/confirmed');
     requestAnimationFrame(() => closeRegistrationModal());
   };
 
