@@ -32,7 +32,7 @@ const WhatsAppStep = () => {
 
           {/* Product Image */}
           <img
-            src={customRoadmapBook.url}
+            src={customRoadmapBook}
             alt="Custom A-Z Amazon Wholesale Roadmap"
             className="w-32 sm:w-36 md:w-40 h-auto rounded-lg mb-6"
             fetchPriority="high"
