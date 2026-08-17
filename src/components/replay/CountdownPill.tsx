@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getReplayDeadline } from '@/lib/eventDate';
 
 interface TimeDisplay {
+  days: number;
   hours: number;
   minutes: number;
   seconds: number;
@@ -13,7 +14,8 @@ const calculateUniversalTime = (): TimeDisplay => {
   const remaining = Math.max(0, getExpiryTime() - Date.now());
   const totalSeconds = Math.floor(remaining / 1000);
   return {
-    hours: Math.floor(totalSeconds / 3600),
+    days: Math.floor(totalSeconds / 86400),
+    hours: Math.floor((totalSeconds % 86400) / 3600),
     minutes: Math.floor((totalSeconds % 3600) / 60),
     seconds: totalSeconds % 60,
   };
@@ -50,6 +52,12 @@ export const CountdownPill = () => {
         </div>
 
         <div className="flex items-center gap-1 tabular-nums font-mono text-white/90 text-[18px] sm:text-[22px] lg:text-[26px] font-semibold tracking-tight">
+          {timeLeft.days > 0 && (
+            <>
+              <span>{pad(timeLeft.days)}</span>
+              <span className="text-white/30">:</span>
+            </>
+          )}
           <span>{pad(timeLeft.hours)}</span>
           <span className="text-white/30">:</span>
           <span>{pad(timeLeft.minutes)}</span>
