@@ -12,6 +12,7 @@ import Repris from "./pages/Repris";
 import Bokad from "./pages/Bokad";
 import NotFound from "./pages/NotFound";
 import { usePageViewTracking } from "@/hooks/usePageViewTracking";
+import PageViewTracker from "@/components/PageViewTracker";
 
 const PkIndexA = lazy(() => import("./pages/PkIndexA"));
 const PkIndexB = lazy(() => import("./pages/PkIndexB"));
@@ -25,6 +26,7 @@ const AppRoutes = () => {
   usePageViewTracking();
   return (
     <Suspense fallback={null}>
+      <PageViewTracker />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/a" element={<PkIndexA />} />
