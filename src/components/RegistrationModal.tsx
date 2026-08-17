@@ -32,8 +32,8 @@ const getVariantWithFallback = (): string => {
 };
 
 const registrationSchema = z.object({
-  firstName: z.string().trim().min(1, "Namn krävs").max(50, "First name must be less than 50 characters"),
-  email: z.string().trim().email("Ogiltig e-postadress").max(255, "Email must be less than 255 characters"),
+  firstName: z.string().trim().min(1, "Namn krävs").max(50, "Namnet är för långt"),
+  email: z.string().trim().email("Ogiltig e-postadress").max(255, "E-postadressen är för lång"),
   phone: z.string().min(1, "Telefonnummer krävs").refine((value) => {
     try {
       return isValidPhoneNumber(value);
