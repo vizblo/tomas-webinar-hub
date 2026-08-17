@@ -7,11 +7,17 @@ import outlookLogo from "@/assets/outlook-icon.png.asset.json";
 import gmailLogo from "@/assets/gmail-v4.webp.asset.json";
 import appleLogo from "@/assets/apple-v4.png.asset.json";
 import tomasLaptop from "@/assets/tomas-laptop.webp";
-import ebookCover from "@/assets/ebook-sjalvkansla.jpg";
+import ebookCover from "@/assets/ebook-katastroftankar.png.asset.json";
 import tomasYoutubeChannel from "@/assets/tomas-youtube-channel.png.asset.json";
 import tomasMejl from "@/assets/tomas-mejl.png.asset.json";
+import { getEventDate, formatEventDayMonthYear, formatEventTime, getCalendarLinks, WHATSAPP_GROUP_URL } from "@/lib/eventDate";
 
 const TOMAS_EMAIL = "tomas@tomaslydahl.se";
+
+const EVENT_DATE = getEventDate();
+const EVENT_DATE_LABEL = formatEventDayMonthYear(EVENT_DATE);
+const EVENT_TIME_LABEL = formatEventTime(EVENT_DATE);
+const CALENDAR = getCalendarLinks(EVENT_DATE);
 
 const ThankYou = () => {
   const [copied, setCopied] = useState(false);
@@ -165,7 +171,7 @@ const ThankYou = () => {
             <p
               className="mb-5 text-base whitespace-pre-line"
               style={{ color: "hsl(var(--foreground))", fontFamily: "'Source Sans 3', sans-serif" }}>
-              Gå med i min exklusiva WhatsApp-grupp inför föreläsningen.{"\n\n"}Där får du min e-bok "Låt din självkänsla träda fram" helt gratis!
+              Gå med i min exklusiva WhatsApp-grupp inför föreläsningen.{"\n\n"}Där får du min e-bok "Varför vi tror på katastroftankar" helt gratis!
             </p>
 
             {/* Lead magnet preview */}
@@ -173,24 +179,24 @@ const ThankYou = () => {
               className="rounded-lg p-4 mb-6 flex items-center gap-4 text-left"
               style={{ background: "hsl(var(--gold) / 0.06)", border: "1px solid hsl(var(--gold) / 0.25)" }}>
               <img
-                src={ebookCover}
-                alt="E-bok: Låt din självkänsla träda fram"
+                src={ebookCover.url}
+                alt="E-bok: Varför vi tror på katastroftankar"
                 className="w-20 h-auto flex-shrink-0 rounded" />
               <div>
                 <p className="text-sm uppercase tracking-widest font-bold mb-1" style={{ color: "hsl(var(--gold))", fontFamily: "'Source Sans 3', sans-serif" }}>
                   Din gratis bonus
                 </p>
                 <p className="text-lg font-bold mb-1" style={{ color: "hsl(var(--foreground))", fontFamily: "'Source Sans 3', sans-serif" }}>
-                  Låt din självkänsla träda fram
+                  Varför vi tror på katastroftankar
                 </p>
                 <p className="text-sm" style={{ color: "hsl(var(--foreground))", fontFamily: "'Source Sans 3', sans-serif" }}>
-                  174-sidors e-bok som endast dels i WhatsApp-gruppen.
+                  E-boken delas endast i WhatsApp-gruppen.
                 </p>
               </div>
             </div>
 
             <a
-              href="https://chat.whatsapp.com/DlwthgnaUjiHrZvUSmQ0Ww?mode=gi_t"
+              href={WHATSAPP_GROUP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 text-sm inline-flex items-center gap-2 rounded-lg font-bold transition-all duration-200 hover:scale-105 hover:brightness-110 active:scale-95"
@@ -251,7 +257,7 @@ const ThankYou = () => {
                   fontFamily: "'Source Sans 3', sans-serif"
                 }}>
                 <CalendarIcon className="w-4 h-4" style={{ color: "hsl(var(--gold))" }} />
-                29 juli 2026
+                {EVENT_DATE_LABEL}
               </div>
               <div
                 className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
@@ -262,12 +268,12 @@ const ThankYou = () => {
                   fontFamily: "'Source Sans 3', sans-serif"
                 }}>
                 <Clock className="w-4 h-4" style={{ color: "hsl(var(--gold))" }} />
-                Kl. 19:00
+                Kl. {EVENT_TIME_LABEL}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Digital+f%C3%B6rel%C3%A4sning+-+Tomas+Lydahl&dates=20260729T170000Z%2F20260729T180000Z&details=G%C3%A5+med+p%C3%A5+f%C3%B6rel%C3%A4sningen+h%C3%A4r%3A+https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F2094xpcgs7s6sk&location=https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F2094xpcgs7s6sk"
+                href={CALENDAR.google}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold px-6 py-3 text-sm inline-flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105 hover:brightness-110 active:scale-95">
@@ -275,7 +281,7 @@ const ThankYou = () => {
                 Google Calendar
               </a>
               <a
-                href="https://outlook.live.com/calendar/0/action/compose?subject=Digital+f%C3%B6rel%C3%A4sning+-+Tomas+Lydahl&startdt=2026-07-29T19%3A00%3A00&enddt=2026-07-29T20%3A00%3A00&location=https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F2094xpcgs7s6sk&body=G%C3%A5+med+p%C3%A5+f%C3%B6rel%C3%A4sningen+h%C3%A4r%3A+https%3A%2F%2Fevent.webinarjam.com%2Fllo91m%2Fgo%2Flive%2F2094xpcgs7s6sk"
+                href={CALENDAR.outlook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold px-6 py-3 text-sm inline-flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105 hover:brightness-110 active:scale-95">

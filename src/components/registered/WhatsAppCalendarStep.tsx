@@ -23,7 +23,7 @@ const WhatsAppCalendarStep = () => {
             className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-6"
             style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)' }}
           >
-            Add The Event To Your Calendar
+            Lägg till föreläsningen i din kalender
           </h2>
 
           <CalendarDays
@@ -37,7 +37,7 @@ const WhatsAppCalendarStep = () => {
           <AddToCalendarButtons />
 
           <p className="text-[11px] sm:text-sm text-gray-400 max-w-[640px] leading-relaxed mt-6">
-            We've also sent the workshop access details to your email. Please open the email and add the event to your calendar <strong className="font-bold text-white">NOW</strong> so you don't miss the live session.
+            Vi har även mejlat dig länken till föreläsningen. Öppna mejlet och lägg in föreläsningen i din kalender <strong className="font-bold text-white">NU</strong> så att du inte missar livesändningen.
           </p>
         </div>
       </div>

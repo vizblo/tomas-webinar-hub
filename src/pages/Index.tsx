@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { CheckCircle, Calendar, Clock, Shield, Brain, Heart, X, Ticket, MessageCircle, Check, XCircle } from "lucide-react";
 import tomasPortrait2 from "@/assets/tomas-portrait-2.webp";
-import tomasHeroNew from "@/assets/tomas-hero-v5.jpg.asset.json";
-import ebookCover from "@/assets/ebook-sjalvkansla.jpg";
+import ebookCover from "@/assets/ebook-katastroftankar.png.asset.json";
 import testimonial1 from "@/assets/testimonial-1.webp";
 import testimonial2 from "@/assets/testimonial-2.webp";
 import testimonial3 from "@/assets/testimonial-3.webp";
@@ -16,9 +15,13 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { trackRegistration } from "@/lib/tracking";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { WistiaPlayer } from "@/components/WistiaPlayer";
+import { getEventDate, formatEventDayMonthYear, formatEventTime } from "@/lib/eventDate";
 
-// Webinar date: 29 July 2026 at 19:00 (Stockholm / CEST)
-const WEBINAR_DATE = new Date("2026-07-29T19:00:00+02:00");
+// Rolling lecture date (25 Aug 2026 19:00 Stockholm, then every 14 days)
+const WEBINAR_DATE = getEventDate();
+const WEBINAR_DATE_LABEL = formatEventDayMonthYear(WEBINAR_DATE);
+const WEBINAR_TIME_LABEL = formatEventTime(WEBINAR_DATE);
 
 function useCountdown(target: Date) {
   const calc = () => {
@@ -43,20 +46,20 @@ const benefits = [
 {
   num: "1",
   icon: Brain,
-  title: "Varför du känner dig otillräcklig",
-  desc: "Förstå varför din hjärna konstant jämför dig med andra och skapar en falsk känsla av att du inte duger."
+  title: "Varför hjärnan skapar katastroftankar",
+  desc: "Förstå varför ditt sinne målar upp värsta tänkbara scenarier, och varför det inte betyder att något är fel på dig."
 },
 {
   num: "2",
   icon: Shield,
-  title: "Varför otillräcklighet är en lögn",
-  desc: "Lär dig skillnaden mellan att KÄNNA dig otillräcklig och att VARA otillräcklig, och varför känslan inte är en sann."
+  title: "Varför 99% av dem aldrig slår in",
+  desc: "Lär dig skillnaden mellan en tanke och en sanning, och varför nästan inget av det du oroar dig för faktiskt händer."
 },
 {
   num: "3",
   icon: Heart,
-  title: "Hur du slutar tro att du inte räcker till",
-  desc: "Konkreta principer för att sluta bevisa ditt värde och istället känna att du är bra nog, precis som du är."
+  title: "Hur du slutar lyssna på dem",
+  desc: "Konkreta principer för att låta katastroftankarna passera utan att de styr ditt liv, utan tekniker eller kamp."
 },
 {
   num: "4",
@@ -183,11 +186,11 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen" style={{ background: "hsl(var(--background))" }}>
       <Helmet>
-        <title>Sluta känna dig otillräcklig - Tomas Lydahl</title>
-        <meta name="description" content="Anmäl dig till Tomas Lydahls kostnadsfria digitala föreläsning den 29 juli 2026 om hur du slutar känna dig otillräcklig och känner att du är bra nog." />
+        <title>Släpp dina katastroftankar - Tomas Lydahl</title>
+        <meta name="description" content={`Anmäl dig till Tomas Lydahls kostnadsfria digitala föreläsning den ${WEBINAR_DATE_LABEL} om insikterna som hjälpt hundratals människor släppa sina katastroftankar.`} />
         <link rel="canonical" href="https://tomaslydahlwebinars.com/" />
-        <meta property="og:title" content="Sluta känna dig otillräcklig - Tomas Lydahl" />
-        <meta property="og:description" content="Kostnadsfri digital föreläsning med Tomas Lydahl den 29 juli 2026 om att sluta känna dig otillräcklig." />
+        <meta property="og:title" content="Släpp dina katastroftankar - Tomas Lydahl" />
+        <meta property="og:description" content={`Kostnadsfri digital föreläsning med Tomas Lydahl den ${WEBINAR_DATE_LABEL} om att släppa katastroftankar.`} />
         <meta property="og:url" content="https://tomaslydahlwebinars.com/" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -243,28 +246,21 @@ const LandingPage = () => {
       <section className="hero-gradient pt-8 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-8">
-            {/* Hero image */}
+            {/* Hero video */}
             <div
               className="order-2 md:order-1 rounded-xl overflow-hidden md:relative"
               style={{ border: "2px solid hsl(var(--gold) / 0.3)", background: "hsl(var(--surface))" }}>
-              <img
-                src={tomasHeroNew.url}
-                alt="Tomas Lydahl föreläser"
-                width="1200"
-                height="800"
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-full object-cover block" />
+              <WistiaPlayer mediaId="d8kio84jnn" />
             </div>
 
             {/* Title + CTA */}
             <div ref={formRef} className="order-1 md:order-2 text-center md:text-left">
               <p className="section-label mb-4 font-sans">KOSTNADSFRI DIGITAL FÖRELÄSNING</p>
               <h1 className="text-[1.6rem] sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold leading-tight mb-5 font-sans" style={{ fontFamily: "sans-serif", color: "hsl(0 0% 100%)" }}>
-                Så slutar du känna dig <span style={{ color: "hsl(var(--gold))" }}>otillräcklig</span> och äntligen får tillbaka känslan att du är <span style={{ color: "hsl(var(--gold))" }}>bra nog</span>
+                De insikterna som hjälpt <span style={{ color: "hsl(var(--gold))" }}>hundratals människor</span> släppa sina <span style={{ color: "hsl(var(--gold))" }}>katastroftankar</span>
               </h1>
               <p className="text-base md:text-lg mb-6 font-sans" style={{ color: "hsl(var(--foreground))" }}>
-                Kostnadsfri digital föreläsning för dig som vill sluta känna dig otillräcklig.
+                Utan år av terapi, jobbiga övningar eller fler tekniker du redan provat.
               </p>
 
               {/* Date/Time badges */}
@@ -278,7 +274,7 @@ const LandingPage = () => {
                     fontFamily: "sans-serif"
                   }}>
                   <Calendar className="w-4 h-4" style={{ color: "hsl(var(--gold))" }} />
-                  29 juli 2026
+                  {WEBINAR_DATE_LABEL}
                 </div>
                 <div
                   className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
@@ -289,7 +285,7 @@ const LandingPage = () => {
                     fontFamily: "sans-serif"
                   }}>
                   <Clock className="w-4 h-4" style={{ color: "hsl(var(--gold))" }} />
-                  Kl. 19:00
+                  Kl. {WEBINAR_TIME_LABEL}
                 </div>
               </div>
 
@@ -306,8 +302,8 @@ const LandingPage = () => {
                 className="mt-4 rounded-lg p-3 flex items-center gap-3 text-left max-w-sm"
                 style={{ background: "hsl(var(--gold) / 0.06)", border: "1px solid hsl(var(--gold) / 0.25)" }}>
                 <img
-                  src={ebookCover}
-                  alt="E-bok: Låt din självkänsla träda fram"
+                  src={ebookCover.url}
+                  alt="E-bok: Varför vi tror på katastroftankar"
                   loading="lazy"
                   decoding="async"
                   className="w-12 h-auto flex-shrink-0 rounded" />
@@ -320,7 +316,7 @@ const LandingPage = () => {
                   <p
                     className="text-sm font-bold leading-tight"
                     style={{ color: "hsl(var(--foreground))", fontFamily: "'Source Sans 3', sans-serif" }}>
-                    Gratis e-bok: Låt din självkänsla träda fram
+                    Gratis e-bok: Varför vi tror på katastroftankar
                   </p>
                 </div>
               </div>
@@ -390,10 +386,10 @@ const LandingPage = () => {
               </h3>
               <ul className="space-y-4">
                 {[
-                  "Du tvivlar ofta på dig själv och dina förmågor",
-                  "Du jämför dig konstant med andra och känner dig otillräcklig",
-                  "Du fastnar i huvudet, analyserar allt och är sällan riktigt närvarande",
-                  "Du har kämpat i åratal och är trött på att falla tillbaka så fort det börjar gå bra"
+                  "Ditt huvud målar ofta upp värsta tänkbara scenarier",
+                  "Du oroar dig för saker som nästan aldrig händer",
+                  "Du fastnar i tankarna, analyserar allt och är sällan riktigt närvarande",
+                  "Du har provat tekniker och övningar men faller tillbaka så fort det börjar gå bra"
                 ].map((t, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span
@@ -418,10 +414,10 @@ const LandingPage = () => {
               </h3>
               <ul className="space-y-4">
                 {[
-                  "Du redan känner dig trygg och bra nog i alla situationer",
+                  "Du sällan eller aldrig fastnar i oro och katastroftankar",
                   "Du inte är beredd att lägga 60 minuter på dig själv",
-                  "Du är inte redo till att göra en förändring i ditt liv",
-                  "Du tror att känslan av att vara bra nog handlar om att fejka det"
+                  "Du inte är redo att göra en förändring i ditt liv",
+                  "Du letar efter ännu en teknik att kämpa emot dina tankar med"
                 ].map((t, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "hsl(0 72% 55% / 0.12)", border: "1px solid hsl(0 72% 55% / 0.4)" }}>
@@ -447,8 +443,8 @@ const LandingPage = () => {
 
             <div className="w-40 flex-shrink-0">
               <img
-                src={ebookCover}
-                alt="E-bok: Låt din självkänsla träda fram"
+                src={ebookCover.url}
+                alt="E-bok: Varför vi tror på katastroftankar"
                 loading="lazy"
                 decoding="async"
                 className="w-full h-auto object-contain" />
@@ -457,10 +453,10 @@ const LandingPage = () => {
             <div>
               <p className="section-label mb-2 font-sans">GRATIS BONUS NÄR DU ANMÄLER DIG</p>
               <h3 className="text-2xl font-bold mb-3 font-sans" style={{ color: "hsl(var(--foreground))" }}>
-                Låt din självkänsla träda fram: Konsten att älska dig själv oavsett vad
+                Varför vi tror på katastroftankar, och vad som händer när de avslöjas
               </h3>
               <p className="mb-5" style={{ color: "hsl(var(--foreground))" }}>
-                När du anmäler dig till föreläsningen får du även min e-bok som bonus, en 174-sidors e-bok som Tomas normalt tar betalt för, men som du får helt kostnadsfritt som en grund inför föreläsningen.
+                När du anmäler dig till föreläsningen får du även min e-bok som bonus. Den visar varför hjärnan skapar katastroftankar, varför nästan inga av dem slår in, och vad som händer när du ser igenom dem. Helt kostnadsfritt som en grund inför föreläsningen.
               </p>
               <button
                 onClick={() => setModalOpen(true)}
@@ -499,7 +495,7 @@ const LandingPage = () => {
               <div className="space-y-4 mt-6" style={{ color: "hsl(var(--foreground))" }}>
                 <p className="font-sans">Tomas är en mental coach, författare och föreläsare med över 15 års erfarenhet av professionell coachning.</p>
                 <p className="font-sans">
-              Tomas har själv levt med otillräcklighet. Han vet hur det känns att aldrig riktigt duga, att jämföra sig med andra och att vara sin egen hårdaste kritiker. När Tomas väl insåg principerna som han går igenom på föreläsningen, förändrades allting.
+              Tomas har själv levt med katastroftankar. Han vet hur det känns när huvudet ständigt målar upp det värsta som kan hända. När Tomas väl insåg principerna som han går igenom på föreläsningen, förändrades allting.
                 </p>
                 <p className="font-sans">
                   Tomas fokus ligger på djup förståelse snarare än ytliga "quick fixes". När du förstår hur ditt sinne fungerar, förändras allt automatiskt, utan att du behöver kämpa eller anstränga dig.
@@ -610,7 +606,7 @@ const LandingPage = () => {
       <section className="py-20 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 font-sans" style={{ color: "hsl(var(--foreground))" }}>
-            Redo att sluta känna dig otillräcklig och känna att du är bra nog?
+            Redo att släppa dina katastroftankar?
           </h2>
           <p className="mb-8 text-lg" style={{ color: "hsl(var(--foreground))" }}>
             Säkra din kostnadsfria plats på föreläsningen idag.

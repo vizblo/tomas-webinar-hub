@@ -1,6 +1,7 @@
 import { FaWhatsapp } from 'react-icons/fa';
 import StepBadge from './StepBadge';
-import customRoadmapBook from '@/assets/custom-roadmap-book.png';
+import ebookCover from '@/assets/ebook-katastroftankar.png.asset.json';
+import { WHATSAPP_GROUP_URL } from '@/lib/eventDate';
 
 const WhatsAppStep = () => {
   return (
@@ -23,17 +24,17 @@ const WhatsAppStep = () => {
             className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-white mb-4"
             style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)' }}
           >
-            SUPER IMPORTANT: Join the WhatsApp Group Now!
+            SUPERVIKTIGT: Gå med i WhatsApp-gruppen nu!
           </h2>
           
           <p className="text-xs sm:text-base text-gray-400 pb-2 mb-6">
-            Your "Custom A-Z Amazon Wholesale Roadmap", other private resources, and access to us is waiting for you in the group!
+            Din gratis e-bok "Varför vi tror på katastroftankar", påminnelser inför föreläsningen och direktkontakt med mig finns i gruppen.
           </p>
 
           {/* Product Image */}
           <img
-            src={customRoadmapBook}
-            alt="Custom A-Z Amazon Wholesale Roadmap"
+            src={ebookCover.url}
+            alt="E-bok: Varför vi tror på katastroftankar"
             className="w-32 sm:w-36 md:w-40 h-auto rounded-lg mb-6"
             fetchPriority="high"
             loading="eager"
@@ -44,7 +45,7 @@ const WhatsAppStep = () => {
           />
 
           <a
-            href="https://chat.whatsapp.com/GeKxc7D1kQdJhs0x05ta2r"
+            href={WHATSAPP_GROUP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto sm:min-w-[280px] h-12 sm:h-14 rounded-lg flex items-center justify-center gap-2 sm:gap-3 transition-all hover:scale-105"
@@ -61,7 +62,7 @@ const WhatsAppStep = () => {
           >
             <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             <span className="text-base sm:text-lg font-semibold text-white">
-              Join the WhatsApp Group
+              Gå med i WhatsApp-gruppen
             </span>
           </a>
         </div>

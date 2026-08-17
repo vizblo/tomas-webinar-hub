@@ -8,7 +8,7 @@ interface StickyCtaBannerProps {
 }
 
 export const StickyCtaBanner = ({
-  ctaLabel = 'GET MY FREE TICKET',
+  ctaLabel = 'SÄKRA MIN PLATS',
 }: StickyCtaBannerProps) => {
   const { openRegistrationModal } = useRegistrationModal();
   const [isVisible, setIsVisible] = useState(false);
@@ -61,7 +61,7 @@ export const StickyCtaBanner = ({
             fontWeight: 600,
             color: '#FFFFFF',
           }}>
-            🔥 Only{' '}
+            🔥 Endast{' '}
             <strong style={{
               color: '#D4AF37',
               textShadow: '0 0 10px rgba(212, 175, 55, 0.6)',
@@ -69,7 +69,7 @@ export const StickyCtaBanner = ({
             }}>
               {spotsRemaining}
             </strong>{' '}
-            free spots left
+            kostnadsfria platser kvar
           </span>
           <p
             style={{
@@ -78,7 +78,7 @@ export const StickyCtaBanner = ({
               color: 'rgba(255, 255, 255, 0.6)',
             }}
           >
-            Reserve your seat now
+            Säkra din plats nu
           </p>
         </div>
 
@@ -116,7 +116,7 @@ export const StickyCtaBanner = ({
           }}
         >
           <Ticket size={20} color="#FFFFFF" />
-          GET MY FREE TICKET
+          {ctaLabel}
         </button>
       </div>
 

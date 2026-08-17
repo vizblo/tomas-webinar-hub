@@ -1,13 +1,7 @@
+import { getCalendarLinks } from '@/lib/eventDate';
 import { Calendar, Mail, CalendarDays } from 'lucide-react';
 
-const GOOGLE_URL =
-  'https://calendar.google.com/calendar/render?action=TEMPLATE&dates=20260809T190000Z%2F20260809T203000Z&details=Discover%20the%20Exact%205-Phase%20Wholesale%20System%20I%20and%20Hundreds%20of%20Other%20Students%20Used%20to%20Build%20a%206-Figure%20Amazon%20Business%20From%20Scratch.%0A%0AJoin%20here%3A%20https%3A%2F%2Fus06web.zoom.us%2Fj%2F81711672534&location=https%3A%2F%2Fus06web.zoom.us%2Fj%2F81711672534&text=Amazon%20Wholesale%20Live%20Business%20Workshop';
-
-const OUTLOOK_URL =
-  'https://outlook.live.com/calendar/0/action/compose?allday=false&body=Discover%20the%20Exact%205-Phase%20Wholesale%20System%20I%20and%20Hundreds%20of%20Other%20Students%20Used%20to%20Build%20a%206-Figure%20Amazon%20Business%20From%20Scratch.%0A%0AJoin%20here%3A%20https%3A%2F%2Fus06web.zoom.us%2Fj%2F81711672534&enddt=2026-08-09T16%3A30%3A00&location=https%3A%2F%2Fus06web.zoom.us%2Fj%2F81711672534&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&startdt=2026-08-09T15%3A00%3A00&subject=Amazon%20Wholesale%20Live%20Business%20Workshop';
-
-const YAHOO_URL =
-  'https://calendar.yahoo.com/?desc=Discover%20the%20Exact%205-Phase%20Wholesale%20System%20I%20and%20Hundreds%20of%20Other%20Students%20Used%20to%20Build%20a%206-Figure%20Amazon%20Business%20From%20Scratch.%0A%0AJoin%20here%3A%20https%3A%2F%2Fus06web.zoom.us%2Fj%2F81711672534&dur=false&et=20260809T203000Z&in_loc=https%3A%2F%2Fus06web.zoom.us%2Fj%2F81711672534&st=20260809T190000Z&title=Amazon%20Wholesale%20Live%20Business%20Workshop&v=60';
+const { google: GOOGLE_URL, outlook: OUTLOOK_URL, yahoo: YAHOO_URL } = getCalendarLinks();
 
 const AddToCalendarButtons = () => {
   const btn =

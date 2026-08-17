@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getEventDate, formatEventLong, formatEventShort } from '@/lib/eventDate';
 
 export interface CountdownTime {
   days: number;
@@ -9,32 +10,19 @@ export interface CountdownTime {
   totalSeconds: number;
 }
 
-// Get the fixed event date: Sunday, August 9th, 2026 at 3:00 PM ET
+/** Next lecture date (rolls forward 14 days after each occurrence). */
 export function getTargetEventDate(): Date {
-  // Sunday, August 9th, 2026 at 3:00 PM ET (EDT, UTC-4) = 19:00 UTC August 9
-  return new Date('2026-08-09T19:00:00Z');
+  return getEventDate();
 }
 
-// Format the event date as "Sunday, August 9th • 3:00 PM ET"
+/** "25 augusti kl. 19:00" */
 export function formatEventDate(): string {
-  return "Sunday, August 9th • 3:00 PM ET";
+  return formatEventShort();
 }
 
-// Format like "Sunday August 9th at 3:00 PM ET" derived from the target date in ET
+/** "Tisdag 25 augusti kl. 19:00" */
 export function formatEventDateLong(): string {
-  const target = getTargetEventDate();
-  const tz = 'America/New_York';
-  const weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long', timeZone: tz }).format(target);
-  const month = new Intl.DateTimeFormat('en-US', { month: 'long', timeZone: tz }).format(target);
-  const day = Number(new Intl.DateTimeFormat('en-US', { day: 'numeric', timeZone: tz }).format(target));
-  const suffix = (n: number) => {
-    if (n % 100 >= 11 && n % 100 <= 13) return 'th';
-    switch (n % 10) { case 1: return 'st'; case 2: return 'nd'; case 3: return 'rd'; default: return 'th'; }
-  };
-  const time = new Intl.DateTimeFormat('en-US', {
-    hour: 'numeric', minute: '2-digit', hour12: true, timeZone: tz,
-  }).format(target);
-  return `${weekday} ${month} ${day}${suffix(day)} at ${time} ET`;
+  return formatEventLong();
 }
 
 export function useCountdown(targetDate?: Date): CountdownTime {

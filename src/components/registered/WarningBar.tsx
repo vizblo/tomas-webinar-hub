@@ -8,7 +8,7 @@ const WarningBar = () => {
       }}
     >
       <span className="text-xs sm:text-[13px] font-bold uppercase italic tracking-wide text-white">
-        WELL DONE! YOU&rsquo;RE REGISTERED!
+        BRA JOBBAT! DU ÄR ANMÄLD!
       </span>
     </div>
   );

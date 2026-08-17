@@ -5,10 +5,9 @@ import HeroSection from '@/components/registered/HeroSection';
 import VideoContainer from '@/components/registered/VideoContainer';
 import WhatsAppStep from '@/components/registered/WhatsAppStep';
 import WhatsAppCalendarStep from '@/components/registered/WhatsAppCalendarStep';
-import FAQStep from '@/components/registered/FAQStep';
-import ClientInterviewsStep from '@/components/registered/ClientInterviewsStep';
 import RegisteredStickyFooter from '@/components/registered/RegisteredStickyFooter';
-import ClientWinsSection from '@/components/confirmed/ClientWinsSection';
+import { TomasVideoTestimonials } from '@/components/tomas/TomasVideoTestimonials';
+import { TomasScreenshots } from '@/components/tomas/TomasScreenshots';
 import { getRegistrationData } from '@/lib/registrationData';
 
 
@@ -55,9 +54,8 @@ const Registered = () => {
       <VideoContainer />
       <WhatsAppStep />
       <WhatsAppCalendarStep />
-      <FAQStep />
-      <ClientInterviewsStep />
-      <ClientWinsSection showStepPill={false} />
+      <TomasVideoTestimonials heading="Tidigare klienter" />
+      <TomasScreenshots heading="Vad människor säger" />
       <RegisteredStickyFooter />
     </div>
   );
