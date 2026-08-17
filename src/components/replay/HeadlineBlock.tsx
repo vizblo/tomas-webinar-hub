@@ -9,12 +9,7 @@ export const HeadlineBlock = () => {
           lineHeight: 1.15,
         }}
       >
-        <span className="sm:hidden">
-          Free LIVE Masterclass Replay: Learn how I've Made $3.5M+ in Amazon Sales
-        </span>
-        <span className="hidden sm:inline">
-          Free LIVE Masterclass Replay: Learn How I've Made $3.5M in Personal Amazon Sales
-        </span>
+        Kostnadsfri digital föreläsning: De insikterna som hjälpt hundratals människor släppa sina katastroftankar
       </h1>
 
       <p
@@ -25,7 +20,7 @@ export const HeadlineBlock = () => {
           lineHeight: 1.5,
         }}
       >
-        Watch the full session + claim the special coaching offer (only a few spaces left to work with me & my team)
+        Titta på hela föreläsningen
       </p>
     </div>
   );

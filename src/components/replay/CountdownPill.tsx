@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getReplayDeadline } from '@/lib/eventDate';
 
 interface TimeDisplay {
   hours: number;
@@ -6,21 +7,7 @@ interface TimeDisplay {
   seconds: number;
 }
 
-const CYCLE_DURATION = 48 * 60 * 60 * 1000;
-const STORAGE_KEY = 'replay_countdown_expiry';
-
-const getExpiryTime = (): number => {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const expiry = parseInt(stored, 10);
-      if (!isNaN(expiry) && expiry > Date.now()) return expiry;
-    }
-  } catch {}
-  const expiry = Date.now() + CYCLE_DURATION;
-  try { localStorage.setItem(STORAGE_KEY, String(expiry)); } catch {}
-  return expiry;
-};
+const getExpiryTime = (): number => getReplayDeadline().getTime();
 
 const calculateUniversalTime = (): TimeDisplay => {
   const remaining = Math.max(0, getExpiryTime() - Date.now());
@@ -58,7 +45,7 @@ export const CountdownPill = () => {
             style={{ animation: 'livePulse 2s ease-in-out infinite' }}
           />
           <span className="text-[11px] sm:text-[12px] uppercase tracking-[0.12em] text-white/50 font-medium">
-            Expires in
+            Försvinner om
           </span>
         </div>
 

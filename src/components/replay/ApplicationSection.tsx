@@ -29,14 +29,14 @@ export const ApplicationSection = () => {
           lineHeight: 1.15,
         }}
       >
-        Book a call for the special offer below
+        Boka en kostnadsfri konsultation med bonusarna nedan
       </h2>
 
       <p
         className="text-white/60 text-center mb-[40px] sm:mb-[56px] px-4 max-w-[640px] mx-auto"
         style={{ fontSize: 'clamp(14px, 1.6vw, 17px)', lineHeight: 1.5 }}
       >
-        Limited $1,000 discounted spots still available for coaching (bonuses still available too if you book NOW via this link)
+        Speciella föreläsnings bonusar som försvinner snart (bonusarna är fortfarande tillgängliga om du bokar NU)
       </p>
 
       <div className="relative max-w-[800px] mx-auto">
