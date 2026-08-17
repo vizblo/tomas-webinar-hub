@@ -8,7 +8,7 @@ type Props = {
   regs: Reg[];
 };
 
-const LABELS: Record<string, string> = { a: '/a', b: '/b' };
+const LABELS: Record<string, string> = { a: '/a', b: '/' };
 const VARIANTS: Array<'a' | 'b'> = ['a', 'b'];
 
 function wilson(pos: number, n: number): [number, number] {
@@ -45,7 +45,7 @@ export function SplitTestPanel({ views, regs }: Props) {
   return (
     <section className="border border-border rounded-2xl p-4 bg-card">
       <div className="flex items-center justify-between mb-3">
-        <h2 className="text-sm font-medium text-muted-foreground">Split test · /a vs /b</h2>
+        <h2 className="text-sm font-medium text-muted-foreground">Split test · /a vs /</h2>
         {winner && (
           <span className="text-xs px-2 py-1 rounded-full bg-green-600/20 text-green-500 border border-green-600/40">
             Winner: {LABELS[winner]} (95% conf.)
@@ -80,7 +80,7 @@ export function SplitTestPanel({ views, regs }: Props) {
         ))}
       </div>
       <p className="text-[11px] text-muted-foreground mt-3">
-        Variant is derived from the landing path. Direct hits to <code>/a</code> or <code>/b</code> stick for the session.
+        Variant is derived from the landing path. Direct hits to <code>/a</code> or <code>/</code> stick for the session.
       </p>
     </section>
   );
