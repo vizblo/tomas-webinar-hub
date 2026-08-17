@@ -67,6 +67,7 @@ export type Database = {
           first_name: string | null
           id: string
           landing_path: string | null
+          last_name: string | null
           phone: string | null
           session_id: string | null
           utm_campaign: string | null
@@ -83,6 +84,7 @@ export type Database = {
           first_name?: string | null
           id?: string
           landing_path?: string | null
+          last_name?: string | null
           phone?: string | null
           session_id?: string | null
           utm_campaign?: string | null
@@ -99,6 +101,7 @@ export type Database = {
           first_name?: string | null
           id?: string
           landing_path?: string | null
+          last_name?: string | null
           phone?: string | null
           session_id?: string | null
           utm_campaign?: string | null
