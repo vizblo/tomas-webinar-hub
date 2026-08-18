@@ -49,7 +49,7 @@ export const ApplicationSection = () => {
         >
           <div
             className="calendly-inline-widget"
-            data-url="https://calendly.com/d/cxj9-h4f-qd8/the-amazon-syndicate-discovery-call-workshop"
+            data-url="https://calendly.com/tomas-tomaslydahl/webinar"
             style={{ minWidth: '320px', height: '700px' }}
           />
         </div>

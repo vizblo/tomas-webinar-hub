@@ -66,7 +66,7 @@ const EVENT_TITLE = 'Kostnadsfri digital föreläsning - Tomas Lydahl';
 const EVENT_DETAILS = `Gå med på föreläsningen här: ${WEBINAR_LIVE_URL}`;
 
 export const getCalendarLinks = (start: Date = getEventDate()) => {
-  const end = new Date(start.getTime() + 90 * 60 * 1000);
+  const end = new Date(start.getTime() + 60 * 60 * 1000);
   const t = encodeURIComponent(EVENT_TITLE);
   const d = encodeURIComponent(EVENT_DETAILS);
   const loc = encodeURIComponent(WEBINAR_LIVE_URL);

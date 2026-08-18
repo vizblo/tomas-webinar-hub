@@ -43,8 +43,8 @@ export function getSessionId(): string {
 function deriveVariantFromPath(pathname: string): string {
   // Split test only cares about the landing entry point.
   // /a → 'a' (Philip-sidan), / → 'b' (Tomas-sidan), övrigt → 'root'.
-  if (pathname === '/a' || pathname.startsWith('/a/')) return 'a';
-  if (pathname === '/') return 'b';
+  if (pathname === '/b' || pathname.startsWith('/b/')) return 'b';
+  if (pathname === '/a' || pathname === '/') return 'a';
   return 'root';
 }
 
