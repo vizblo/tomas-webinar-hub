@@ -244,17 +244,10 @@ const LandingPage = () => {
       <main>
       {/* HERO */}
       <section className="hero-gradient pt-8 pb-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-8">
-            {/* Hero video */}
-            <div
-              className="order-2 md:order-1 rounded-xl overflow-hidden md:relative"
-              style={{ border: "2px solid hsl(var(--gold) / 0.3)", background: "hsl(var(--surface))" }}>
-              <WistiaPlayer mediaId="d8kio84jnn" />
-            </div>
-
-            {/* Title + CTA */}
-            <div ref={formRef} className="order-1 md:order-2 text-center md:text-left">
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-8">
+            {/* Title + video + CTA */}
+            <div ref={formRef} className="text-center">
               <p className="section-label mb-4 font-sans">KOSTNADSFRI DIGITAL FÖRELÄSNING</p>
               <h1 className="text-[1.6rem] sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold leading-tight mb-5 font-sans" style={{ fontFamily: "sans-serif", color: "hsl(0 0% 100%)" }}>
                 De insikterna som hjälpt <span style={{ color: "hsl(var(--gold))" }}>hundratals människor</span> släppa sina <span style={{ color: "hsl(var(--gold))" }}>katastroftankar</span>
@@ -263,8 +256,15 @@ const LandingPage = () => {
                 Utan år av terapi, jobbiga övningar eller fler tekniker du redan provat.
               </p>
 
+              {/* Hero video */}
+              <div
+                className="rounded-xl overflow-hidden mb-6 mx-auto max-w-2xl"
+                style={{ border: "2px solid hsl(var(--gold) / 0.3)", background: "hsl(var(--surface))" }}>
+                <WistiaPlayer mediaId="d8kio84jnn" />
+              </div>
+
               {/* Date/Time badges */}
-              <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-6">
+              <div className="flex flex-wrap justify-center gap-3 mb-6">
                 <div
                   className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
                   style={{
@@ -299,7 +299,7 @@ const LandingPage = () => {
                 </span>
               </button>
               <div
-                className="mt-4 rounded-lg p-3 flex items-center gap-3 text-left max-w-sm"
+                className="mt-4 rounded-lg p-3 flex items-center gap-3 text-left max-w-sm mx-auto"
                 style={{ background: "hsl(var(--gold) / 0.06)", border: "1px solid hsl(var(--gold) / 0.25)" }}>
                 <img
                   src={ebookCover.url}

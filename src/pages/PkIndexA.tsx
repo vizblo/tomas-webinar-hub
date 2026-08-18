@@ -38,7 +38,7 @@ const IndexA = () => {
   }, []);
 
   return (
-    <div className="dark pk-theme" style={{ paddingBottom: '140px', backgroundColor: '#000000' }}>
+    <div className="dark pk-theme" style={{ paddingBottom: '96px', backgroundColor: '#000000' }}>
       <HomeTopBannerA />
       <HomeHeroSectionA />
 
@@ -101,7 +101,7 @@ const IndexA = () => {
         <TomasScreenshots heading="Vad människor säger" />
       </div>
 
-      <PkLegalFooter />
+      <PkLegalFooter disclaimer="Denna webbplats är inte en del av Facebook eller Meta Platforms, Inc. Webbplatsen är inte heller godkänd eller sponsrad av Facebook eller Meta på något sätt. Facebook och Meta är varumärken som tillhör Meta Platforms, Inc. Tomas Lydahl AB garanterar inga specifika inkomster eller resultat. Individuella resultat varierar beroende på insats, erfarenhet och genomförande." />
 
       <StickyCtaBanner />
       <RegistrationModal />

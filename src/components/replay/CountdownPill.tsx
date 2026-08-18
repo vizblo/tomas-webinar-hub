@@ -36,8 +36,9 @@ export const CountdownPill = () => {
       <div
         className="relative flex items-center gap-3 sm:gap-4 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full"
         style={{
-          background: 'rgba(255, 255, 255, 0.04)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          background: 'rgba(201, 168, 76, 0.08)',
+          border: '1px solid rgba(201, 168, 76, 0.35)',
+          boxShadow: '0 0 40px rgba(201, 168, 76, 0.18)',
           backdropFilter: 'blur(20px)',
         }}
       >

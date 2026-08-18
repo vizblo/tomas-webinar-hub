@@ -131,6 +131,30 @@ export const RegistrationModal = () => {
       ab_variant: getVariantWithFallback(),
     };
 
+    // Systeme.io: tag the contact as registered for the lecture.
+    try {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      void fetch(`${supabaseUrl}/functions/v1/register-contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({
+          email: data.email,
+          firstName,
+          lastName,
+          phone: phone ? `${countryCode}${phone}` : '',
+          type: 'webinar',
+          utm_source: utmParams.utm_source || '',
+          utm_medium: utmParams.utm_medium || '',
+          utm_campaign: utmParams.utm_campaign || '',
+          utm_term: utmParams.utm_term || '',
+          utm_content: utmParams.utm_content || '',
+        }),
+      }).catch((err) => console.error('register-contact error:', err));
+    } catch (err) {
+      console.error('register-contact error:', err);
+    }
+
     // Fire-and-forget webhook (keepalive ensures it completes after navigation)
     try {
       fetch(getRegistrationWebhookUrl(), {

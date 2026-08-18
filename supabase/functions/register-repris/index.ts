@@ -6,7 +6,7 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-const TAG_NAME = 'Webinar repris - 11 augusti 2026';
+const TAG_NAME = 'Webinar repris - 25 augusti 2026';
 let cachedTagId: number | null = null;
 
 async function getReplayTagId(apiKey: string): Promise<number> {

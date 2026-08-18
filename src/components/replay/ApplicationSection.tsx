@@ -12,12 +12,12 @@ export const ApplicationSection = () => {
   }, []);
 
   return (
-    <div className="relative mb-[80px] sm:mb-[100px] lg:mb-[120px]">
+    <div className="relative mb-[48px] sm:mb-[60px] lg:mb-[72px]">
       {/* Apple-esque hairline divider */}
       <div className="flex justify-center mb-[48px] sm:mb-[56px]">
         <div
           className="h-px w-full max-w-[500px]"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.35), transparent)' }}
         />
       </div>
 
@@ -49,7 +49,7 @@ export const ApplicationSection = () => {
         >
           <div
             className="calendly-inline-widget"
-            data-url="https://calendly.com/d/cxj9-h4f-qd8/the-amazon-syndicate-discovery-call-workshop"
+            data-url="https://calendly.com/tomas-tomaslydahl/webinar"
             style={{ minWidth: '320px', height: '700px' }}
           />
         </div>
