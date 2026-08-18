@@ -9,7 +9,9 @@ export const HeadlineBlock = () => {
           lineHeight: 1.15,
         }}
       >
-        Kostnadsfri digital föreläsning: De insikterna som hjälpt hundratals människor släppa sina katastroftankar
+        Kostnadsfri digital föreläsning: De insikterna som hjälpt{' '}
+        <span style={{ color: '#C9A84C' }}>hundratals människor</span> släppa sina{' '}
+        <span style={{ color: '#C9A84C' }}>katastroftankar</span>
       </h1>
 
       <p

@@ -7,6 +7,7 @@ import { TomasVideoTestimonials } from "@/components/tomas/TomasVideoTestimonial
 import { TomasScreenshots } from "@/components/tomas/TomasScreenshots";
 import { SectionSeparator } from "@/components/SectionSeparator";
 import PkLegalFooter from "@/components/PkLegalFooter";
+import { ReplayUnlockModal } from "@/components/replay/ReplayUnlock";
 
 const Replay = () => {
   return (
@@ -28,6 +29,7 @@ const Replay = () => {
       </div>
 
       <PkLegalFooter />
+      <ReplayUnlockModal />
     </div>
   );
 };
