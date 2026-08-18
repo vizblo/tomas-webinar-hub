@@ -19,13 +19,32 @@ const PkConfirmed = lazy(() => import("./pages/PkConfirmed"));
 
 const queryClient = new QueryClient();
 
+const SPLIT_KEY = 'ol_split_target';
+
+const SplitTestRoot = () => {
+  let target = '/a';
+  try {
+    const stored = localStorage.getItem(SPLIT_KEY);
+    if (stored === '/a' || stored === '/b') {
+      target = stored;
+    } else {
+      target = Math.random() < 0.5 ? '/a' : '/b';
+      localStorage.setItem(SPLIT_KEY, target);
+    }
+  } catch {
+    target = Math.random() < 0.5 ? '/a' : '/b';
+  }
+  return <Navigate to={`${target}${window.location.search}`} replace />;
+};
+
 const AppRoutes = () => {
   return (
     <Suspense fallback={null}>
       <PageViewTracker />
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/a" element={<PkIndexA />} />
+        <Route path="/" element={<SplitTestRoot />} />
+        <Route path="/a" element={<Index />} />
+        <Route path="/b" element={<PkIndexA />} />
         <Route path="/admin/optin" element={<PkAdminOptIn />} />
         <Route path="/replay" element={<PkReplay />} />
         <Route path="/confirmed" element={<PkConfirmed />} />
