@@ -100,7 +100,7 @@ export const HomeHeroSectionA = () => {
             boxShadow: '0 0 40px rgba(212,175,55,0.18)',
           }}
         >
-          <WistiaPlayer mediaId="d8kio84jnn" />
+          <WistiaPlayer mediaId="d8kio84jnn" autoplay />
         </div>
 
         {/* Green CTA */}

@@ -38,7 +38,7 @@ const VideoContainer = () => {
             }
           `}</style>
           <div dangerouslySetInnerHTML={{ 
-            __html: '<wistia-player media-id="0xjp3wenam" aspect="1.7777777777777777"></wistia-player>' 
+            __html: '<wistia-player media-id="0xjp3wenam" aspect="1.7777777777777777" autoplay="true" muted="true" playsinline="true"></wistia-player>' 
           }} />
         </div>
       </div>

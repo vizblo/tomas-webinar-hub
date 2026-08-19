@@ -84,7 +84,7 @@ export const StickyCtaBanner = ({
 
         {/* CTA Button */}
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={openRegistrationModal}
           style={{
             display: 'inline-flex',
             alignItems: 'center',
