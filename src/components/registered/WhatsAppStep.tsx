@@ -1,6 +1,6 @@
 import { FaWhatsapp } from 'react-icons/fa';
 import StepBadge from './StepBadge';
-import ebookCover from '@/assets/ebook-katastroftankar.png.asset.json';
+import ebookCover from '@/assets/ebook-katastroftankar-transparent.png';
 import { WHATSAPP_GROUP_URL } from '@/lib/eventDate';
 
 const WhatsAppStep = () => {
@@ -33,14 +33,13 @@ const WhatsAppStep = () => {
 
           {/* Product Image */}
           <img
-            src={ebookCover.url}
+            src={ebookCover}
             alt="E-bok: Varför vi tror på katastroftankar"
-            className="w-32 sm:w-36 md:w-40 h-auto rounded-lg mb-6"
+            className="w-32 sm:w-36 md:w-40 h-auto mb-6"
             fetchPriority="high"
             loading="eager"
             style={{
-              filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))',
-              boxShadow: '0 0 30px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.3)',
+              filter: 'drop-shadow(0 0 24px rgba(212, 175, 55, 0.45))',
             }}
           />
 
