@@ -260,7 +260,7 @@ const LandingPage = () => {
               <div
                 className="rounded-xl overflow-hidden mb-6 mx-auto max-w-2xl"
                 style={{ border: "2px solid hsl(var(--gold) / 0.3)", background: "hsl(var(--surface))" }}>
-                <WistiaPlayer mediaId="d8kio84jnn" />
+                  <WistiaPlayer mediaId="d8kio84jnn" autoplay />
               </div>
 
               {/* Date/Time badges */}

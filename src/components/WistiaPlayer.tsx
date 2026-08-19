@@ -3,10 +3,11 @@ import { useEffect } from 'react';
 interface WistiaPlayerProps {
   mediaId: string;
   className?: string;
+  autoplay?: boolean;
 }
 
 /** Lightweight Wistia embed. Loads the player + media scripts once. */
-export const WistiaPlayer = ({ mediaId, className }: WistiaPlayerProps) => {
+export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPlayerProps) => {
   useEffect(() => {
     const add = (src: string, module?: boolean) => {
       if (document.querySelector(`script[src="${src}"]`)) return;
@@ -32,7 +33,9 @@ export const WistiaPlayer = ({ mediaId, className }: WistiaPlayerProps) => {
       `}</style>
       <div
         dangerouslySetInnerHTML={{
-          __html: `<wistia-player media-id="${mediaId}" aspect="1.7777777777777777"></wistia-player>`,
+          __html: `<wistia-player media-id="${mediaId}" aspect="1.7777777777777777"${
+            autoplay ? ' autoplay="true" muted="true" playsinline="true"' : ''
+          }></wistia-player>`,
         }}
       />
     </div>
