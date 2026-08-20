@@ -32,7 +32,7 @@ const interviews = [
   },
   {
     name: "Klient",
-    title: "INTERVJU · KLIENT\n\nEn klients resa tillsammans med Tomas",
+    title: "INTERVJU · LOTTA\n\nSamtalet som hjälpte Lotta bli fri efter 26 år av ångest",
     videoId: "ct5ib8nLduk",
     url: "https://www.youtube.com/watch?v=ct5ib8nLduk",
   },
