@@ -2,6 +2,7 @@ const videos = [
   { name: 'Fredrik', url: 'https://www.youtube.com/embed/bT_5xwpLDbs' },
   { name: 'Caroline', url: 'https://www.youtube.com/embed/_4r0nCWrCCw' },
   { name: 'Klas', url: 'https://www.youtube.com/embed/bZ0jF2Ag7Mc' },
+  { name: 'Klient', url: 'https://www.youtube.com/embed/ct5ib8nLduk' },
 ];
 
 interface Props {
