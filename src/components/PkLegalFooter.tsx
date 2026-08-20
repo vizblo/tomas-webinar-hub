@@ -1,5 +1,15 @@
-const PkLegalFooter = ({ disclaimer }: { disclaimer?: string }) => (
-  <footer className="pk-theme relative z-10 border-t border-white/10 bg-black pt-4 pb-2 text-center text-xs text-white/60">
+const PkLegalFooter = ({
+  disclaimer,
+  bottomSpace,
+}: {
+  disclaimer?: string;
+  /** Extra bottom padding (px) so a fixed sticky bar doesn't cover the text. */
+  bottomSpace?: number;
+}) => (
+  <footer
+    className="pk-theme relative z-10 border-t border-white/10 bg-black pt-4 pb-2 text-center text-xs text-white/60"
+    style={bottomSpace ? { paddingBottom: `${bottomSpace}px` } : undefined}
+  >
     <p className="mb-2">© {new Date().getFullYear()} Tomas Lydahl AB. Alla rättigheter förbehållna.</p>
     <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
       <a href="/privacy" className="transition-opacity hover:opacity-80 underline underline-offset-4">
