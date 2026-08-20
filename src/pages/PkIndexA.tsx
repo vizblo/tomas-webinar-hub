@@ -38,7 +38,7 @@ const IndexA = () => {
   }, []);
 
   return (
-    <div className="dark pk-theme" style={{ paddingBottom: '8px', backgroundColor: '#000000' }}>
+    <div className="dark pk-theme" style={{ paddingBottom: '0px', backgroundColor: '#000000' }}>
       <HomeTopBannerA />
       <HomeHeroSectionA />
 
