@@ -30,6 +30,12 @@ const interviews = [
     videoId: "bZ0jF2Ag7Mc",
     url: "https://www.youtube.com/watch?v=bZ0jF2Ag7Mc&t=1s",
   },
+  {
+    name: "Klient",
+    title: "INTERVJU · KLIENT\n\nEn klients resa tillsammans med Tomas",
+    videoId: "ct5ib8nLduk",
+    url: "https://www.youtube.com/watch?v=ct5ib8nLduk",
+  },
 ];
 
 const screenshots = [
@@ -56,7 +62,7 @@ export function Testimonials() {
       </Reveal>
 
       {/* YouTube interviews */}
-      <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-3">
+      <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2">
         {interviews.map((iv, i) => (
           <Reveal key={iv.name} delay={i * 90}>
             <a

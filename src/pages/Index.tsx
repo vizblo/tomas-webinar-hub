@@ -547,11 +547,12 @@ const LandingPage = () => {
           </div>
 
           {/* Video testimonials */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid sm:grid-cols-2 gap-6 mb-12">
             {[
             { name: "Fredrik", url: "https://www.youtube.com/embed/bT_5xwpLDbs" },
             { name: "Caroline", url: "https://www.youtube.com/embed/_4r0nCWrCCw" },
-            { name: "Klas", url: "https://www.youtube.com/embed/bZ0jF2Ag7Mc" }].
+            { name: "Klas", url: "https://www.youtube.com/embed/bZ0jF2Ag7Mc" },
+            { name: "Klient", url: "https://www.youtube.com/embed/ct5ib8nLduk" }].
             map(({ name, url }, i) =>
             <div key={name} className="rounded-xl overflow-hidden" style={{ border: "1px solid hsl(var(--border))" }}>
                 <div style={{ aspectRatio: "16/9" }}>
