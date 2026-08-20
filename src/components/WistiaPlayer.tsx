@@ -66,22 +66,23 @@ export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPla
           aria-label={muted ? 'Slå på ljud' : 'Stäng av ljud'}
           style={{
             position: 'absolute',
+            top: '50%',
             left: '50%',
-            bottom: '14px',
-            transform: 'translateX(-50%)',
+            transform: 'translate(-50%, -50%)',
             zIndex: 5,
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '8px',
-            padding: '9px 16px',
+            gap: '10px',
+            padding: '16px 28px',
             borderRadius: '999px',
-            border: '1px solid rgba(212, 175, 55, 0.6)',
-            background: 'rgba(0, 0, 0, 0.72)',
-            backdropFilter: 'blur(6px)',
+            border: '2px solid rgba(212, 175, 55, 0.7)',
+            background: 'rgba(0, 0, 0, 0.78)',
+            backdropFilter: 'blur(8px)',
             color: '#F5E7B8',
-            fontSize: '14px',
-            fontWeight: 700,
+            fontSize: 'clamp(15px, 4vw, 20px)',
+            fontWeight: 800,
             cursor: 'pointer',
+            boxShadow: '0 0 30px rgba(212, 175, 55, 0.35)',
           }}
         >
           {muted ? '🔇 Tryck för ljud' : '🔊 Ljud på'}
