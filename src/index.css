@@ -358,11 +358,15 @@
   --vsl-border: 0 0% 15%;
   --vsl-card: 0 0% 5%;
 
-  min-height: 100vh;
   background-color: #0B0B0B;
   color: #FFFFFF;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.5;
+}
+
+#root > .pk-theme,
+body > .pk-theme {
+  min-height: 100vh;
 }
 
 .pk-theme h1, .pk-theme h2, .pk-theme h3, .pk-theme h4 {
