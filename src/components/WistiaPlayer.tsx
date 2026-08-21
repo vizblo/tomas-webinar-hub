@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface WistiaPlayerProps {
   mediaId: string;
@@ -9,7 +9,6 @@ interface WistiaPlayerProps {
 /** Lightweight Wistia embed. Loads the player + media scripts once. */
 export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPlayerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [muted, setMuted] = useState(autoplay);
 
   useEffect(() => {
     const add = (src: string, module?: boolean) => {
@@ -23,55 +22,6 @@ export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPla
     add('https://fast.wistia.com/player.js');
     add(`https://fast.wistia.com/embed/${mediaId}.js`, true);
   }, [mediaId]);
-
-  // Try to start with sound automatically (browsers may block this).
-  useEffect(() => {
-    if (!autoplay) return;
-    let stopped = false;
-    const tryUnmute = () => {
-      const el = containerRef.current?.querySelector('wistia-player') as
-        | (HTMLElement & { muted?: boolean; volume?: number; play?: () => void; paused?: boolean })
-        | null;
-      if (!el || typeof el.play !== 'function') return false;
-      try {
-        el.muted = false;
-        el.volume = 1;
-        el.play?.();
-        setTimeout(() => {
-          if (stopped) return;
-          if (el.muted === false && el.paused === false) setMuted(false);
-        }, 300);
-      } catch {
-        /* ignore */
-      }
-      return true;
-    };
-    const id = window.setInterval(() => {
-      if (tryUnmute()) window.clearInterval(id);
-    }, 400);
-    const timeout = window.setTimeout(() => window.clearInterval(id), 8000);
-    return () => {
-      stopped = true;
-      window.clearInterval(id);
-      window.clearTimeout(timeout);
-    };
-  }, [autoplay]);
-
-  const toggleSound = () => {
-    const el = containerRef.current?.querySelector('wistia-player') as
-      | (HTMLElement & { muted?: boolean; volume?: number; play?: () => void })
-      | null;
-    if (!el) return;
-    try {
-      el.muted = false;
-      el.volume = 1;
-      el.play?.();
-    } catch {
-      /* player not ready */
-    }
-    setMuted(false);
-  };
-
 
   return (
     <div className={className} style={{ width: '100%', position: 'relative' }} ref={containerRef}>
@@ -90,38 +40,9 @@ export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPla
           }></wistia-player>`,
         }}
       />
-      {autoplay && muted && (
-        <button
-          type="button"
-          onClick={toggleSound}
-          aria-label="Slå på ljud"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            zIndex: 5,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            padding: '18px 30px',
-            borderRadius: '8px',
-            border: '2px solid rgba(212, 175, 55, 0.7)',
-            background: 'rgba(0, 0, 0, 0.78)',
-            backdropFilter: 'blur(8px)',
-            color: '#F5E7B8',
-            fontSize: 'clamp(15px, 4vw, 20px)',
-            fontWeight: 800,
-            cursor: 'pointer',
-            boxShadow: '0 0 30px rgba(212, 175, 55, 0.35)',
-          }}
-        >
-          🔇 Tryck för ljud
-        </button>
-      )}
-
     </div>
   );
 };
 
 export default WistiaPlayer;
+
