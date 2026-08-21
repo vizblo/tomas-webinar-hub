@@ -124,15 +124,13 @@ const ThankYou = () => {
           </p>
         </div>
 
-        {/* Hero image */}
+        {/* Hero video */}
         <div
           className="rounded-lg mb-6 overflow-hidden"
           style={{ border: "1px solid hsl(var(--border))", background: "hsl(var(--surface))" }}>
-          <img
-            src={tomasLaptop}
-            alt="Tomas Lydahl"
-            className="w-full h-auto block" />
+          <WistiaPlayer mediaId="0xjp3wenam" autoplay />
         </div>
+
 
         {/* Steps */}
         <div className="space-y-4">
