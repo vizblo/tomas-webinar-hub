@@ -90,11 +90,11 @@ export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPla
           }></wistia-player>`,
         }}
       />
-      {autoplay && (
+      {autoplay && muted && (
         <button
           type="button"
           onClick={toggleSound}
-          aria-label={muted ? 'Slå på ljud' : 'Stäng av ljud'}
+          aria-label="Slå på ljud"
           style={{
             position: 'absolute',
             top: '50%',
@@ -104,8 +104,8 @@ export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPla
             display: 'inline-flex',
             alignItems: 'center',
             gap: '10px',
-            padding: '16px 28px',
-            borderRadius: '999px',
+            padding: '18px 30px',
+            borderRadius: '8px',
             border: '2px solid rgba(212, 175, 55, 0.7)',
             background: 'rgba(0, 0, 0, 0.78)',
             backdropFilter: 'blur(8px)',
@@ -116,9 +116,10 @@ export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPla
             boxShadow: '0 0 30px rgba(212, 175, 55, 0.35)',
           }}
         >
-          {muted ? '🔇 Tryck för ljud' : '🔊 Ljud på'}
+          🔇 Tryck för ljud
         </button>
       )}
+
     </div>
   );
 };
