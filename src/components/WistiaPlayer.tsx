@@ -24,23 +24,54 @@ export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPla
     add(`https://fast.wistia.com/embed/${mediaId}.js`, true);
   }, [mediaId]);
 
+  // Try to start with sound automatically (browsers may block this).
+  useEffect(() => {
+    if (!autoplay) return;
+    let stopped = false;
+    const tryUnmute = () => {
+      const el = containerRef.current?.querySelector('wistia-player') as
+        | (HTMLElement & { muted?: boolean; volume?: number; play?: () => void; paused?: boolean })
+        | null;
+      if (!el || typeof el.play !== 'function') return false;
+      try {
+        el.muted = false;
+        el.volume = 1;
+        el.play?.();
+        setTimeout(() => {
+          if (stopped) return;
+          if (el.muted === false && el.paused === false) setMuted(false);
+        }, 300);
+      } catch {
+        /* ignore */
+      }
+      return true;
+    };
+    const id = window.setInterval(() => {
+      if (tryUnmute()) window.clearInterval(id);
+    }, 400);
+    const timeout = window.setTimeout(() => window.clearInterval(id), 8000);
+    return () => {
+      stopped = true;
+      window.clearInterval(id);
+      window.clearTimeout(timeout);
+    };
+  }, [autoplay]);
+
   const toggleSound = () => {
     const el = containerRef.current?.querySelector('wistia-player') as
       | (HTMLElement & { muted?: boolean; volume?: number; play?: () => void })
       | null;
     if (!el) return;
-    const next = !muted;
     try {
-      el.muted = next;
-      if (!next) {
-        el.volume = 1;
-        el.play?.();
-      }
+      el.muted = false;
+      el.volume = 1;
+      el.play?.();
     } catch {
       /* player not ready */
     }
-    setMuted(next);
+    setMuted(false);
   };
+
 
   return (
     <div className={className} style={{ width: '100%', position: 'relative' }} ref={containerRef}>
