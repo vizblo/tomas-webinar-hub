@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { setVariant } from '@/lib/tracking';
 
 const SPLIT_KEY = 'ol_split_target_v2';
 
@@ -41,6 +42,7 @@ export default function SplitTestRoot() {
       }
       if (cancelled) return;
       store(next);
+      setVariant(next.slice(1) as 'a' | 'b');
       setTarget(next);
     })();
     return () => {

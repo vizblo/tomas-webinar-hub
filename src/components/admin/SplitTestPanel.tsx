@@ -8,7 +8,7 @@ type Props = {
   regs: Reg[];
 };
 
-const LABELS: Record<string, string> = { a: '/a', b: '/' };
+const LABELS: Record<string, string> = { a: '/a', b: '/b' };
 const VARIANTS: Array<'a' | 'b'> = ['a', 'b'];
 
 function wilson(pos: number, n: number): [number, number] {
