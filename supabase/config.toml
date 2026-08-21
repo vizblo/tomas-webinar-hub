@@ -1,1 +1,4 @@
 project_id = "ledrfbvipbykojzqrjyx"
+
+[functions.assign-variant]
+verify_jwt = false
