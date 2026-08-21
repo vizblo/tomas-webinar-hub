@@ -44,7 +44,8 @@ function deriveVariantFromPath(pathname: string): string {
   // Split test only cares about the landing entry point.
   // /a → 'a' (Philip-sidan), / → 'b' (Tomas-sidan), övrigt → 'root'.
   if (pathname === '/b' || pathname.startsWith('/b/')) return 'b';
-  if (pathname === '/a' || pathname === '/') return 'a';
+  if (pathname === '/a' || pathname.startsWith('/a/')) return 'a';
+  // '/' is only a redirector – it must never count as a variant.
   return 'root';
 }
 
@@ -54,10 +55,20 @@ export function getLandingPath(): string {
     const stored = sessionStorage.getItem(LANDING_KEY);
     if (stored) return stored;
     const path = window.location.pathname || '/';
-    sessionStorage.setItem(LANDING_KEY, path);
+    // Don't lock the landing path to '/', it just redirects to /a or /b.
+    if (path !== '/') sessionStorage.setItem(LANDING_KEY, path);
     return path;
   } catch {
     return window.location.pathname || '/';
+  }
+}
+
+export function setVariant(v: 'a' | 'b'): void {
+  try {
+    sessionStorage.setItem(VARIANT_KEY, v);
+    sessionStorage.setItem(LANDING_KEY, `/${v}`);
+  } catch {
+    /* ignore */
   }
 }
 
