@@ -18,7 +18,6 @@ import { pushToDataLayer } from '@/lib/utm';
 import { getABVariant } from '@/hooks/useABTest';
 import { saveRegistrationData } from '@/lib/registrationData';
 import { trackRegistration } from '@/lib/tracking';
-import { getRegistrationWebhookUrl } from '@/lib/registrationWebhook';
 
 // Helper to get variant with URL-based fallback when localStorage fails
 const getVariantWithFallback = (): string => {
