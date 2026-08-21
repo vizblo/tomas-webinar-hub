@@ -18,7 +18,6 @@ import { pushToDataLayer } from '@/lib/utm';
 import { getABVariant } from '@/hooks/useABTest';
 import { saveRegistrationData } from '@/lib/registrationData';
 import { trackRegistration } from '@/lib/tracking';
-import { getRegistrationWebhookUrl } from '@/lib/registrationWebhook';
 
 // Helper to get variant with URL-based fallback when localStorage fails
 const getVariantWithFallback = (): string => {
@@ -155,18 +154,9 @@ export const RegistrationModal = () => {
       console.error('register-contact error:', err);
     }
 
-    // Fire-and-forget webhook (keepalive ensures it completes after navigation)
-    try {
-      fetch(getRegistrationWebhookUrl(), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        mode: 'no-cors',
-        keepalive: true,
-        body: JSON.stringify(payload),
-      }).catch((err) => console.error('Webhook error:', err));
-    } catch (err) {
-      console.error('Webhook error:', err);
-    }
+    // No third-party webhook: registrations go to Systeme.io via register-contact.
+    void payload;
+
 
     // Log registration to admin dashboard.
     trackRegistration({
