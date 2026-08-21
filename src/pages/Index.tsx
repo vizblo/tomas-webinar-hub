@@ -291,11 +291,11 @@ const LandingPage = () => {
 
               <button
                 onClick={() => setModalOpen(true)}
-                className="btn-gold px-6 py-4 inline-flex items-center justify-center gap-2.5 w-full sm:w-auto md:min-w-[300px]">
-                <Ticket className="w-5 h-5" />
+                className="btn-gold px-8 py-5 inline-flex items-center justify-center gap-3 w-full sm:w-auto md:min-w-[360px]">
+                <Ticket className="w-6 h-6" />
                 <span className="flex flex-col items-center leading-tight">
-                  <span className="font-bold tracking-wide text-base">SÄKRA MIN PLATS</span>
-                  <span className="text-xs font-normal opacity-90">Kostnadsfri registrering</span>
+                  <span className="font-bold tracking-wide text-lg">SÄKRA MIN PLATS</span>
+                  <span className="text-sm font-normal opacity-90">Kostnadsfri registrering</span>
                 </span>
               </button>
               <div

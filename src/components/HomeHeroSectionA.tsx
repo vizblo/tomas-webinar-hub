@@ -107,11 +107,11 @@ export const HomeHeroSectionA = () => {
         <button
           type="button"
           onClick={openRegistrationModal}
-          className="group block w-full max-w-[620px] mx-auto px-10 py-6 md:py-7 mb-10 transition-transform hover:-translate-y-0.5 active:translate-y-0"
+          className="group block w-full max-w-[560px] mx-auto px-8 py-5 md:py-6 mb-10 transition-transform hover:-translate-y-0.5 active:translate-y-0"
           style={{
             background: 'linear-gradient(180deg, #10B981 0%, #059669 50%, #047857 100%)',
-            borderRadius: 20,
-            boxShadow: '0 8px 0 0 #064e3b, 0 18px 40px rgba(16,185,129,0.45)',
+            borderRadius: 18,
+            boxShadow: '0 6px 0 0 #064e3b, 0 14px 32px rgba(16,185,129,0.40)',
             color: '#FFFFFF',
             border: '2px solid rgba(0,0,0,0.35)',
           }}
@@ -120,18 +120,18 @@ export const HomeHeroSectionA = () => {
             className="block"
             style={{
               fontFamily: FONT,
-              fontSize: 'clamp(26px, 6.2vw, 38px)',
+              fontSize: 'clamp(22px, 5.4vw, 30px)',
               fontWeight: 900,
               letterSpacing: '-0.01em',
-              lineHeight: 1.05,
+              lineHeight: 1.1,
               textTransform: 'uppercase',
             }}
           >
             JA! SÄKRA MIN PLATS
           </span>
           <span
-            className="block mt-1.5"
-            style={{ fontSize: 'clamp(13px, 3.2vw, 17px)', fontWeight: 600, color: 'rgba(255,255,255,0.92)' }}
+            className="block mt-1"
+            style={{ fontSize: 'clamp(12px, 3vw, 15px)', fontWeight: 600, color: 'rgba(255,255,255,0.92)' }}
           >
             Kostnadsfri registrering
           </span>
