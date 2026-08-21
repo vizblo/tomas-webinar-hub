@@ -36,10 +36,11 @@ export const WistiaPlayer = ({ mediaId, className, autoplay = false }: WistiaPla
       <div
         dangerouslySetInnerHTML={{
           __html: `<wistia-player media-id="${mediaId}" aspect="1.7777777777777777"${
-            autoplay ? ' autoplay="true" muted="true" playsinline="true"' : ''
-          }></wistia-player>`,
+            autoplay ? ' autoplay="true"' : ''
+          } style="width:100%;height:100%;display:block;"></wistia-player>`,
         }}
       />
+
     </div>
   );
 };
