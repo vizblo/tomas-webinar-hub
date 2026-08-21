@@ -6,7 +6,7 @@ import outlookIcon from "@/assets/outlook.png";
 import outlookLogo from "@/assets/outlook-icon.png.asset.json";
 import gmailLogo from "@/assets/gmail-v4.webp.asset.json";
 import appleLogo from "@/assets/apple-v4.png.asset.json";
-import tomasLaptop from "@/assets/tomas-laptop.webp";
+import { WistiaPlayer } from "@/components/WistiaPlayer";
 import ebookCover from "@/assets/ebook-katastroftankar.png.asset.json";
 import tomasYoutubeChannel from "@/assets/tomas-youtube-channel.png.asset.json";
 import tomasMejl from "@/assets/tomas-mejl.png.asset.json";
@@ -124,15 +124,13 @@ const ThankYou = () => {
           </p>
         </div>
 
-        {/* Hero image */}
+        {/* Hero video */}
         <div
           className="rounded-lg mb-6 overflow-hidden"
           style={{ border: "1px solid hsl(var(--border))", background: "hsl(var(--surface))" }}>
-          <img
-            src={tomasLaptop}
-            alt="Tomas Lydahl"
-            className="w-full h-auto block" />
+          <WistiaPlayer mediaId="0xjp3wenam" autoplay />
         </div>
+
 
         {/* Steps */}
         <div className="space-y-4">
