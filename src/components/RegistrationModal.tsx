@@ -230,7 +230,7 @@ export const RegistrationModal = () => {
           </DialogHeader>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4" autoComplete="on" name="registration">
               <FormField
                 control={form.control}
                 name="firstName"
@@ -243,9 +243,11 @@ export const RegistrationModal = () => {
                       <Input
                         {...field}
                         id="firstName"
-                        name="firstName"
+                        name="name"
                         placeholder="Anna"
-                        autoComplete="given-name"
+                        autoComplete="name"
+                        autoCapitalize="words"
+                        enterKeyHint="next"
                         className={`h-11 sm:h-12 bg-[#0B0B0B] text-white placeholder:text-gray-500 ${
                           fieldState.error
                             ? 'border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]'
