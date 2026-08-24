@@ -34,14 +34,14 @@ Deno.serve(async (req) => {
     };
 
     const [a, b] = await Promise.all([count('a'), count('b')]);
-    // Push variant B exclusively until it has caught up with A, then 50/50.
-    const variant = b < a ? 'b' : Math.random() < 0.5 ? 'a' : 'b';
+    // All traffic goes to variant B for now.
+    const variant = 'b';
 
     return new Response(JSON.stringify({ variant, a, b }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (e) {
-    return new Response(JSON.stringify({ variant: 'a', error: String((e as Error)?.message ?? e) }), {
+    return new Response(JSON.stringify({ variant: 'b', error: String((e as Error)?.message ?? e) }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
