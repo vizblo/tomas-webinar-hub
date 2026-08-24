@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { setVariant } from '@/lib/tracking';
 
-const SPLIT_KEY = 'ol_split_target_v2';
+const SPLIT_KEY = 'ol_split_target_v3';
 
 type Target = '/a' | '/b';
 
@@ -32,7 +32,7 @@ export default function SplitTestRoot() {
     if (target) return;
     let cancelled = false;
     (async () => {
-      let next: Target = Math.random() < 0.5 ? '/a' : '/b';
+      let next: Target = '/b';
       try {
         const { data } = await supabase.functions.invoke('assign-variant');
         const variant = (data as { variant?: string } | null)?.variant;
