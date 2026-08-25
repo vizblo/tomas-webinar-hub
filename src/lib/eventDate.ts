@@ -6,8 +6,8 @@ const CYCLE_MS = 14 * 24 * 60 * 60 * 1000;
 // Tuesday 25 August 2026, 19:00 Stockholm time (CEST = UTC+2)
 const BASE_EVENT = Date.parse('2026-08-25T19:00:00+02:00');
 
-// Friday 28 August 2026, 23:59 Stockholm time (CEST = UTC+2)
-const BASE_REPLAY_DEADLINE = Date.parse('2026-08-28T23:59:00+02:00');
+// Saturday 29 August 2026, 23:59 Stockholm time (CEST = UTC+2)
+const BASE_REPLAY_DEADLINE = Date.parse('2026-08-29T23:59:00+02:00');
 
 const roll = (base: number, now = Date.now()): number => {
   if (now < base) return base;
