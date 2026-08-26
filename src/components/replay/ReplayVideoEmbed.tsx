@@ -11,7 +11,7 @@ export const ReplayVideoEmbed = () => {
     if (!unlocked) return;
     const srcs = [
       "https://fast.wistia.com/player.js",
-      "https://fast.wistia.com/embed/78eye7t61r.js",
+      "https://fast.wistia.com/embed/bux9e5v47f.js",
     ];
     srcs.forEach((src, i) => {
       if (document.querySelector(`script[src="${src}"]`)) return;
@@ -40,15 +40,15 @@ export const ReplayVideoEmbed = () => {
         {unlocked ? (
           <>
             <style>{`
-              wistia-player[media-id='78eye7t61r']:not(:defined) {
-                background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/78eye7t61r/swatch');
+              wistia-player[media-id='bux9e5v47f']:not(:defined) {
+                background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/bux9e5v47f/swatch');
                 display: block;
                 filter: blur(5px);
                 padding-top: 56.25%;
               }
             `}</style>
             <div dangerouslySetInnerHTML={{
-              __html: '<wistia-player media-id="78eye7t61r" aspect="1.7777777777777777"></wistia-player>'
+              __html: '<wistia-player media-id="bux9e5v47f" aspect="1.7777777777777777"></wistia-player>'
             }} />
           </>
         ) : (
