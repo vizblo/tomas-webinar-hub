@@ -1,4 +1,7 @@
 project_id = "ledrfbvipbykojzqrjyx"
 
-[functions.assign-variant]
-verify_jwt = false
+[functions]
+  [functions.assign-variant]
+    verify_jwt = false
+  [functions.auth-email-hook]
+    verify_jwt = false
