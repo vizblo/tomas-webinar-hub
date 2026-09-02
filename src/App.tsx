@@ -12,6 +12,7 @@ import Bokad from "./pages/Bokad";
 import NotFound from "./pages/NotFound";
 import PageViewTracker from "@/components/PageViewTracker";
 import SplitTestRoot from "@/components/SplitTestRoot";
+import DevNav from "@/components/DevNav";
 
 
 const PkIndexA = lazy(() => import("./pages/PkIndexA"));
@@ -50,6 +51,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AppRoutes />
+        {import.meta.env.DEV && <DevNav />}
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
