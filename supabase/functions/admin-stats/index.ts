@@ -2,7 +2,7 @@ import { createClient } from 'jsr:@supabase/supabase-js@2';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-admin-password',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
@@ -25,6 +25,15 @@ async function fetchAll(query: (from: number, to: number) => any) {
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
+
+  const expectedPassword = Deno.env.get('ADMIN_DASHBOARD_PASSWORD');
+  const providedPassword = req.headers.get('x-admin-password');
+  if (!expectedPassword || providedPassword !== expectedPassword) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
 
   try {
     const { range = '7d' } = await req.json().catch(() => ({}));
