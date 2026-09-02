@@ -1,5 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+
+const DEVNAV_STORAGE_KEY = "pk_devnav";
+
+// Internal tool: hidden for everyone by default, including in the Base44 preview.
+// Open any page with ?dev=1 to switch it on for this browser, ?dev=0 to switch it off.
+const readDevNavFlag = (): boolean => {
+  try {
+    const param = new URLSearchParams(window.location.search).get("dev");
+    if (param === "1") {
+      localStorage.setItem(DEVNAV_STORAGE_KEY, "1");
+      return true;
+    }
+    if (param === "0") {
+      localStorage.removeItem(DEVNAV_STORAGE_KEY);
+      return false;
+    }
+    return localStorage.getItem(DEVNAV_STORAGE_KEY) === "1";
+  } catch {
+    return false;
+  }
+};
 
 const PAGES = [
   { path: "/", label: "Split-test root" },
@@ -16,7 +37,14 @@ const PAGES = [
 
 const DevNav = () => {
   const [open, setOpen] = useState(false);
+  const [enabled, setEnabled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    setEnabled(readDevNavFlag());
+  }, [location]);
+
+  if (!enabled) return null;
 
   return (
     <div

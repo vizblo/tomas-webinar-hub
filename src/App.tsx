@@ -51,7 +51,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AppRoutes />
-        {import.meta.env.DEV && <DevNav />}
+        <DevNav />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
