@@ -85,25 +85,6 @@ export default function AdminOptIn() {
     setAdminPw(trimmed);
   }
 
-  if (!adminPw) {
-    return (
-      <div className="pk-theme min-h-screen bg-background text-foreground flex items-center justify-center p-6">
-        <form onSubmit={handleLogin} className="w-full max-w-xs border border-border rounded-2xl p-6 bg-card space-y-4">
-          <h1 className="text-lg font-semibold text-center">Admin</h1>
-          <Input
-            type="password"
-            autoFocus
-            placeholder="Lösenord"
-            value={pwInput}
-            onChange={(e) => setPwInput(e.target.value)}
-          />
-          {authError && <p className="text-sm text-red-500">{authError}</p>}
-          <Button type="submit" className="w-full">Logga in</Button>
-        </form>
-      </div>
-    );
-  }
-
   const paths = useMemo(() => {
     const set = new Set<string>();
     views.forEach((v) => set.add(v.path));
@@ -165,6 +146,25 @@ export default function AdminOptIn() {
     const rate = applySessions.size > 0 ? (converted / applySessions.size) * 100 : 0;
     return { apply: applySessions.size, converted, rate };
   }, [views]);
+
+  if (!adminPw) {
+    return (
+      <div className="pk-theme min-h-screen bg-background text-foreground flex items-center justify-center p-6">
+        <form onSubmit={handleLogin} className="w-full max-w-xs border border-border rounded-2xl p-6 bg-card space-y-4">
+          <h1 className="text-lg font-semibold text-center">Admin</h1>
+          <Input
+            type="password"
+            autoFocus
+            placeholder="Lösenord"
+            value={pwInput}
+            onChange={(e) => setPwInput(e.target.value)}
+          />
+          {authError && <p className="text-sm text-red-500">{authError}</p>}
+          <Button type="submit" className="w-full">Logga in</Button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="pk-theme min-h-screen bg-background text-foreground">
