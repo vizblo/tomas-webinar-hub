@@ -1,10 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend,
 } from 'recharts';
 import { SplitTestPanel } from '@/components/admin/SplitTestPanel';
+
+const ADMIN_PW_STORAGE_KEY = 'pk_admin_pw';
 
 type Range = '24h' | '7d' | '30d' | 'all';
 type PageView = { path: string; session_id: string; created_at: string; utm_source: string | null; utm_content?: string | null; is_bot: boolean; variant: string | null };
@@ -25,8 +29,14 @@ export default function AdminOptIn() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
 
+  const [adminPw, setAdminPw] = useState<string | null>(() => {
+    try { return sessionStorage.getItem(ADMIN_PW_STORAGE_KEY); } catch { return null; }
+  });
+  const [pwInput, setPwInput] = useState('');
+  const [authError, setAuthError] = useState('');
+
   useEffect(() => {
-    document.title = 'Opt-in rate · Admin';
+    document.title = adminPw ? 'Opt-in rate · Admin' : 'Admin';
     const meta = document.querySelector('meta[name="robots"]');
     if (meta) meta.setAttribute('content', 'noindex');
     else {
@@ -35,17 +45,28 @@ export default function AdminOptIn() {
       m.content = 'noindex';
       document.head.appendChild(m);
     }
-  }, []);
+  }, [adminPw]);
 
   useEffect(() => {
+    if (!adminPw) return;
     let cancelled = false;
     (async () => {
       setLoading(true);
       setError('');
-      const { data, error } = await supabase.functions.invoke('admin-stats', { body: { range } });
+      const { data, error } = await supabase.functions.invoke('admin-stats', {
+        body: { range },
+        headers: { 'x-admin-password': adminPw },
+      });
       if (cancelled) return;
       setLoading(false);
       if (error || (data as any)?.error) {
+        const status = (error as any)?.context?.status;
+        if (status === 401) {
+          try { sessionStorage.removeItem(ADMIN_PW_STORAGE_KEY); } catch { /* noop */ }
+          setAdminPw(null);
+          setAuthError('Fel lösenord.');
+          return;
+        }
         setError((data as any)?.error || error?.message || 'Error');
         return;
       }
@@ -53,7 +74,35 @@ export default function AdminOptIn() {
       setRegs((data as any).regs ?? []);
     })();
     return () => { cancelled = true; };
-  }, [range]);
+  }, [range, adminPw]);
+
+  function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    const trimmed = pwInput.trim();
+    if (!trimmed) return;
+    setAuthError('');
+    try { sessionStorage.setItem(ADMIN_PW_STORAGE_KEY, trimmed); } catch { /* noop */ }
+    setAdminPw(trimmed);
+  }
+
+  if (!adminPw) {
+    return (
+      <div className="pk-theme min-h-screen bg-background text-foreground flex items-center justify-center p-6">
+        <form onSubmit={handleLogin} className="w-full max-w-xs border border-border rounded-2xl p-6 bg-card space-y-4">
+          <h1 className="text-lg font-semibold text-center">Admin</h1>
+          <Input
+            type="password"
+            autoFocus
+            placeholder="Lösenord"
+            value={pwInput}
+            onChange={(e) => setPwInput(e.target.value)}
+          />
+          {authError && <p className="text-sm text-red-500">{authError}</p>}
+          <Button type="submit" className="w-full">Logga in</Button>
+        </form>
+      </div>
+    );
+  }
 
   const paths = useMemo(() => {
     const set = new Set<string>();
