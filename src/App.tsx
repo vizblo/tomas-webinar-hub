@@ -12,6 +12,7 @@ import Bokad from "./pages/Bokad";
 import NotFound from "./pages/NotFound";
 import PageViewTracker from "@/components/PageViewTracker";
 import SplitTestRoot from "@/components/SplitTestRoot";
+import Base44AdminButton from "@/components/Base44AdminButton";
 
 
 const PkIndexA = lazy(() => import("./pages/PkIndexA"));
@@ -26,6 +27,7 @@ const AppRoutes = () => {
   return (
     <Suspense fallback={null}>
       <PageViewTracker />
+      <Base44AdminButton />
       <Routes>
         <Route path="/" element={<SplitTestRoot />} />
         <Route path="/a" element={<Index />} />
