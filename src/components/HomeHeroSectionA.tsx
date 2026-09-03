@@ -69,10 +69,10 @@ export const HomeHeroSectionA = () => {
             color: '#FFFFFF',
           }}
         >
-          De insikterna som hjälpt{' '}
-          <span style={{ color: GOLD, textShadow: '0 0 24px rgba(212,175,55,0.3)' }}>hundratals människor</span>{' '}
-          släppa sina{' '}
-          <span style={{ color: GOLD, textShadow: '0 0 24px rgba(212,175,55,0.3)' }}>katastroftankar</span>
+          Så slutar du{' '}
+          <span style={{ color: GOLD, textShadow: '0 0 24px rgba(212,175,55,0.3)' }}>tvivla på dig själv</span>{' '}
+          trots att du presterar{' '}
+          <span style={{ color: GOLD, textShadow: '0 0 24px rgba(212,175,55,0.3)' }}>på jobbet</span>
         </h1>
 
         {/* Subhead */}
